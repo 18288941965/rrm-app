@@ -1,7 +1,7 @@
 package com.rrm.module.item.service;
 
 import com.rrm.module.item.domain.model.RrmItem;
-import com.rrm.vo.ReturnT;
+import com.rrm.vo.ResultVO;
 
 import java.util.List;
 
@@ -14,16 +14,11 @@ import java.util.List;
  */
 public interface ItemService {
 
-    /**
-     * 创建项目
-     * @param rrmItem bean
-     * @return ReturnT<String>
-     */
-    ReturnT<String> createItem(RrmItem rrmItem);
+    ResultVO<String> createItem(RrmItem rrmItem);
 
-    ReturnT<String> deleteItem(String id);
+    ResultVO<String> deleteItem(String id);
 
-    ReturnT<String> updateItem(RrmItem rrmItem);
+    ResultVO<String> updateItem(RrmItem rrmItem);
 
-    ReturnT<List<RrmItem>> getAllItem();
+    ResultVO<List<RrmItem>> getAllItem();
 }

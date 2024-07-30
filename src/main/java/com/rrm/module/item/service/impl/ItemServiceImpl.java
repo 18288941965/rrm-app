@@ -3,10 +3,12 @@ package com.rrm.module.item.service.impl;
 import com.rrm.module.item.domain.model.RrmItem;
 import com.rrm.module.item.mapper.RrmItemMapper;
 import com.rrm.module.item.service.ItemService;
-import com.rrm.vo.ReturnT;
+import com.rrm.util.JwtTokenUtil;
+import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -22,29 +24,32 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private RrmItemMapper itemMapper;
 
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
     @Override
-    public ReturnT<String> createItem(RrmItem rrmItem) {
+    public ResultVO<String> createItem(RrmItem rrmItem) {
+        rrmItem.setCreateTime(LocalDateTime.now());
+        rrmItem.setCreateUser(jwtTokenUtil.getUsernameFromRequest());
         itemMapper.insert(rrmItem);
-        return ReturnT.SUCCESS;
+        return ResultVO.success();
     }
 
     @Override
-    public ReturnT<String> deleteItem(String id) {
+    public ResultVO<String> deleteItem(String id) {
         itemMapper.deleteById(id);
-        return ReturnT.SUCCESS;
+        return ResultVO.success();
     }
 
     @Override
-    public ReturnT<String> updateItem(RrmItem rrmItem) {
+    public ResultVO<String> updateItem(RrmItem rrmItem) {
         itemMapper.updateById(rrmItem);
-        return ReturnT.SUCCESS;
+        return ResultVO.success();
     }
 
     @Override
-    public ReturnT<List<RrmItem>> getAllItem() {
+    public ResultVO<List<RrmItem>> getAllItem() {
         List<RrmItem> rrmItems = itemMapper.selectList(null);
-        ReturnT<List<RrmItem>> returnT = new ReturnT<>();
-        returnT.setData(rrmItems);
-        return returnT;
+        return ResultVO.success(rrmItems);
     }
 }

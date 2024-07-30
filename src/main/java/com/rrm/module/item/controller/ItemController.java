@@ -2,7 +2,7 @@ package com.rrm.module.item.controller;
 
 import com.rrm.module.item.domain.model.RrmItem;
 import com.rrm.module.item.service.ItemService;
-import com.rrm.vo.ReturnT;
+import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,22 +24,22 @@ public class ItemController {
 
 
     @PostMapping
-    public ReturnT<String> createItem(@RequestBody RrmItem rrmItem) {
+    public ResultVO<String> createItem(@RequestBody RrmItem rrmItem) {
         return itemService.createItem(rrmItem);
     }
 
     @DeleteMapping("/{id}")
-    public ReturnT<String> deleteItem(@PathVariable String id) {
+    public ResultVO<String> deleteItem(@PathVariable String id) {
         return itemService.deleteItem(id);
     }
 
     @PutMapping
-    public ReturnT<String> updateItem(@RequestBody RrmItem rrmItem) {
+    public ResultVO<String> updateItem(@RequestBody RrmItem rrmItem) {
         return itemService.updateItem(rrmItem);
     }
 
     @GetMapping
-    public ReturnT<List<RrmItem>> getAllItem() {
+    public ResultVO<List<RrmItem>> getAllItem() {
         return itemService.getAllItem();
     }
 }
