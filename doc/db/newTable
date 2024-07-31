@@ -1,0 +1,20 @@
+
+id 主键
+parent_id 父id
+name 名称
+icon 图标
+order 排序
+visibility 可见性
+url 地址
+level 层级
+type(每个系统的类型自己维护)
+page_name 页面名称
+page_cache 页面缓存
+version 版本号
+jlbz 记录标志
+created_time 创建时间
+updated_time 更新时间
+created_by 创建者
+item_code 项目代码
+
+

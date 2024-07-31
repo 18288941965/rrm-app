@@ -73,7 +73,9 @@ public class AuthController {
     @GetMapping("/logout")
     public ResultVO<String> logOut() {
         String username = jwtTokenUtil.getUsernameFromRequest();
-        userCacheService.cacheUser(username, null);
+        if (username != null) {
+            userCacheService.cacheUser(username, null);
+        }
         return ResultVO.success();
     }
 
