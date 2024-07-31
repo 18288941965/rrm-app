@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.item.mapper.RrmItemMapper">
 
+    <select id="getItemByUserId" parameterType="java.lang.Integer"
+            resultType="com.rrm.module.item.domain.vo.RrmItemVO">
+        select b.user_id, a.item_id,  b.item_name, b.item_code, b.create_time, c.username from rrm_user_item a
+               left join rrm_item b on a.item_id = b.id
+               left join rrm_user c on a.user_id = c.id
+        where a.user_id = #{userId}
+    </select>
 </mapper>

@@ -1,8 +1,12 @@
 package com.rrm.util;
 
+import com.rrm.cache.RrmUserCache;
+import com.rrm.cache.UserCacheService;
+import com.rrm.module.user.domain.model.RrmUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -12,6 +16,10 @@ import java.util.Date;
 
 @Component
 public class JwtTokenUtil {
+
+    @Autowired
+    private UserCacheService userCacheService;
+
     private final String secretKey = "rrm_twl_20240730085422";
     private final long expirationTime = 86400000; // 1 天
 
@@ -50,5 +58,10 @@ public class JwtTokenUtil {
             return getUsernameFromToken(token);
         }
         return null;
+    }
+
+    public RrmUserCache getUserInfo() {
+        String username = getUsernameFromRequest();
+        return userCacheService.getCachedUser(username);
     }
 }

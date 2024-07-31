@@ -1,6 +1,7 @@
 package com.rrm.module.item.service;
 
 import com.rrm.module.item.domain.model.RrmItem;
+import com.rrm.module.item.domain.vo.RrmItemVO;
 import com.rrm.vo.ResultVO;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface ItemService {
 
     ResultVO<String> updateItem(RrmItem rrmItem);
 
-    ResultVO<List<RrmItem>> getAllItem();
+    ResultVO<List<RrmItemVO>> getAllItem();
 }

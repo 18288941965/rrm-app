@@ -2,6 +2,7 @@ package com.rrm.module.user.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.rrm.cache.RrmUserCache;
 import com.rrm.cache.UserCacheService;
 import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.dto.RrmUserDTO;
@@ -47,9 +48,26 @@ public class AuthController {
         }
         // 登录成功
         String token = jwtTokenUtil.generateToken(userDTO.getUsername());
+
         // 缓存用户信息
-        userCacheService.cacheUser(user.getUsername(), user);
+        RrmUserCache cache = new RrmUserCache();
+        cache.setId(user.getId());
+        cache.setUsername(user.getUsername());
+        cache.setRole(user.getRole());
+        cache.setPermission(user.getPermission());
+        userCacheService.cacheUser(user.getUsername(), cache);
+
         return ResultVO.success(token);
+    }
+
+    @GetMapping("/isLogin")
+    public ResultVO<Boolean> isLogin() {
+        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
+        if (userInfo == null || StrUtil.isBlank(userInfo.getUsername())) {
+            return ResultVO.success(false);
+        } else {
+            return ResultVO.success(true);
+        }
     }
 
     @GetMapping("/logout")
@@ -59,4 +77,11 @@ public class AuthController {
         return ResultVO.success();
     }
 
+    @PutMapping("/select")
+    public ResultVO<String> selectItem(@RequestBody RrmUserCache rrmUserCache) {
+        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
+        userInfo.setItemCode(rrmUserCache.getItemCode());
+        userCacheService.cacheUser(userInfo.getUsername(), userInfo);
+        return ResultVO.success();
+    }
 }

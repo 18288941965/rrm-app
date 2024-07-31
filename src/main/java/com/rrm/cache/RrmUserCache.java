@@ -1,7 +1,5 @@
-package com.rrm.module.user.domain.model;
+package com.rrm.cache;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,22 +8,16 @@ import java.io.Serializable;
  * rrm_user
  */
 @Data
-public class RrmUser implements Serializable {
+public class RrmUserCache implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
      * 账号
      */
     private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
 
     /**
      * 角色
@@ -36,6 +28,11 @@ public class RrmUser implements Serializable {
      * 权限
      */
     private String permission;
+
+    /**
+     * 项目代码
+     */
+    private String itemCode;
 
     private static final long serialVersionUID = 1L;
 }

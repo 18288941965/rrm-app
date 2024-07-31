@@ -1,6 +1,7 @@
 package com.rrm.module.item.controller;
 
 import com.rrm.module.item.domain.model.RrmItem;
+import com.rrm.module.item.domain.vo.RrmItemVO;
 import com.rrm.module.item.service.ItemService;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResultVO<List<RrmItem>> getAllItem() {
+    public ResultVO<List<RrmItemVO>> getAllItem() {
         return itemService.getAllItem();
     }
 }
