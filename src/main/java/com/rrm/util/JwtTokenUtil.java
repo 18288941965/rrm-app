@@ -64,4 +64,8 @@ public class JwtTokenUtil {
         String username = getUsernameFromRequest();
         return userCacheService.getCachedUser(username);
     }
+
+    public RrmUserCache getUserInfo(String username) {
+        return userCacheService.getCachedUser(username);
+    }
 }
