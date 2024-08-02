@@ -1,9 +1,11 @@
 package com.rrm.module.user.service.impl;
 
+import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.mapper.RrmUserMapper;
 import com.rrm.module.user.service.UserService;
+import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,30 @@ public class UserServiceImpl implements UserService {
         queryWrapper.eq(RrmUser::getUsername, username);
         List<RrmUser> rrmUsers = rrmUserMapper.selectList(queryWrapper);
         return !rrmUsers.isEmpty() ? rrmUsers.get(0) : null;
+    }
+
+    @Override
+    public ResultVO<String> createUser(RrmUser rrmUser) {
+        rrmUserMapper.insert(rrmUser);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<String> deleteUser(String id) {
+        rrmUserMapper.deleteById(id);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<String> updateUser(RrmUser rrmUser) {
+        String password = SecureUtil.md5(rrmUser.getPassword());
+        rrmUserMapper.updatePassword(rrmUser.getId(), password);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<List<RrmUser>> getAllUser() {
+        List<RrmUser> rrmUsers = rrmUserMapper.selectList(null);
+        return ResultVO.success(rrmUsers);
     }
 }

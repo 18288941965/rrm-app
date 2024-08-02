@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.user.mapper.RrmUserMapper">
 
+    <update id="updatePassword">
+        update rrm_user set password = #{password} where id = #{id}
+    </update>
 </mapper>

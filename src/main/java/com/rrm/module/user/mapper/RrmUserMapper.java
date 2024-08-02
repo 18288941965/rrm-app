@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RrmUserMapper extends BaseMapper<RrmUser> {
 
+    void updatePassword(Integer id, String password);
 }

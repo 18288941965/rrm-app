@@ -17,7 +17,7 @@ create table rrm.rrm_user
     password   varchar(50)  not null comment '密码',
     role       tinyint      not null comment '角色',
     permission varchar(255) null comment '权限',
-    item       varchar(255) null comment '可管理的项目',
+    comment    varchar(255) null comment '备注',
     constraint i_username
         unique (username)
 );
