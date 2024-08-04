@@ -26,17 +26,26 @@ public class ItemController {
 
     @PostMapping
     public ResultVO<String> createItem(@RequestBody RrmItem rrmItem) {
+        int i = itemService.countByCode(rrmItem.getItemCode());
+        if (i > 0) {
+            return ResultVO.conflict("项目代码已经存在！");
+        }
         return itemService.createItem(rrmItem);
     }
 
     @DeleteMapping("/{id}")
-    public ResultVO<String> deleteItem(@PathVariable String id) {
+    public ResultVO<String> deleteItem(@PathVariable Integer id) {
         return itemService.deleteItem(id);
     }
 
     @PutMapping
     public ResultVO<String> updateItem(@RequestBody RrmItem rrmItem) {
         return itemService.updateItem(rrmItem);
+    }
+
+    @GetMapping("/{id}")
+    public ResultVO<RrmItem> getItemById(@PathVariable Integer id) {
+        return itemService.getItemById(id);
     }
 
     @GetMapping

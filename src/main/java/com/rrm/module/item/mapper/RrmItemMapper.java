@@ -23,4 +23,11 @@ public interface RrmItemMapper extends BaseMapper<RrmItem> {
      * @return List<RrmItemVO>
      */
     List<RrmItemVO> getItemByUserId(Integer userId);
+
+    /**
+     * 根据代码统计
+     * @param itemCode 项目代码
+     * @return 统计数量
+     */
+    int countByCode(String itemCode);
 }

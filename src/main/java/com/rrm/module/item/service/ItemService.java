@@ -17,9 +17,13 @@ public interface ItemService {
 
     ResultVO<String> createItem(RrmItem rrmItem);
 
-    ResultVO<String> deleteItem(String id);
+    int countByCode(String itemCode);
+
+    ResultVO<String> deleteItem(Integer id);
 
     ResultVO<String> updateItem(RrmItem rrmItem);
 
     ResultVO<List<RrmItemVO>> getAllItem();
+
+    ResultVO<RrmItem> getItemById(Integer id);
 }

@@ -53,8 +53,15 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ResultVO<String> deleteItem(String id) {
+    public int countByCode(String itemCode) {
+        return itemMapper.countByCode(itemCode);
+    }
+
+    @Override
+    @Transactional
+    public ResultVO<String> deleteItem(Integer id) {
         itemMapper.deleteById(id);
+        rrmUserItemMapper.deleteByItemCode(id);
         return ResultVO.success();
     }
 
@@ -69,5 +76,10 @@ public class ItemServiceImpl implements ItemService {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         List<RrmItemVO> itemList = itemMapper.getItemByUserId(userInfo.getId());
         return ResultVO.success(itemList);
+    }
+
+    @Override
+    public ResultVO<RrmItem> getItemById(Integer id) {
+        return ResultVO.success(itemMapper.selectById(id));
     }
 }

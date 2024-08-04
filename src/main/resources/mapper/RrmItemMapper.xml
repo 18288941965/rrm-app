@@ -9,4 +9,8 @@
                left join rrm_user c on a.user_id = c.id
         where a.user_id = #{userId}
     </select>
+
+    <select id="countByCode" resultType="java.lang.Integer">
+        select count(*) as cnt from rrm_item where item_code = #{itemCode}
+    </select>
 </mapper>
