@@ -23,14 +23,9 @@ public class RrmUserVO {
     private String password;
 
     /**
-     * 角色
+     * 新密码
      */
-    private Byte role;
-
-    /**
-     * 权限
-     */
-    private String permission;
+    private String newPassword;
 
     /**
      * 备注

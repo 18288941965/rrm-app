@@ -43,6 +43,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (header != null && header.startsWith("Bearer ")) {
             token = header.substring(7);
+
+            boolean b = jwtTokenUtil.validateToken(token);
+            if (!b){
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("token无效或已经过期！");
+                return;
+            }
+
             username = jwtTokenUtil.getUsernameFromToken(token);
             RrmUserCache userInfo  = jwtTokenUtil.getUserInfo(username);
 

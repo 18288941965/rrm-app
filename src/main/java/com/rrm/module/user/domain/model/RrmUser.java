@@ -28,16 +28,6 @@ public class RrmUser implements Serializable {
     private String password;
 
     /**
-     * 角色
-     */
-    private Byte role;
-
-    /**
-     * 权限
-     */
-    private String permission;
-
-    /**
      * 备注
      */
     private String comment;

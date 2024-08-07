@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface RrmUserMapper extends BaseMapper<RrmUser> {
 
     void updatePassword(Integer id, String password);
+
+    void updateUserComment(Integer id, String comment);
 }

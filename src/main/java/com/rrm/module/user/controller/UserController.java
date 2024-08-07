@@ -1,6 +1,9 @@
 package com.rrm.module.user.controller;
 
+import cn.hutool.crypto.SecureUtil;
 import com.rrm.module.user.domain.model.RrmUser;
+import com.rrm.module.user.domain.vo.RrmUserVO;
+import com.rrm.module.user.dto.RrmUserDTO;
 import com.rrm.module.user.service.UserService;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +30,30 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResultVO<String> deleteUser(@PathVariable String id) {
+    public ResultVO<String> deleteUser(@PathVariable Integer id) {
         return userService.deleteUser(id);
     }
 
-    @PutMapping
-    public ResultVO<String> updateUser(@RequestBody RrmUser rrmUser) {
-        return userService.updateUser(rrmUser);
+    @PutMapping("/comment")
+    public ResultVO<String> updateUserComment(@RequestBody RrmUser rrmUser) {
+        return userService.updateUserComment(rrmUser);
+    }
+
+    @PutMapping("/password")
+    public ResultVO<String> updateUserPassword(@RequestBody RrmUserVO rrmUserVO) {
+        return userService.updateUserPassword(rrmUserVO);
+    }
+
+    @PostMapping("/validatePass")
+    public ResultVO<Boolean> validatePass(@RequestBody RrmUserDTO userDTO) {
+        RrmUser user = userService.getUserByName(userDTO.getUsername());
+        String s = SecureUtil.md5(userDTO.getPassword());
+        return ResultVO.success(s.equals(user.getPassword()));
+    }
+
+    @GetMapping("/{id}")
+    public ResultVO<RrmUser> getUserById(@PathVariable Integer id) {
+        return userService.getUserById(id);
     }
 
     @GetMapping

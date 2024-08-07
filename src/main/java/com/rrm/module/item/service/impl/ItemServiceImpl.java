@@ -61,7 +61,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public ResultVO<String> deleteItem(Integer id) {
         itemMapper.deleteById(id);
-        rrmUserItemMapper.deleteByItemCode(id);
+        rrmUserItemMapper.deleteByItemId(id);
         return ResultVO.success();
     }
 

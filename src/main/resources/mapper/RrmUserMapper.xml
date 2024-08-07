@@ -5,4 +5,8 @@
     <update id="updatePassword">
         update rrm_user set password = #{password} where id = #{id}
     </update>
+
+    <update id="updateUserComment">
+        update rrm_user set comment = #{comment} where id = #{id}
+    </update>
 </mapper>

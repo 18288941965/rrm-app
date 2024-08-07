@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.user.mapper.RrmUserItemMapper">
 
-    <delete id="deleteByItemCode">
-        delete from rrm_user_item where item_id = #{itemCode}
+    <delete id="deleteByItemId">
+        delete from rrm_user_item where item_id = #{itemId}
+    </delete>
+
+    <delete id="deleteByUserId">
+        delete from rrm_user_item where user_id = #{userId}
     </delete>
 </mapper>

@@ -36,6 +36,7 @@ public class AuthController {
         if (StrUtil.isBlank(userDTO.getUsername()) || StrUtil.isBlank(userDTO.getPassword())) {
             return ResultVO.unauthorized("用户名或密码为空！");
         }
+
         // 验证用户是否存在
         RrmUser user = userService.getUserByName(userDTO.getUsername());
         if (user == null) {
@@ -46,6 +47,7 @@ public class AuthController {
         if (!s.equals(user.getPassword())) {
             return ResultVO.unauthorized("密码不正确");
         }
+
         // 登录成功
         String token = jwtTokenUtil.generateToken(userDTO.getUsername());
 
@@ -53,12 +55,11 @@ public class AuthController {
         RrmUserCache cache = new RrmUserCache();
         cache.setId(user.getId());
         cache.setUsername(user.getUsername());
-        cache.setRole(user.getRole());
-        cache.setPermission(user.getPermission());
         userCacheService.cacheUser(user.getUsername(), cache);
 
         return ResultVO.success(token);
     }
+
 
     @GetMapping("/isLogin")
     public ResultVO<Boolean> isLogin() {
