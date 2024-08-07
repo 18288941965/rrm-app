@@ -51,4 +51,9 @@ public class ItemController {
     public ResultVO<List<RrmItemVO>> getAllItem() {
         return itemService.getAllItem();
     }
+
+    @GetMapping("/correlationUserId/{id}")
+    public ResultVO<List<Integer>> getCorrelationUserId(@PathVariable Integer id) {
+        return itemService.getCorrelationUserId(id);
+    }
 }

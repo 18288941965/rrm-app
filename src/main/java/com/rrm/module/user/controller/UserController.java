@@ -57,7 +57,12 @@ public class UserController {
     }
 
     @GetMapping
-    public ResultVO<List<RrmUserVO>> getAllItem() {
+    public ResultVO<List<RrmUserVO>> getAllUser() {
         return userService.getAllUser();
+    }
+
+    @GetMapping("/allUserBase")
+    public ResultVO<List<RrmUserVO>> getAllUserBase() {
+        return userService.getAllUserBase();
     }
 }

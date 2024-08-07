@@ -112,4 +112,9 @@ public class ItemServiceImpl implements ItemService {
     public ResultVO<RrmItem> getItemById(Integer id) {
         return ResultVO.success(itemMapper.selectById(id));
     }
+
+    @Override
+    public ResultVO<List<Integer>> getCorrelationUserId(Integer id) {
+        return ResultVO.success(rrmUserItemMapper.getCorrelationUserId(id));
+    }
 }

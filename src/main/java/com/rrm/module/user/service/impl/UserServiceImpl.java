@@ -115,4 +115,9 @@ public class UserServiceImpl implements UserService {
     public ResultVO<RrmUser> getUserById(Integer id) {
         return ResultVO.success(rrmUserMapper.selectById(id));
     }
+
+    @Override
+    public ResultVO<List<RrmUserVO>> getAllUserBase() {
+        return ResultVO.success(rrmUserMapper.getAllUser());
+    }
 }

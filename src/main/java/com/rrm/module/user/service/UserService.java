@@ -27,4 +27,6 @@ public interface UserService {
     ResultVO<List<RrmUserVO>> getAllUser();
 
     ResultVO<RrmUser> getUserById(Integer id);
+
+    ResultVO<List<RrmUserVO>> getAllUserBase();
 }

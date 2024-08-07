@@ -9,4 +9,8 @@
     <delete id="deleteByUserId">
         delete from rrm_user_item where user_id = #{userId}
     </delete>
+
+    <select id="getCorrelationUserId">
+        select user_id from rrm_user_item where item_id = #{itemId}
+    </select>
 </mapper>
