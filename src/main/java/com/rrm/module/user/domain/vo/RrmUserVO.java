@@ -1,6 +1,10 @@
 package com.rrm.module.user.domain.vo;
 
+import com.rrm.module.item.domain.model.RrmItem;
+import com.rrm.module.user.domain.model.RrmUser;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * rrm_user
@@ -32,4 +36,8 @@ public class RrmUserVO {
      */
     private String comment;
 
+    /**
+     * 用户关联的项目
+     */
+    private List<RrmItem> itemList;
 }

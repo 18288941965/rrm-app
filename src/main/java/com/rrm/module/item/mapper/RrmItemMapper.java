@@ -19,10 +19,9 @@ public interface RrmItemMapper extends BaseMapper<RrmItem> {
 
     /**
      * 根据用户信息获取相关的项目
-     * @param userId 用户ID
      * @return List<RrmItemVO>
      */
-    List<RrmItemVO> getItemByUserId(Integer userId);
+    List<RrmItemVO> getItemAll();
 
     /**
      * 根据代码统计

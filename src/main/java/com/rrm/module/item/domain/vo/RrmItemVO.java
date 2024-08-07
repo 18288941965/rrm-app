@@ -1,8 +1,10 @@
 package com.rrm.module.item.domain.vo;
 
+import com.rrm.module.user.domain.model.RrmUser;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 选择项目数据展示.
@@ -13,10 +15,12 @@ import java.time.LocalDateTime;
 @Data
 public class RrmItemVO {
 
-    private Integer userId;
-    private Integer itemId;
+    private Integer id;
     private String itemName;
     private String itemCode;
     private LocalDateTime createTime;
-    private String username;
+    private Integer userId;
+
+    private List<RrmUser> userList;
+    private Integer loginId;
 }

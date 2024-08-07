@@ -5,8 +5,10 @@ import com.rrm.module.item.domain.model.RrmItem;
 import com.rrm.module.item.domain.vo.RrmItemVO;
 import com.rrm.module.item.mapper.RrmItemMapper;
 import com.rrm.module.item.service.ItemService;
+import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.domain.model.RrmUserItem;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
+import com.rrm.module.user.mapper.RrmUserMapper;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 项目管理.
@@ -28,6 +31,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private RrmItemMapper itemMapper;
+
+    @Autowired
+    private RrmUserMapper userMapper;
 
     @Autowired
     private RrmUserItemMapper rrmUserItemMapper;
@@ -74,7 +80,31 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ResultVO<List<RrmItemVO>> getAllItem() {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        List<RrmItemVO> itemList = itemMapper.getItemByUserId(userInfo.getId());
+
+        // 获取所有项目
+        List<RrmItemVO> itemList = itemMapper.getItemAll();
+        // 项目用户关联关系
+        List<RrmUserItem> rrmUserItems = rrmUserItemMapper.selectList(null);
+        // 所有用户
+        List<RrmUser> rrmUsers = userMapper.getAllUser2();
+
+        itemList.forEach(item -> {
+            // 项目关联的userIdList
+            List<Integer> userIdList = rrmUserItems
+                    .stream()
+                    .filter(rrmUserItem -> item.getId().equals(rrmUserItem.getItemId()))
+                    .map(RrmUserItem::getUserId)
+                    .collect(Collectors.toList());
+
+            List<RrmUser> correlationUser = rrmUsers
+                    .stream()
+                    .filter(user -> userIdList.contains(user.getId()))
+                    .collect(Collectors.toList());
+            item.setUserList(correlationUser);
+
+            item.setLoginId(userInfo.getId());
+        });
+
         return ResultVO.success(itemList);
     }
 

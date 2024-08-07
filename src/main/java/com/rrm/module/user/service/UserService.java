@@ -24,7 +24,7 @@ public interface UserService {
 
     ResultVO<String> updateUserPassword( RrmUserVO rrmUserVO);
 
-    ResultVO<List<RrmUser>> getAllUser();
+    ResultVO<List<RrmUserVO>> getAllUser();
 
     ResultVO<RrmUser> getUserById(Integer id);
 }

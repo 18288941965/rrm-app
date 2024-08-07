@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResultVO<List<RrmUser>> getAllItem() {
+    public ResultVO<List<RrmUserVO>> getAllItem() {
         return userService.getAllUser();
     }
 }

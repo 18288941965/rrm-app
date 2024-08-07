@@ -3,7 +3,10 @@ package com.rrm.module.user.service.impl;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rrm.cache.RrmUserCache;
+import com.rrm.module.item.domain.model.RrmItem;
+import com.rrm.module.item.mapper.RrmItemMapper;
 import com.rrm.module.user.domain.model.RrmUser;
+import com.rrm.module.user.domain.model.RrmUserItem;
 import com.rrm.module.user.domain.vo.RrmUserVO;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
 import com.rrm.module.user.mapper.RrmUserMapper;
@@ -14,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * 系统用户管理类.
@@ -29,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RrmUserItemMapper rrmUserItemMapper;
+
+    @Autowired
+    private RrmItemMapper rrmItemMapper;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -78,8 +86,28 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ResultVO<List<RrmUser>> getAllUser() {
-        List<RrmUser> rrmUsers = rrmUserMapper.selectList(null);
+    public ResultVO<List<RrmUserVO>> getAllUser() {
+
+        // 所有用户
+        List<RrmUserVO> rrmUsers = rrmUserMapper.getAllUser();
+        // 所有用户关联项目
+        List<RrmUserItem> rrmUserItems = rrmUserItemMapper.selectList(null);
+        // 所有项目
+        List<RrmItem> rrmItems = rrmItemMapper.selectList(null);
+
+        rrmUsers.forEach(user -> {
+            List<Integer> correlationItemId = rrmUserItems
+                    .stream()
+                    .filter(rrmUserItem -> Objects.equals(user.getId(), rrmUserItem.getUserId()))
+                    .map(RrmUserItem::getItemId)
+                    .collect(Collectors.toList());
+            List<RrmItem> correlationItem = rrmItems
+                    .stream()
+                    .filter(item -> correlationItemId.contains(item.getId()))
+                    .collect(Collectors.toList());
+            user.setItemList(correlationItem);
+        });
+
         return ResultVO.success(rrmUsers);
     }
 

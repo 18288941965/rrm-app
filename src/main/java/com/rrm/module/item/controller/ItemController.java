@@ -23,7 +23,6 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-
     @PostMapping
     public ResultVO<String> createItem(@RequestBody RrmItem rrmItem) {
         int i = itemService.countByCode(rrmItem.getItemCode());

@@ -9,4 +9,12 @@
     <update id="updateUserComment">
         update rrm_user set comment = #{comment} where id = #{id}
     </update>
+
+    <select id="getAllUser" resultType="com.rrm.module.user.domain.vo.RrmUserVO">
+        select id, username, comment from rrm_user
+    </select>
+
+    <select id="getAllUser2" resultType="com.rrm.module.user.domain.model.RrmUser">
+        select id, username, comment from rrm_user
+    </select>
 </mapper>
