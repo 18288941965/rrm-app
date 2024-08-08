@@ -4,7 +4,7 @@ import com.rrm.cache.RrmUserCache;
 import com.rrm.module.item.domain.model.RrmItem;
 import com.rrm.module.item.domain.vo.RrmItemVO;
 import com.rrm.module.item.mapper.RrmItemMapper;
-import com.rrm.module.item.service.ItemService;
+import com.rrm.module.item.service.RrmItemService;
 import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.domain.model.RrmUserItem;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 @Service
-public class ItemServiceImpl implements ItemService {
+public class RrmItemServiceImpl implements RrmItemService {
 
     @Autowired
     private RrmItemMapper itemMapper;

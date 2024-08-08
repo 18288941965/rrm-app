@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 选择项目数据展示.
+ * 项目VO.
  *
  * @author TWL 2024/7/31 11:28
  * @since 1.0

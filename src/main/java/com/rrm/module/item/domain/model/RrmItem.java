@@ -9,8 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 权限系统-项目管理
- * rrm_item
+ * 项目DO
  */
 @Data
 @TableName("rrm_item")

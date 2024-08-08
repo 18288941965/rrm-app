@@ -13,7 +13,7 @@ import java.util.List;
  * @author TWL
  * @since 1.0
  */
-public interface ItemService {
+public interface RrmItemService {
 
     ResultVO<String> createItem(RrmItem rrmItem);
 
