@@ -14,4 +14,6 @@ public interface RrmUserItemMapper extends BaseMapper<RrmUserItem> {
     int deleteByUserId(int userId);
 
     List<Integer> getCorrelationUserId(Integer itemId);
+
+    int deleteUserItem(Integer userId, Integer itemId);
 }

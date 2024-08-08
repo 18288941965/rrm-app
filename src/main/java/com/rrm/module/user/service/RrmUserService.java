@@ -12,7 +12,7 @@ import java.util.List;
  * @author TWL 2024/7/30 8:56
  * @since 1.0
  */
-public interface UserService {
+public interface RrmUserService {
 
     RrmUser getUserByName(String username);
 

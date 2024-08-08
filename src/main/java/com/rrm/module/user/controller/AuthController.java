@@ -6,7 +6,7 @@ import com.rrm.cache.RrmUserCache;
 import com.rrm.cache.UserCacheService;
 import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.dto.RrmUserDTO;
-import com.rrm.module.user.service.UserService;
+import com.rrm.module.user.service.RrmUserService;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private UserService userService;
+    private RrmUserService rrmUserService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -38,7 +38,7 @@ public class AuthController {
         }
 
         // 验证用户是否存在
-        RrmUser user = userService.getUserByName(userDTO.getUsername());
+        RrmUser user = rrmUserService.getUserByName(userDTO.getUsername());
         if (user == null) {
             return ResultVO.unauthorized("用户不存在！");
         }

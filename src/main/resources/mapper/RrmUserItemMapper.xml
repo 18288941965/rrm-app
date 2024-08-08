@@ -10,7 +10,11 @@
         delete from rrm_user_item where user_id = #{userId}
     </delete>
 
-    <select id="getCorrelationUserId">
+    <select id="getCorrelationUserId" resultType="java.lang.Integer">
         select user_id from rrm_user_item where item_id = #{itemId}
     </select>
+
+    <delete id="deleteUserItem">
+        delete from rrm_user_item where user_id = #{userId} and item_id = #{itemId}
+    </delete>
 </mapper>

@@ -10,7 +10,7 @@ import com.rrm.module.user.domain.model.RrmUserItem;
 import com.rrm.module.user.domain.vo.RrmUserVO;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
 import com.rrm.module.user.mapper.RrmUserMapper;
-import com.rrm.module.user.service.UserService;
+import com.rrm.module.user.service.RrmUserService;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class RrmUserServiceImpl implements RrmUserService {
 
     @Autowired
     public RrmUserMapper rrmUserMapper;

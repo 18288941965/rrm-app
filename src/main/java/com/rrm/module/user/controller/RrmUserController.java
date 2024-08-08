@@ -4,7 +4,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.domain.vo.RrmUserVO;
 import com.rrm.module.user.dto.RrmUserDTO;
-import com.rrm.module.user.service.UserService;
+import com.rrm.module.user.service.RrmUserService;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,50 +19,50 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class RrmUserController {
 
     @Autowired
-    private UserService userService;
+    private RrmUserService rrmUserService;
 
     @PostMapping
     public ResultVO<String> createUser(@RequestBody RrmUser rrmUser) {
-        return userService.createUser(rrmUser);
+        return rrmUserService.createUser(rrmUser);
     }
 
     @DeleteMapping("/{id}")
     public ResultVO<String> deleteUser(@PathVariable Integer id) {
-        return userService.deleteUser(id);
+        return rrmUserService.deleteUser(id);
     }
 
     @PutMapping("/comment")
     public ResultVO<String> updateUserComment(@RequestBody RrmUser rrmUser) {
-        return userService.updateUserComment(rrmUser);
+        return rrmUserService.updateUserComment(rrmUser);
     }
 
     @PutMapping("/password")
     public ResultVO<String> updateUserPassword(@RequestBody RrmUserVO rrmUserVO) {
-        return userService.updateUserPassword(rrmUserVO);
+        return rrmUserService.updateUserPassword(rrmUserVO);
     }
 
     @PostMapping("/validatePass")
     public ResultVO<Boolean> validatePass(@RequestBody RrmUserDTO userDTO) {
-        RrmUser user = userService.getUserByName(userDTO.getUsername());
+        RrmUser user = rrmUserService.getUserByName(userDTO.getUsername());
         String s = SecureUtil.md5(userDTO.getPassword());
         return ResultVO.success(s.equals(user.getPassword()));
     }
 
     @GetMapping("/{id}")
     public ResultVO<RrmUser> getUserById(@PathVariable Integer id) {
-        return userService.getUserById(id);
+        return rrmUserService.getUserById(id);
     }
 
     @GetMapping
     public ResultVO<List<RrmUserVO>> getAllUser() {
-        return userService.getAllUser();
+        return rrmUserService.getAllUser();
     }
 
     @GetMapping("/allUserBase")
     public ResultVO<List<RrmUserVO>> getAllUserBase() {
-        return userService.getAllUserBase();
+        return rrmUserService.getAllUserBase();
     }
 }
