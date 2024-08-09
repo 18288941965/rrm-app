@@ -47,14 +47,14 @@ public class RrmMenu implements Serializable {
     private String url;
 
     /**
-     * 菜单层级
-     */
-    private Integer level;
-
-    /**
      * 菜单类型（dic_menu_type）
      */
     private String type;
+
+    /**
+     * 跳转方式
+     */
+    private String target;
 
     /**
      * 页面名称（页面name属性）
