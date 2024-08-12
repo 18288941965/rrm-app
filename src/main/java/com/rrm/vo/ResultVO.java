@@ -1,5 +1,6 @@
 package com.rrm.vo;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
 
 /**
@@ -29,6 +30,16 @@ public class ResultVO<T> {
     // Static factory methods for common responses
     public static <T> ResultVO<T> success() {
         return new ResultVO<>(200, "OK");
+    }
+
+    // Static factory methods for common responses
+    public static <T> ResultVO<PageResultVO<T>> successPage(IPage<T> pageVo) {
+        PageResultVO<T> vo = new PageResultVO<T>();
+        vo.setList(pageVo.getRecords());
+        vo.setTotal(pageVo.getTotal());
+        vo.setPageNum(pageVo.getCurrent());
+        vo.setPageSize(pageVo.getSize());
+        return new ResultVO<>(200, "OK", vo);
     }
 
     public static <T> ResultVO<T> success(T data) {

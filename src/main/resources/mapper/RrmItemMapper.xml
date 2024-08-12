@@ -4,7 +4,7 @@
 
     <select id="getItemAll" parameterType="java.lang.Integer"
             resultType="com.rrm.module.item.domain.vo.RrmItemVO">
-        select * from rrm_item
+        select id,item_name,item_code,create_time,user_id from rrm_item
     </select>
 
     <select id="countByCode" resultType="java.lang.Integer">
