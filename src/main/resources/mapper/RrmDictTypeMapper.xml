@@ -7,8 +7,14 @@
             select count(*) as itemCount, type_code from rrm_dict_item group by type_code
         )
         select a.id, a.type_code, a.type_name, a.description,
-               (select itemCount from tmp t where t.type_code = a.type_code) as itemCount
-        from rrm_dict_type a order by a.update_time desc
+               COALESCE((select itemCount from tmp t where t.type_code = a.type_code),0) as itemCount
+        from rrm_dict_type a
+        <where>
+            <if test="dto.typeName != null and dto.typeName != ''">
+                a.type_name like concat('%',#{dto.typeName},'%')
+            </if>
+        </where>
+        order by a.update_time desc
     </select>
 
     <select id="selectByTypeCode" resultType="com.rrm.module.dict.domain.model.RrmDictType">
