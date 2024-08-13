@@ -22,13 +22,13 @@ public class RrmUserItemServiceImpl implements RrmUserItemService {
 
 
     @Override
-    public int deleteUserItem(Integer userId, Integer itemId) {
-        return rrmUserItemMapper.deleteUserItem(userId, itemId);
+    public ResultVO<Integer> deleteUserItem(Integer userId, Integer itemId) {
+        int i = rrmUserItemMapper.deleteUserItem(userId, itemId);
+        return ResultVO.success(i);
     }
 
     @Override
-    public ResultVO<String> createUserItem(RrmUserItem rrmUserItem) {
-        rrmUserItemMapper.insert(rrmUserItem);
-        return ResultVO.success();
+    public ResultVO<Integer> createUserItem(RrmUserItem rrmUserItem) {
+        return ResultVO.success(rrmUserItemMapper.insert(rrmUserItem));
     }
 }

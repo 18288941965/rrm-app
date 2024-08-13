@@ -18,7 +18,7 @@ public interface RrmUserService {
 
     ResultVO<String> createUser(RrmUser rrmUser);
 
-    ResultVO<String> deleteUser(Integer id);
+    ResultVO<String> deleteUserAndAssociations(Integer id);
 
     ResultVO<String> updateUserComment(RrmUser rrmUser);
 

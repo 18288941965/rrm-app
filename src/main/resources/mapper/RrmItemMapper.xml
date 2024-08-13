@@ -7,7 +7,7 @@
         select id,item_name,item_code,create_time,user_id from rrm_item
     </select>
 
-    <select id="countByCode" resultType="java.lang.Integer">
+    <select id="countByItemCode" resultType="java.lang.Integer">
         select count(*) as cnt from rrm_item where item_code = #{itemCode}
     </select>
 </mapper>

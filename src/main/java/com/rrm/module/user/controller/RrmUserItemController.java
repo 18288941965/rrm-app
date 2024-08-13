@@ -20,13 +20,12 @@ public class RrmUserItemController {
     private RrmUserItemService rrmUserItemService;
 
     @DeleteMapping("/{userId}/{itemId}")
-    public ResultVO<String> deleteUserItem(@PathVariable Integer userId, @PathVariable Integer itemId) {
-        rrmUserItemService.deleteUserItem(userId, itemId);
-        return ResultVO.success();
+    public ResultVO<Integer> deleteUserItem(@PathVariable Integer userId, @PathVariable Integer itemId) {
+        return rrmUserItemService.deleteUserItem(userId, itemId);
     }
 
     @PostMapping
-    public ResultVO<String> createUserItem(@RequestBody RrmUserItem rrmUserItem) {
+    public ResultVO<Integer> createUserItem(@RequestBody RrmUserItem rrmUserItem) {
         return rrmUserItemService.createUserItem(rrmUserItem);
     }
 }

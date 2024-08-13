@@ -31,7 +31,7 @@ public class RrmUserController {
 
     @DeleteMapping("/{id}")
     public ResultVO<String> deleteUser(@PathVariable Integer id) {
-        return rrmUserService.deleteUser(id);
+        return rrmUserService.deleteUserAndAssociations(id);
     }
 
     @PutMapping("/comment")
@@ -52,7 +52,7 @@ public class RrmUserController {
     }
 
     @GetMapping("/{id}")
-    public ResultVO<RrmUser> getUserById(@PathVariable Integer id) {
+    public ResultVO<RrmUser> getUser(@PathVariable Integer id) {
         return rrmUserService.getUserById(id);
     }
 

@@ -28,5 +28,5 @@ public interface RrmItemMapper extends BaseMapper<RrmItem> {
      * @param itemCode 项目代码
      * @return 统计数量
      */
-    int countByCode(String itemCode);
+    int countByItemCode(String itemCode);
 }

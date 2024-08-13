@@ -2,12 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.dict.mapper.RrmDictTypeMapper">
 
-    <select id="selectPageVo" resultType="com.rrm.module.dict.domain.vo.RrmDictTypeVO">
+    <select id="selectDictTypePage" resultType="com.rrm.module.dict.domain.vo.RrmDictTypeVO">
         with tmp as (
             select count(*) as itemCount, type_code from rrm_dict_item group by type_code
         )
         select a.id, a.type_code, a.type_name, a.description,
                (select itemCount from tmp t where t.type_code = a.type_code) as itemCount
         from rrm_dict_type a order by a.update_time desc
+    </select>
+
+    <select id="selectByTypeCode" resultType="com.rrm.module.dict.domain.model.RrmDictType">
+        select id, type_name, description from rrm_dict_type where type_code = #{typeCode}
     </select>
 </mapper>

@@ -26,34 +26,42 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
     @Autowired
     private RrmDictTypeMapper rrmDictTypeMapper;
 
-
     @Override
-    public ResultVO<PageResultVO<RrmDictTypeVO>> searchWithPagination(@RequestBody RrmDictTypeDTO dto) {
-        IPage<RrmDictTypeVO> pageVo = rrmDictTypeMapper.selectPageVo(dto.getPage(RrmDictTypeVO.class), dto);
+    public ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto) {
+        IPage<RrmDictTypeVO> pageVo = rrmDictTypeMapper.selectDictTypePage(dto.getPage(RrmDictTypeVO.class), dto);
         return ResultVO.successPage(pageVo);
     }
 
     @Override
-    public RrmDictType findById(Long id) {
-        return rrmDictTypeMapper.selectById(id);
+    public ResultVO<RrmDictType> getDictTypeById(Long id) {
+        return ResultVO.success(rrmDictTypeMapper.selectById(id));
     }
 
     @Override
-    public void save(RrmDictType dictType) {
+    public ResultVO<Long> createDictType(RrmDictType dictType) {
+        RrmDictType type = rrmDictTypeMapper.selectByTypeCode(dictType.getTypeCode());
+        if (type != null) {
+            return ResultVO.badRequest("类型代码已经存在！");
+        }
+
         LocalDateTime now = LocalDateTime.now();
         dictType.setCreateTime(now);
         dictType.setUpdateTime(now);
         rrmDictTypeMapper.insert(dictType);
+
+        return ResultVO.success(dictType.getId());
     }
 
     @Override
-    public void updateDictType(RrmDictType rrmDictType) {
+    public ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType) {
         rrmDictType.setUpdateTime(LocalDateTime.now());
         rrmDictTypeMapper.updateById(rrmDictType);
+        return ResultVO.success(rrmDictType.getId());
     }
 
     @Override
-    public void deleteById(Long id) {
+    public ResultVO<Void> deleteDictTypeById(Long id) {
         rrmDictTypeMapper.deleteById(id);
+        return ResultVO.success();
     }
 }

@@ -25,7 +25,7 @@ public class RrmItemController {
 
     @PostMapping
     public ResultVO<String> createItem(@RequestBody RrmItem rrmItem) {
-        int i = rrmItemService.countByCode(rrmItem.getItemCode());
+        int i = rrmItemService.countByItemCode(rrmItem.getItemCode());
         if (i > 0) {
             return ResultVO.conflict("项目代码已经存在！");
         }
@@ -34,16 +34,16 @@ public class RrmItemController {
 
     @DeleteMapping("/{id}")
     public ResultVO<String> deleteItem(@PathVariable Integer id) {
-        return rrmItemService.deleteItem(id);
+        return rrmItemService.deleteItemAndAssociations(id);
     }
 
     @PutMapping
     public ResultVO<String> updateItem(@RequestBody RrmItem rrmItem) {
-        return rrmItemService.updateItem(rrmItem);
+        return rrmItemService.updateItemById(rrmItem);
     }
 
     @GetMapping("/{id}")
-    public ResultVO<RrmItem> getItemById(@PathVariable Integer id) {
+    public ResultVO<RrmItem> getItem(@PathVariable Integer id) {
         return rrmItemService.getItemById(id);
     }
 

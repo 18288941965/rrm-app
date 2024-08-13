@@ -17,11 +17,11 @@ public interface RrmItemService {
 
     ResultVO<String> createItem(RrmItem rrmItem);
 
-    int countByCode(String itemCode);
+    int countByItemCode(String itemCode);
 
-    ResultVO<String> deleteItem(Integer id);
+    ResultVO<String> deleteItemAndAssociations(Integer id);
 
-    ResultVO<String> updateItem(RrmItem rrmItem);
+    ResultVO<String> updateItemById(RrmItem rrmItem);
 
     ResultVO<List<RrmItemVO>> getAllItem();
 

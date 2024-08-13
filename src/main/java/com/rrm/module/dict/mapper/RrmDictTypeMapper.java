@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RrmDictTypeMapper extends BaseMapper<RrmDictType> {
 
-    IPage<RrmDictTypeVO> selectPageVo(IPage<?> page, RrmDictTypeDTO dto);
+    IPage<RrmDictTypeVO> selectDictTypePage(IPage<?> page, RrmDictTypeDTO dto);
 
+    RrmDictType selectByTypeCode(String typeCode);
 }

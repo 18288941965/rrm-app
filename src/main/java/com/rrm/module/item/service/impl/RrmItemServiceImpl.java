@@ -59,20 +59,20 @@ public class RrmItemServiceImpl implements RrmItemService {
     }
 
     @Override
-    public int countByCode(String itemCode) {
-        return itemMapper.countByCode(itemCode);
+    public int countByItemCode(String itemCode) {
+        return itemMapper.countByItemCode(itemCode);
     }
 
     @Override
     @Transactional
-    public ResultVO<String> deleteItem(Integer id) {
+    public ResultVO<String> deleteItemAndAssociations(Integer id) {
         itemMapper.deleteById(id);
         rrmUserItemMapper.deleteByItemId(id);
         return ResultVO.success();
     }
 
     @Override
-    public ResultVO<String> updateItem(RrmItem rrmItem) {
+    public ResultVO<String> updateItemById(RrmItem rrmItem) {
         itemMapper.updateById(rrmItem);
         return ResultVO.success();
     }

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface RrmDictTypeService {
 
-    ResultVO<PageResultVO<RrmDictTypeVO>> searchWithPagination(@RequestBody RrmDictTypeDTO dto);
+    ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto);
 
-    RrmDictType findById(Long id);
+    ResultVO<RrmDictType> getDictTypeById(Long id);
 
-    void save(RrmDictType dictType);
+    ResultVO<Long> createDictType(RrmDictType dictType);
 
-    void updateDictType(RrmDictType rrmDictType);
+    ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType);
 
-    void deleteById(Long id);
+    ResultVO<Void> deleteDictTypeById(Long id);
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * rrm_user
+ * 用户缓存对象
  */
 @Data
 public class RrmUserCache implements Serializable {
@@ -18,16 +18,6 @@ public class RrmUserCache implements Serializable {
      * 账号
      */
     private String username;
-
-    /**
-     * 角色
-     */
-    private Byte role;
-
-    /**
-     * 权限
-     */
-    private String permission;
 
     /**
      * 项目代码

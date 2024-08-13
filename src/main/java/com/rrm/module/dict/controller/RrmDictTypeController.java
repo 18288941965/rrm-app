@@ -16,42 +16,39 @@ import org.springframework.web.bind.annotation.*;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/dict/type")
+@RequestMapping("/dict-type")
 public class RrmDictTypeController {
 
     @Autowired
     private RrmDictTypeService rrmDictTypeService;
 
     // 分页查询
-    @PostMapping("/pagination")
-    public ResultVO<PageResultVO<RrmDictTypeVO>> searchWithPagination(@RequestBody RrmDictTypeDTO dto) {
-        return rrmDictTypeService.searchWithPagination(dto);
+    @PostMapping("/page")
+    public ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto) {
+        return rrmDictTypeService.searchDictTypePage(dto);
     }
 
     // 根据ID查询字典类型
     @GetMapping("/{id}")
-    public ResultVO<RrmDictType> getDictTypeById(@PathVariable Long id) {
-        return ResultVO.success(rrmDictTypeService.findById(id));
+    public ResultVO<RrmDictType> getDictType(@PathVariable Long id) {
+        return rrmDictTypeService.getDictTypeById(id);
     }
 
     // 创建新的字典类型
     @PostMapping
-    public ResultVO<RrmDictType> createDictType(@RequestBody RrmDictType dictType) {
-        rrmDictTypeService.save(dictType);
-        return ResultVO.success();
+    public ResultVO<Long> createDictType(@RequestBody RrmDictType dictType) {
+        return rrmDictTypeService.createDictType(dictType);
     }
 
     // 更新字典类型
     @PutMapping
-    public ResultVO<RrmDictType> updateDictType(@RequestBody RrmDictType rrmDictType) {
-        rrmDictTypeService.updateDictType(rrmDictType);
-        return ResultVO.success();
+    public ResultVO<Long> updateDictType(@RequestBody RrmDictType rrmDictType) {
+        return rrmDictTypeService.updateDictTypeById(rrmDictType);
     }
 
     // 删除字典类型
     @DeleteMapping("/{id}")
     public ResultVO<Void> deleteDictType(@PathVariable Long id) {
-        rrmDictTypeService.deleteById(id);
-        return ResultVO.success();
+        return rrmDictTypeService.deleteDictTypeById(id);
     }
 }

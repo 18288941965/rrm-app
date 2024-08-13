@@ -57,7 +57,7 @@ public class RrmUserServiceImpl implements RrmUserService {
     }
 
     @Override
-    public ResultVO<String> deleteUser(Integer id) {
+    public ResultVO<String> deleteUserAndAssociations(Integer id) {
         rrmUserMapper.deleteById(id);
         rrmUserItemMapper.deleteByUserId(id);
         return ResultVO.success();
