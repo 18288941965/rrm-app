@@ -34,7 +34,7 @@ public class RrmMenu implements Serializable {
     /**
      * 菜单排序
      */
-    private Integer sort;
+    private Integer sortOrder;
 
     /**
      * 菜单可见性
