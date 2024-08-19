@@ -1,21 +1,15 @@
-package com.rrm.module.dict.domain.model;
+package com.rrm.module.dict.domain.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * rrm_dict_item
- */
+
 @Data
-public class RrmDictItem implements Serializable {
+public class RrmDictItemVO {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -29,9 +23,9 @@ public class RrmDictItem implements Serializable {
     private String itemName;
 
     /**
-     * 字典类型代码
+     * 字典类型ID
      */
-    private String typeCode;
+    private Long typeId;
 
     /**
      * 父级字典项ID
@@ -63,5 +57,10 @@ public class RrmDictItem implements Serializable {
      */
     private LocalDateTime updateTime;
 
-    private static final long serialVersionUID = 1L;
+    // 父字典项名称
+    private String parentItemName;
+
+    // 状态名称
+    private String statusName;
+
 }

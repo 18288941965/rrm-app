@@ -2,4 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.dict.mapper.RrmDictItemMapper">
 
+    <select id="searchDictItemPage" resultType="com.rrm.module.dict.domain.vo.RrmDictItemVO">
+        select a.*,
+               CASE a.status WHEN '1' THEN '启用' ELSE '停用' END as statusName,
+               (select item_name from rrm_dict_item b where b.id = a.parent_id) as parentItemName
+        from rrm_dict_item a
+        <where>
+            <if test="dto.typeCode != null and dto.typeCode != ''">
+                a.type_code = #{dto.typeCode}
+            </if>
+            <if test="dto.itemName != null and dto.itemName != ''">
+                a.item_name = like concat('%',#{dto.itemName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="countByTypeCodeAndItemCode" resultType="java.lang.Integer">
+        select count(*) as cnt from rrm_dict_item where type_code = #{typeCode} and item_code = #{itemCode}
+    </select>
+
 </mapper>
