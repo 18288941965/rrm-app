@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rrm.module.dict.mapper.RrmDictEntryMapper">
+
+    <select id="searchDictEntryPage" resultType="com.rrm.module.dict.domain.vo.RrmDictEntryVO">
+        select a.*,
+               CASE a.status WHEN '1' THEN '启用' ELSE '停用' END as statusName,
+               (select entry_name from rrm_dict_entry b where b.id = a.parent_id) as parentEntryName
+        from rrm_dict_entry a
+        <where>
+            <if test="dto.typeId != null">
+                and a.type_id = #{dto.typeId}
+            </if>
+            <if test="dto.entryName != null and dto.entryName != ''">
+                and a.entry_name like concat('%',#{entryName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="countByTypeIdAndEntryCode" resultType="java.lang.Integer">
+        select count(*) as cnt from rrm_dict_entry where type_id = #{typeId} and entry_code = #{entryCode}
+    </select>
+
+</mapper>

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 
 @Data
-public class RrmDictItemVO {
+public class RrmDictEntryVO {
     /**
      * 主键ID
      */
@@ -15,12 +15,12 @@ public class RrmDictItemVO {
     /**
      * 字典项编码
      */
-    private String itemCode;
+    private String entryCode;
 
     /**
      * 字典项名称
      */
-    private String itemName;
+    private String entryName;
 
     /**
      * 字典类型ID

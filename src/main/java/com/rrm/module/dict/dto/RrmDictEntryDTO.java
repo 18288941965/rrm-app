@@ -6,21 +6,21 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RrmDictItemDTO extends PageBase {
+public class RrmDictEntryDTO extends PageBase {
 
     /**
      * 字典类型编码
      */
-    private String typeCode;
+    private Integer typeId;
 
     /**
      * 字典名称
      */
-    private String itemName;
+    private String entryName;
 
     /**
      * 字典代码
      */
-    private String itemCode;
+    private String entryCode;
 
 }

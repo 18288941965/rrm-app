@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * rrm_dict_item
+ * rrm_dict_entry
  */
 @Data
-public class RrmDictItem implements Serializable {
+public class RrmDictEntry implements Serializable {
     /**
      * 主键ID
      */
@@ -21,17 +21,17 @@ public class RrmDictItem implements Serializable {
     /**
      * 字典项编码
      */
-    private String itemCode;
+    private String entryCode;
 
     /**
      * 字典项名称
      */
-    private String itemName;
+    private String entryName;
 
     /**
      * 字典类型代码
      */
-    private String typeCode;
+    private Integer typeId;
 
     /**
      * 父级字典项ID

@@ -34,5 +34,5 @@ public class RrmDictTypeVO {
     /**
      * 字典子项统计
      */
-    private Integer itemCount;
+    private Integer entryCount;
 }
