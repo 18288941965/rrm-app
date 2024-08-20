@@ -10,6 +10,7 @@
                COALESCE((select entryCount from tmp t where t.type_id = a.id),0) as entryCount
         from rrm_dict_type a
         <where>
+            a.item_code = #{dto.itemCode}
             <if test="dto.typeName != null and dto.typeName != ''">
                 a.type_name like concat('%',#{dto.typeName},'%')
             </if>
@@ -17,7 +18,7 @@
         order by a.update_time desc
     </select>
 
-    <select id="selectByTypeCode" resultType="com.rrm.module.dict.domain.model.RrmDictType">
-        select id, type_name, description from rrm_dict_type where type_code = #{typeCode}
+    <select id="countByTypeCodeAndItemCode" resultType="java.lang.Integer">
+        select count(*) as cnt from rrm_dict_type where type_code = #{typeCode} and item_code = #{itemCode}
     </select>
 </mapper>

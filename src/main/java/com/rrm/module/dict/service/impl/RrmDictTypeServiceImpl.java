@@ -6,6 +6,7 @@ import com.rrm.module.dict.domain.vo.RrmDictTypeVO;
 import com.rrm.module.dict.dto.RrmDictTypeDTO;
 import com.rrm.module.dict.mapper.RrmDictTypeMapper;
 import com.rrm.module.dict.service.RrmDictTypeService;
+import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,12 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
     @Autowired
     private RrmDictTypeMapper rrmDictTypeMapper;
 
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
     @Override
     public ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto) {
+        dto.setItemCode(jwtTokenUtil.getItemCode());
         IPage<RrmDictTypeVO> pageVo = rrmDictTypeMapper.selectDictTypePage(dto.getPage(RrmDictTypeVO.class), dto);
         return ResultVO.successPage(pageVo);
     }
@@ -39,8 +44,11 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
 
     @Override
     public ResultVO<Long> createDictType(RrmDictType dictType) {
-        RrmDictType type = rrmDictTypeMapper.selectByTypeCode(dictType.getTypeCode());
-        if (type != null) {
+        String itemCode = jwtTokenUtil.getItemCode();
+        dictType.setItemCode(itemCode);
+
+        int cnt = rrmDictTypeMapper.countByTypeCodeAndItemCode(dictType.getTypeCode(), itemCode);
+        if (cnt > 0) {
             return ResultVO.badRequest("类型代码已经存在！");
         }
 

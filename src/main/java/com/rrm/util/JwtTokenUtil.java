@@ -2,7 +2,6 @@ package com.rrm.util;
 
 import com.rrm.cache.RrmUserCache;
 import com.rrm.cache.UserCacheService;
-import com.rrm.module.user.domain.model.RrmUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -67,5 +66,9 @@ public class JwtTokenUtil {
 
     public RrmUserCache getUserInfo(String username) {
         return userCacheService.getCachedUser(username);
+    }
+
+    public String getItemCode() {
+        return getUserInfo().getItemCode();
     }
 }

@@ -43,5 +43,10 @@ public class RrmDictType implements Serializable {
      */
     private LocalDateTime updateTime;
 
+    /**
+     * 项目代码
+     */
+    private String itemCode;
+
     private static final long serialVersionUID = 1L;
 }

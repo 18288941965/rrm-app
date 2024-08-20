@@ -13,5 +13,5 @@ public interface RrmDictTypeMapper extends BaseMapper<RrmDictType> {
 
     IPage<RrmDictTypeVO> selectDictTypePage(IPage<?> page, @Param("dto") RrmDictTypeDTO dto);
 
-    RrmDictType selectByTypeCode(String typeCode);
+    Integer countByTypeCodeAndItemCode(String typeCode, String itemCode);
 }
