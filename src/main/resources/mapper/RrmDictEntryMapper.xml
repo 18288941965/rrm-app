@@ -4,7 +4,6 @@
 
     <select id="searchDictEntryPage" resultType="com.rrm.module.dict.domain.vo.RrmDictEntryVO">
         select a.*,
-               CASE a.status WHEN '1' THEN '启用' ELSE '停用' END as statusName,
                (select entry_name from rrm_dict_entry b where b.id = a.parent_id) as parentEntryName
         from rrm_dict_entry a
         <where>
@@ -15,10 +14,15 @@
                 and a.entry_name like concat('%',#{entryName},'%')
             </if>
         </where>
+        order by a.sort_order, a.entry_code
     </select>
 
     <select id="countByTypeIdAndEntryCode" resultType="java.lang.Integer">
         select count(*) as cnt from rrm_dict_entry where type_id = #{typeId} and entry_code = #{entryCode}
     </select>
+
+    <update id="updateEntryStatus">
+        UPDATE rrm_dict_entry SET status = #{status} WHERE id = #{id}
+    </update>
 
 </mapper>

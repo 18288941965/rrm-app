@@ -9,6 +9,8 @@ import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 字典项.
  *
@@ -34,6 +36,12 @@ public class RrmDictEntryController {
         return rrmDictEntryService.getDictEntryById(id);
     }
 
+    // 根据字典类型查询字典
+    @GetMapping("/subitems/{typeId}")
+    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(@PathVariable Long typeId) {
+        return rrmDictEntryService.getDictEntryByTypeId(typeId);
+    }
+
     // 创建新的字典
     @PostMapping
     public ResultVO<Long> createDictEntry(@RequestBody RrmDictEntry dictEntry) {
@@ -44,6 +52,18 @@ public class RrmDictEntryController {
     @PutMapping
     public ResultVO<Long> updateDictEntry(@RequestBody RrmDictEntry rrmDictEntry) {
         return rrmDictEntryService.updateDictEntryById(rrmDictEntry);
+    }
+
+    // 更新字典顺序
+    @PutMapping("/sort")
+    public ResultVO<Void> updateDictEntrySort(@RequestBody List<RrmDictEntry> entryList) {
+        return rrmDictEntryService.updateDictEntrySort(entryList);
+    }
+
+    // 更新字典状态
+    @PutMapping("/status")
+    public ResultVO<Void> updateDictEntryStatus(@RequestBody RrmDictEntry rrmDictEntry) {
+        return rrmDictEntryService.updateEntryStatus(rrmDictEntry.getStatus(), rrmDictEntry.getId());
     }
 
     // 删除字典

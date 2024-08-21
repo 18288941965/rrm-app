@@ -7,6 +7,8 @@ import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 /**
  * 字典项.
  *
@@ -24,4 +26,10 @@ public interface RrmDictEntryService {
     ResultVO<Long> updateDictEntryById(RrmDictEntry dictEntry);
 
     ResultVO<Void> deleteDictEntryById(Long id);
+
+    ResultVO<Void> updateEntryStatus(Byte status, Long id);
+
+    ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(Long typeId);
+
+    ResultVO<Void> updateDictEntrySort(List<RrmDictEntry> entryList);
 }

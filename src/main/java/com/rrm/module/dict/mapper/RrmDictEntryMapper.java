@@ -15,4 +15,6 @@ public interface RrmDictEntryMapper extends BaseMapper<RrmDictEntry> {
     IPage<RrmDictEntryVO> searchDictEntryPage(Page<RrmDictEntryVO> page, @Param("dto") RrmDictEntryDTO dto);
 
     int countByTypeIdAndEntryCode(Integer typeId, String entryCode);
+
+    void updateEntryStatus(Byte status, Long id);
 }

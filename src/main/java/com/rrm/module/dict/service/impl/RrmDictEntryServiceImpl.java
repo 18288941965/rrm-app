@@ -1,5 +1,6 @@
 package com.rrm.module.dict.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.dict.domain.model.RrmDictEntry;
 import com.rrm.module.dict.domain.vo.RrmDictEntryVO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 字典项.
@@ -59,6 +61,27 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     @Override
     public ResultVO<Void> deleteDictEntryById(Long id) {
         rrmDictEntryMapper.deleteById(id);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<Void> updateEntryStatus(Byte status, Long id) {
+        rrmDictEntryMapper.updateEntryStatus(status, id);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(Long typeId) {
+        LambdaQueryWrapper<RrmDictEntry> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(RrmDictEntry::getTypeId, typeId);
+        queryWrapper.orderBy(true, true, RrmDictEntry::getSortOrder);
+        List<RrmDictEntry> rrmDictEntries = rrmDictEntryMapper.selectList(queryWrapper);
+        return ResultVO.success(rrmDictEntries);
+    }
+
+    @Override
+    public ResultVO<Void> updateDictEntrySort(List<RrmDictEntry> entryList) {
+        rrmDictEntryMapper.updateById(entryList);
         return ResultVO.success();
     }
 }
