@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rrm.module.dict.domain.model.RrmDictEntry;
 import com.rrm.module.dict.domain.vo.RrmDictEntryVO;
+import com.rrm.module.dict.domain.vo.RrmDictVO;
 import com.rrm.module.dict.dto.RrmDictEntryDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RrmDictEntryMapper extends BaseMapper<RrmDictEntry> {
@@ -17,4 +20,6 @@ public interface RrmDictEntryMapper extends BaseMapper<RrmDictEntry> {
     int countByTypeIdAndEntryCode(Integer typeId, String entryCode);
 
     void updateEntryStatus(Byte status, Long id);
+
+    List<RrmDictVO> getDictEntryByTypeCode(String typeCode, String itemCode);
 }

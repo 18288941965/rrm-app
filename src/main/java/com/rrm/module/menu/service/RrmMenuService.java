@@ -1,5 +1,8 @@
 package com.rrm.module.menu.service;
 
+import com.rrm.module.menu.domain.model.RrmMenu;
+import com.rrm.vo.ResultVO;
+
 /**
  * 接口描述.
  *
@@ -7,4 +10,12 @@ package com.rrm.module.menu.service;
  * @since 1.0
  */
 public interface RrmMenuService {
+
+    ResultVO<RrmMenu> getMenuById(String id);
+
+    ResultVO<String> createMenu(RrmMenu menu);
+
+    ResultVO<String> updateMenuById(RrmMenu menu);
+
+    ResultVO<Void> deleteMenuById(String id);
 }

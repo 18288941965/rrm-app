@@ -2,6 +2,7 @@ package com.rrm.module.dict.service;
 
 import com.rrm.module.dict.domain.model.RrmDictEntry;
 import com.rrm.module.dict.domain.vo.RrmDictEntryVO;
+import com.rrm.module.dict.domain.vo.RrmDictVO;
 import com.rrm.module.dict.dto.RrmDictEntryDTO;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
@@ -32,4 +33,6 @@ public interface RrmDictEntryService {
     ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(Long typeId);
 
     ResultVO<Void> updateDictEntrySort(List<RrmDictEntry> entryList);
+
+    ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(String typeCode);
 }

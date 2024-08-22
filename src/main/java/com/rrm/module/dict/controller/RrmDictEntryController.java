@@ -2,6 +2,7 @@ package com.rrm.module.dict.controller;
 
 import com.rrm.module.dict.domain.model.RrmDictEntry;
 import com.rrm.module.dict.domain.vo.RrmDictEntryVO;
+import com.rrm.module.dict.domain.vo.RrmDictVO;
 import com.rrm.module.dict.dto.RrmDictEntryDTO;
 import com.rrm.module.dict.service.RrmDictEntryService;
 import com.rrm.vo.PageResultVO;
@@ -36,10 +37,16 @@ public class RrmDictEntryController {
         return rrmDictEntryService.getDictEntryById(id);
     }
 
-    // 根据字典类型查询字典
+    // 根据字典类型ID查询字典
     @GetMapping("/subitems/{typeId}")
     public ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(@PathVariable Long typeId) {
         return rrmDictEntryService.getDictEntryByTypeId(typeId);
+    }
+
+    // 根据字典类型代码查询字典
+    @GetMapping("/select/{typeCode}")
+    public ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(@PathVariable String typeCode) {
+        return rrmDictEntryService.getDictEntryByTypeCode(typeCode);
     }
 
     // 创建新的字典

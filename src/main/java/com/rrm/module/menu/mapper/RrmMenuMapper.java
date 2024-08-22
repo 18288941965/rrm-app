@@ -1,19 +1,10 @@
 package com.rrm.module.menu.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rrm.module.menu.domain.model.RrmMenu;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
-public interface RrmMenuMapper {
-    int deleteByPrimaryKey(String id);
+@Mapper
+public interface RrmMenuMapper extends BaseMapper<RrmMenu> {
 
-    int insert(RrmMenu record);
-
-    int insertSelective(RrmMenu record);
-
-    RrmMenu selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(RrmMenu record);
-
-    int updateByPrimaryKey(RrmMenu record);
 }

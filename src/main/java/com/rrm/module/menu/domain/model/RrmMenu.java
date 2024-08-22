@@ -74,7 +74,7 @@ public class RrmMenu implements Serializable {
     /**
      * 创建人
      */
-    private String createdBy;
+    private Integer createdBy;
 
     /**
      * 创建时间
@@ -84,7 +84,7 @@ public class RrmMenu implements Serializable {
     /**
      * 更新人
      */
-    private String updatedBy;
+    private Integer updatedBy;
 
     /**
      * 更新时间

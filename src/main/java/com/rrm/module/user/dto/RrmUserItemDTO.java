@@ -1,4 +1,4 @@
-package com.rrm.module.user.domain.dto;
+package com.rrm.module.user.dto;
 
 import lombok.Data;
 

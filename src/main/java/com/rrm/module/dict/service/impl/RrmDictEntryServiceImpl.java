@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.dict.domain.model.RrmDictEntry;
 import com.rrm.module.dict.domain.vo.RrmDictEntryVO;
+import com.rrm.module.dict.domain.vo.RrmDictVO;
 import com.rrm.module.dict.dto.RrmDictEntryDTO;
 import com.rrm.module.dict.mapper.RrmDictEntryMapper;
 import com.rrm.module.dict.service.RrmDictEntryService;
+import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
 
     @Autowired
     private RrmDictEntryMapper rrmDictEntryMapper;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public ResultVO<PageResultVO<RrmDictEntryVO>> searchDictEntryPage(RrmDictEntryDTO dto) {
@@ -83,5 +88,11 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     public ResultVO<Void> updateDictEntrySort(List<RrmDictEntry> entryList) {
         rrmDictEntryMapper.updateById(entryList);
         return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(String typeCode) {
+        String itemCode = jwtTokenUtil.getItemCode();
+        return ResultVO.success(rrmDictEntryMapper.getDictEntryByTypeCode(typeCode, itemCode));
     }
 }
