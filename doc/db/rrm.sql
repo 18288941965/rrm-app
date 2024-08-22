@@ -38,25 +38,25 @@ create table rrm.rrm_item
 
 create table rrm.rrm_menu
 (
-    id         varchar(36)   not null comment '主键'
+    id         varchar(36)       not null comment '主键'
         primary key,
-    parent_id  varchar(36)   null comment '父菜单ID',
-    name       varchar(255)  not null comment '菜单名称',
-    icon       varchar(255)  null comment '菜单图标',
-    sort_order int           not null comment '菜单排序',
-    visibility char          not null comment '菜单可见性',
-    path       varchar(1000) not null comment '菜单路径',
-    type       varchar(2)    null comment '菜单类型（dic_menu_type）',
-    target     varchar(10)   not null comment '跳转方式',
-    page_name  varchar(50)   null comment '页面名称（页面name属性）',
-    page_cache char          null comment '页面是否缓存（1：是，0：否）',
-    version    varchar(20)   not null comment '版本号',
-    created_by varchar(50)   not null comment '创建人',
-    created_at timestamp(6)  not null comment '创建时间',
-    updated_by varchar(50)   not null comment '更新人',
-    updated_at timestamp(6)  not null comment '更新时间',
-    status     tinyint       not null comment '状态（1：有效，0：无效）',
-    item_code  varchar(6)    not null comment '项目代码'
+    parent_id  varchar(36)       null comment '父菜单ID',
+    name       varchar(255)      not null comment '菜单名称',
+    icon       varchar(255)      null comment '菜单图标',
+    sort_order int               not null comment '菜单排序',
+    visibility char              not null comment '菜单可见性',
+    path       varchar(1000)     not null comment '菜单路径',
+    type       varchar(2)        null comment '菜单类型（dic_menu_type）',
+    target     varchar(10)       not null comment '跳转方式',
+    page_name  varchar(50)       null comment '页面名称（页面name属性）',
+    page_cache char              null comment '页面是否缓存（1：是，0：否）',
+    version    varchar(20)       not null comment '版本号',
+    created_by int               not null comment '创建人ID',
+    created_at timestamp(6)      not null comment '创建时间',
+    updated_by int               null comment '更新人',
+    updated_at timestamp(6)      null comment '更新时间',
+    status     tinyint default 1 not null comment '状态（1：有效，0：无效）',
+    item_code  varchar(6)        not null comment '项目代码'
 )
     comment '接入系统菜单管理';
 
