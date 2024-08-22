@@ -1,5 +1,7 @@
 package com.rrm.module.menu.domain.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +16,7 @@ public class RrmMenu implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**
@@ -39,7 +42,7 @@ public class RrmMenu implements Serializable {
     /**
      * 菜单可见性
      */
-    private String visibility;
+    private Byte visibility;
 
     /**
      * 菜单路径
@@ -64,7 +67,7 @@ public class RrmMenu implements Serializable {
     /**
      * 页面是否缓存（1：是，0：否）
      */
-    private String pageCache;
+    private Byte pageCache;
 
     /**
      * 版本号

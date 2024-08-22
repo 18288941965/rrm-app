@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 1.0
  */
 @RestController
+@RequestMapping("/menu")
 public class RrmMenuController {
 
     @Autowired

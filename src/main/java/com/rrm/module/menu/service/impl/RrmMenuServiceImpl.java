@@ -36,6 +36,7 @@ public class RrmMenuServiceImpl implements RrmMenuService {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         menu.setCreatedAt(LocalDateTime.now());
         menu.setCreatedBy(userInfo.getId());
+        menu.setItemCode(userInfo.getItemCode());
         rrmMenuMapper.insert(menu);
         return ResultVO.success(menu.getId());
     }
