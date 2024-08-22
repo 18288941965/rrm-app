@@ -45,15 +45,15 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
             return ResultVO.badRequest("字典代码已经存在！");
         }
         LocalDateTime now = LocalDateTime.now();
-        dictEntry.setUpdateTime(now);
-        dictEntry.setCreateTime(now);
+        dictEntry.setUpdatedAt(now);
+        dictEntry.setCreatedAt(now);
         rrmDictEntryMapper.insert(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
 
     @Override
     public ResultVO<Long> updateDictEntryById(RrmDictEntry dictEntry) {
-        dictEntry.setUpdateTime(LocalDateTime.now());
+        dictEntry.setUpdatedAt(LocalDateTime.now());
         rrmDictEntryMapper.updateById(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }

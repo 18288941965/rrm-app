@@ -50,12 +50,12 @@ public class RrmDictEntryVO {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedAt;
 
     // 父字典项名称
     private String parentItemName;

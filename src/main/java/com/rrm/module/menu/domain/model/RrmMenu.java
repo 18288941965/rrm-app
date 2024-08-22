@@ -42,9 +42,9 @@ public class RrmMenu implements Serializable {
     private String visibility;
 
     /**
-     * 菜单地址
+     * 菜单路径
      */
-    private String url;
+    private String path;
 
     /**
      * 菜单类型（dic_menu_type）
@@ -74,22 +74,22 @@ public class RrmMenu implements Serializable {
     /**
      * 创建人
      */
-    private String createBy;
+    private String createdBy;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 更新人
      */
-    private String updateBy;
+    private String updatedBy;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedAt;
 
     /**
      * 关联的项目
@@ -97,9 +97,9 @@ public class RrmMenu implements Serializable {
     private String itemCode;
 
     /**
-     * 记录标志（1：有效，0：无效）
+     * 状态(1:有效, 0:无效)
      */
-    private String jlbz;
+    private Byte status;
 
     private static final long serialVersionUID = 1L;
 }

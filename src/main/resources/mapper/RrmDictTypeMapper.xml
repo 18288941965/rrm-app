@@ -15,7 +15,7 @@
                 a.type_name like concat('%',#{dto.typeName},'%')
             </if>
         </where>
-        order by a.update_time desc
+        order by a.updated_at desc
     </select>
 
     <select id="countByTypeCodeAndItemCode" resultType="java.lang.Integer">

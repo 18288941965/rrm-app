@@ -18,7 +18,7 @@ public class RrmItemVO {
     private Integer id;
     private String itemName;
     private String itemCode;
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
     private Integer userId;
 
     private List<RrmUser> userList;

@@ -45,7 +45,7 @@ public class RrmItemServiceImpl implements RrmItemService {
     @Transactional
     public ResultVO<String> createItem(RrmItem rrmItem) {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        rrmItem.setCreateTime(LocalDateTime.now());
+        rrmItem.setCreatedAt(LocalDateTime.now());
         rrmItem.setUserId(userInfo.getId());
         itemMapper.insert(rrmItem);
 

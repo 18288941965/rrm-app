@@ -53,8 +53,8 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
         }
 
         LocalDateTime now = LocalDateTime.now();
-        dictType.setCreateTime(now);
-        dictType.setUpdateTime(now);
+        dictType.setCreatedAt(now);
+        dictType.setUpdatedAt(now);
         rrmDictTypeMapper.insert(dictType);
 
         return ResultVO.success(dictType.getId());
@@ -62,7 +62,7 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
 
     @Override
     public ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType) {
-        rrmDictType.setUpdateTime(LocalDateTime.now());
+        rrmDictType.setUpdatedAt(LocalDateTime.now());
         rrmDictTypeMapper.updateById(rrmDictType);
         return ResultVO.success(rrmDictType.getId());
     }

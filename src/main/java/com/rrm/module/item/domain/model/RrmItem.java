@@ -33,7 +33,7 @@ public class RrmItem implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private LocalDateTime createdAt;
 
     /**
      * 创建人
