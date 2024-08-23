@@ -1,10 +1,14 @@
 package com.rrm.module.menu.controller;
 
 import com.rrm.module.menu.domain.model.RrmMenu;
+import com.rrm.module.menu.domain.vo.RrmMenuPartVO;
+import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.menu.service.RrmMenuService;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 类描述.
@@ -18,6 +22,19 @@ public class RrmMenuController {
 
     @Autowired
     private RrmMenuService rrmMenuService;
+
+    // 根据关联项目查询所有菜单
+    @GetMapping("/part")
+    public ResultVO<List<RrmMenuPartVO>> getMenuPartByItemCode() {
+        // return rrmMenuService.getMenuPartByItemCode();
+        return null;
+    }
+
+    // 根据关联项目查询所有菜单并构建为tree
+    @GetMapping("/tree")
+    public ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode() {
+        return rrmMenuService.getMenuTreeByItemCode();
+    }
 
     // 根据ID查询
     @GetMapping("/{id}")
