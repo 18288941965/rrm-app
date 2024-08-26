@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.menu.mapper.RrmMenuMapper">
 
-    <select id="selectMenuByItemCode" resultType="com.rrm.module.menu.domain.vo.RrmMenuVO">
+    <select id="selectMenuByItemCodeOrId" resultType="com.rrm.module.menu.domain.vo.RrmMenuVO">
         select m.id,
                m.parent_id,
                m.name,
@@ -19,7 +19,15 @@
         from rrm_menu m
                  join rrm_dict_entry d on m.type = d.entry_code and d.status = 1
                  join rrm.rrm_dict_type rdt on d.type_id = rdt.id and rdt.type_code = 'dic_menu_type'
-        where m.status = 1 and m.item_code = #{itemCode}
+        <where>
+            m.status = 1
+            <if test="itemCode != null and itemCode != ''">
+                and m.item_code = #{itemCode}
+            </if>
+            <if test="id != null and id != ''">
+                and m.id = #{id}
+            </if>
+        </where>
         order by m.sort_order
     </select>
 </mapper>

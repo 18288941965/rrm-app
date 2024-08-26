@@ -1,7 +1,6 @@
 package com.rrm.module.menu.controller;
 
 import com.rrm.module.menu.domain.model.RrmMenu;
-import com.rrm.module.menu.domain.vo.RrmMenuPartVO;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.menu.service.RrmMenuService;
 import com.rrm.vo.ResultVO;
@@ -23,13 +22,6 @@ public class RrmMenuController {
     @Autowired
     private RrmMenuService rrmMenuService;
 
-    // 根据关联项目查询所有菜单
-    @GetMapping("/part")
-    public ResultVO<List<RrmMenuPartVO>> getMenuPartByItemCode() {
-        // return rrmMenuService.getMenuPartByItemCode();
-        return null;
-    }
-
     // 根据关联项目查询所有菜单并构建为tree
     @GetMapping("/tree")
     public ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode() {
@@ -38,7 +30,7 @@ public class RrmMenuController {
 
     // 根据ID查询
     @GetMapping("/{id}")
-    public ResultVO<RrmMenu> getMenu(@PathVariable String id) {
+    public ResultVO<RrmMenuVO> getMenu(@PathVariable String id) {
         return rrmMenuService.getMenuById(id);
     }
 

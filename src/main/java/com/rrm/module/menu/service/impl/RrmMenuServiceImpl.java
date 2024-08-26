@@ -33,8 +33,9 @@ public class RrmMenuServiceImpl implements RrmMenuService {
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
-    public ResultVO<RrmMenu> getMenuById(String id) {
-        return ResultVO.success(rrmMenuMapper.selectById(id));
+    public ResultVO<RrmMenuVO> getMenuById(String id) {
+        List<RrmMenuVO> dataList = rrmMenuMapper.selectMenuByItemCodeOrId(null, id);
+        return ResultVO.success(dataList.get(0));
     }
 
     @Override
@@ -97,7 +98,7 @@ public class RrmMenuServiceImpl implements RrmMenuService {
     @Override
     public ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode() {
         String itemCode = jwtTokenUtil.getItemCode();
-        List<RrmMenuVO> dataList = rrmMenuMapper.selectMenuByItemCode(itemCode);
+        List<RrmMenuVO> dataList = rrmMenuMapper.selectMenuByItemCodeOrId(itemCode, null);
         List<RrmMenuVO> rrmMenuVOS = buildMenuTree(dataList);
         return ResultVO.success(rrmMenuVOS);
     }

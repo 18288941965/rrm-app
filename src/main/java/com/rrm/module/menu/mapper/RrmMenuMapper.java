@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface RrmMenuMapper extends BaseMapper<RrmMenu> {
 
-    List<RrmMenuVO> selectMenuByItemCode(String itemCode);
+    List<RrmMenuVO> selectMenuByItemCodeOrId(String itemCode, String id);
 }

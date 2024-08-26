@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface RrmMenuService {
 
-    ResultVO<RrmMenu> getMenuById(String id);
+    ResultVO<RrmMenuVO> getMenuById(String id);
 
     ResultVO<String> createMenu(RrmMenu menu);
 
