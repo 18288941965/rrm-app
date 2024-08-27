@@ -1,7 +1,6 @@
 package com.rrm.module.menu.service;
 
 import com.rrm.module.menu.domain.model.RrmMenu;
-import com.rrm.module.menu.domain.vo.RrmMenuPartVO;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.vo.ResultVO;
 
