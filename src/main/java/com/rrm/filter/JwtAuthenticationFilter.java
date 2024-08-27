@@ -29,7 +29,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final List<String> passUrl = Arrays.asList(
             "/auth/login",
             "/auth/isLogin",
-            "/auth/logout"
+            "/auth/logout",
+            "/scanner"
     );
 
     @Override
