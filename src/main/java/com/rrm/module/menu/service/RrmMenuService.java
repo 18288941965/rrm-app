@@ -2,6 +2,7 @@ package com.rrm.module.menu.service;
 
 import com.rrm.module.menu.domain.model.RrmMenu;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
+import com.rrm.module.menu.dto.RrmMenuMoveDTO;
 import com.rrm.vo.ResultVO;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface RrmMenuService {
     ResultVO<Void> deleteMenuById(String id);
 
     ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode();
+
+    ResultVO<Void> batchUpdateMenuParent(RrmMenuMoveDTO menuMoveDTO);
 }

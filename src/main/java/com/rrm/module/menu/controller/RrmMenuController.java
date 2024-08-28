@@ -2,6 +2,7 @@ package com.rrm.module.menu.controller;
 
 import com.rrm.module.menu.domain.model.RrmMenu;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
+import com.rrm.module.menu.dto.RrmMenuMoveDTO;
 import com.rrm.module.menu.service.RrmMenuService;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class RrmMenuController {
     @PutMapping
     public ResultVO<String> updateMenu(@RequestBody RrmMenu menu) {
         return rrmMenuService.updateMenuById(menu);
+    }
+
+    // 移动菜单
+    @PutMapping("/move")
+    public ResultVO<Void> updateMenuParent(@RequestBody RrmMenuMoveDTO menuMoveDTO) {
+        return rrmMenuService.batchUpdateMenuParent(menuMoveDTO);
     }
 
     // 删除菜单

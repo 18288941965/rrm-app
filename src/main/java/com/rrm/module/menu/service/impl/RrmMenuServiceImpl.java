@@ -1,8 +1,10 @@
 package com.rrm.module.menu.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.rrm.cache.RrmUserCache;
 import com.rrm.module.menu.domain.model.RrmMenu;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
+import com.rrm.module.menu.dto.RrmMenuMoveDTO;
 import com.rrm.module.menu.mapper.RrmMenuMapper;
 import com.rrm.module.menu.service.RrmMenuService;
 import com.rrm.util.JwtTokenUtil;
@@ -105,5 +107,17 @@ public class RrmMenuServiceImpl implements RrmMenuService {
         List<RrmMenuVO> dataList = rrmMenuMapper.selectMenuByItemCodeOrId(itemCode, null);
         List<RrmMenuVO> rrmMenuVOS = buildMenuTree(dataList);
         return ResultVO.success(rrmMenuVOS);
+    }
+
+    @Override
+    public ResultVO<Void> batchUpdateMenuParent(RrmMenuMoveDTO menuMoveDTO) {
+        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
+        menuMoveDTO.setUpdatedBy(userInfo.getId());
+        menuMoveDTO.setUpdatedAt(LocalDateTime.now());
+        if (StrUtil.isBlank(menuMoveDTO.getParentId())) {
+            menuMoveDTO.setParentId(null);
+        }
+        rrmMenuMapper.batchUpdateMenuParent(menuMoveDTO);
+        return ResultVO.success();
     }
 }
