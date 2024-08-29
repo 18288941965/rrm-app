@@ -29,11 +29,11 @@ public class EndpointScanner {
     @Data
     static class EndpointScannerBO{
         private String annotationValue;
-        private String auth;
+        private Integer authCode;
 
-        public EndpointScannerBO(String annotationValue, String auth) {
+        public EndpointScannerBO(String annotationValue, Integer authCode) {
             this.annotationValue = annotationValue;
-            this.auth = auth;
+            this.authCode = authCode;
         }
     }
 
@@ -58,7 +58,7 @@ public class EndpointScanner {
                 ApiOperation annotation = controllerClass.getAnnotation(ApiOperation.class);
                 PermissionRequired pAnnotation = controllerClass.getAnnotation(PermissionRequired.class);
                 String classAnnotationValue = annotation == null ? "CLASS-RRM" : annotation.value();
-                String authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
+                int authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
                 classMap.put(className, new EndpointScannerBO(classAnnotationValue, authCode));
             }
         }
@@ -94,7 +94,7 @@ public class EndpointScanner {
             String requestMethod = info.getMethodsCondition().getMethods().iterator().next().toString();
 
             EndpointScannerBO endpointScannerBO = classMap.get(className);
-            System.out.println(className + "===" + methodPath + "====" + methodAnnotationValue + "===" + requestMethod + "===" + endpointScannerBO.getAnnotationValue() + "==" + endpointScannerBO.getAuth());
+            System.out.println(className + "===" + methodPath + "====" + methodAnnotationValue + "===" + requestMethod + "===" + endpointScannerBO.getAnnotationValue() + "==" + endpointScannerBO.getAuthCode());
         }
     }
 }

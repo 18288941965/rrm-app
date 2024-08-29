@@ -1,5 +1,7 @@
 package com.rrm.annotations;
 
+import lombok.Getter;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,18 +18,18 @@ import java.lang.annotation.Target;
 public @interface PermissionRequired {
 
     enum PLevel {
-        LOGIN("1000"),
-        OPEN("1001"),
-        AUTH("1002");
+        AUTH(100, "需要认证并且授权"),
+        LOGIN(101, "需要登录，不需要授权"),
+        OPEN(102, "开放的，无需登录");
 
-        private final String code;
+        @Getter
+        private final Integer code;
+        @Getter
+        private String comment;
 
-        PLevel(String code) {
+        PLevel(Integer code, String comment) {
             this.code = code;
-        }
-
-        public String getCode() {
-            return code;
+            this.comment = comment;
         }
     }
 
