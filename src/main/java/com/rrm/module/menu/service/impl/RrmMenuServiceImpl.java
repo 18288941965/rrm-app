@@ -1,6 +1,7 @@
 package com.rrm.module.menu.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rrm.cache.RrmUserCache;
 import com.rrm.module.menu.domain.model.RrmMenu;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
@@ -118,6 +119,25 @@ public class RrmMenuServiceImpl implements RrmMenuService {
             menuMoveDTO.setParentId(null);
         }
         rrmMenuMapper.batchUpdateMenuParent(menuMoveDTO);
+        return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<List<RrmMenu>> getMenuByParentId(String parentId) {
+        LambdaQueryWrapper<RrmMenu> queryWrapper = new LambdaQueryWrapper<>();
+        if ("null".equals(parentId)) {
+            queryWrapper.isNull(true, RrmMenu::getParentId);
+        } else {
+            queryWrapper.eq(RrmMenu::getParentId, parentId);
+        }
+        queryWrapper.eq(RrmMenu::getStatus, (byte)1);
+        queryWrapper.orderBy(true, true, RrmMenu::getSortOrder);
+        return ResultVO.success(rrmMenuMapper.selectList(queryWrapper));
+    }
+
+    @Override
+    public ResultVO<Void> updateMenuSort(List<RrmMenu> menuList) {
+        rrmMenuMapper.updateById(menuList);
         return ResultVO.success();
     }
 }

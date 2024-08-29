@@ -60,6 +60,21 @@ create table rrm.rrm_menu
 )
     comment '接入系统菜单管理';
 
+create table rrm.rrm_menu_element
+(
+    id         varchar(36)       not null comment '主键'
+        primary key,
+    menu_id    varchar(36)       not null comment '菜单ID',
+    name       varchar(255)      not null comment '控件名称',
+    type       varchar(2)        not null comment '类型',
+    created_by int               not null comment '创建人',
+    created_at timestamp(6)      not null comment '创建时间',
+    updated_by int               null comment '更新人',
+    updated_at timestamp(6)      null comment '更新时间',
+    status     tinyint default 1 not null comment '状态（1：可用，0：不可用）'
+)
+    comment '菜单组件';
+
 create table rrm.rrm_user
 (
     id       int auto_increment comment '主键'

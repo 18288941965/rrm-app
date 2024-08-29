@@ -26,4 +26,8 @@ public interface RrmMenuService {
     ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode();
 
     ResultVO<Void> batchUpdateMenuParent(RrmMenuMoveDTO menuMoveDTO);
+
+    ResultVO<List<RrmMenu>> getMenuByParentId(String parentId);
+
+    ResultVO<Void> updateMenuSort(List<RrmMenu> menuList);
 }
