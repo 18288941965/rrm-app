@@ -30,7 +30,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/auth/login",
             "/auth/isLogin",
             "/auth/logout",
-            "/scanner"
+            "/scanner",
+            "/scanner/dc"
     );
 
     @Override

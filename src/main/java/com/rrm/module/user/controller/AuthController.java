@@ -2,6 +2,7 @@ package com.rrm.module.user.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.rrm.annotations.PermissionRequired;
 import com.rrm.cache.RrmUserCache;
 import com.rrm.cache.UserCacheService;
 import com.rrm.module.user.domain.model.RrmUser;
@@ -9,6 +10,7 @@ import com.rrm.module.user.dto.RrmUserDTO;
 import com.rrm.module.user.service.RrmUserService;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.*;
  * @author TWL 2024/7/30 8:55
  * @since 1.0
  */
+@ApiOperation(value = "权限控制")
 @RestController
 @RequestMapping("/auth")
+@PermissionRequired(PermissionRequired.PLevel.AUTH)
 public class AuthController {
 
     @Autowired
@@ -31,7 +35,9 @@ public class AuthController {
     @Autowired
     private UserCacheService userCacheService;
 
+    @ApiOperation(value = "登录")
     @PostMapping("/login")
+    @PermissionRequired(PermissionRequired.PLevel.OPEN)
     public ResultVO<String> logIn(@RequestBody RrmUserDTO userDTO) {
         if (StrUtil.isBlank(userDTO.getUsername()) || StrUtil.isBlank(userDTO.getPassword())) {
             return ResultVO.unauthorized("用户名或密码为空！");
@@ -61,6 +67,7 @@ public class AuthController {
     }
 
 
+    @ApiOperation(value = "检查是否登录")
     @GetMapping("/isLogin")
     public ResultVO<Boolean> isLogin() {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
@@ -71,6 +78,7 @@ public class AuthController {
         }
     }
 
+    @ApiOperation(value = "退出登录")
     @GetMapping("/logout")
     public ResultVO<String> logOut() {
         String username = jwtTokenUtil.getUsernameFromRequest();
@@ -80,6 +88,7 @@ public class AuthController {
         return ResultVO.success();
     }
 
+    @ApiOperation(value = "选择项目")
     @PutMapping("/select")
     public ResultVO<String> selectItem(@RequestBody RrmUserCache rrmUserCache) {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
