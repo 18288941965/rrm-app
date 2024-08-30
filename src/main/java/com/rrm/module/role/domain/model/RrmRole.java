@@ -1,15 +1,18 @@
 package com.rrm.module.role.domain.model;
 
+import com.rrm.base.ModelInfo;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 角色管理
  * rrm_role
  */
-@Data
-public class RrmRole implements Serializable {
+@Getter
+@Setter
+public class RrmRole extends ModelInfo implements Serializable {
     /**
      * 主键
      */
@@ -24,26 +27,6 @@ public class RrmRole implements Serializable {
      * 等级（权限从小到大）
      */
     private Integer level;
-
-    /**
-     * 创建人
-     */
-    private Integer createdBy;
-
-    /**
-     * 创建时间
-     */
-    private Date createdAt;
-
-    /**
-     * 更新人
-     */
-    private Integer updatedBy;
-
-    /**
-     * 更新时间
-     */
-    private Date updatedAt;
 
     /**
      * 顺序号
