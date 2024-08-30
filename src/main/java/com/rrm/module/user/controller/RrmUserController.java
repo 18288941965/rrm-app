@@ -38,10 +38,10 @@ public class RrmUserController {
         return rrmUserService.deleteUserAndAssociations(id);
     }
 
-    @ApiOperation(value = "修改用户说明")
-    @PutMapping("/comment")
-    public ResultVO<String> updateUserComment(@RequestBody RrmUser rrmUser) {
-        return rrmUserService.updateUserComment(rrmUser);
+    @ApiOperation(value = "修改用户描述")
+    @PutMapping("/description")
+    public ResultVO<String> updateUserDescription(@RequestBody RrmUser rrmUser) {
+        return rrmUserService.updateUserDescription(rrmUser);
     }
 
     @ApiOperation(value = "修改密码")

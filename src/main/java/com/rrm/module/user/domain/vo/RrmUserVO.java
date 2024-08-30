@@ -32,9 +32,9 @@ public class RrmUserVO {
     private String newPassword;
 
     /**
-     * 备注
+     * 描述说明
      */
-    private String comment;
+    private String description;
 
     /**
      * 用户关联的项目

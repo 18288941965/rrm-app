@@ -20,7 +20,7 @@ public interface RrmUserService {
 
     ResultVO<String> deleteUserAndAssociations(Integer id);
 
-    ResultVO<String> updateUserComment(RrmUser rrmUser);
+    ResultVO<String> updateUserDescription(RrmUser rrmUser);
 
     ResultVO<String> updateUserPassword( RrmUserVO rrmUserVO);
 

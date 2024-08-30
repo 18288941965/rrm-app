@@ -79,8 +79,8 @@ public class RrmUserServiceImpl implements RrmUserService {
     }
 
     @Override
-    public ResultVO<String> updateUserComment(RrmUser rrmUser) {
-        rrmUserMapper.updateUserComment(rrmUser.getId(), rrmUser.getComment());
+    public ResultVO<String> updateUserDescription(RrmUser rrmUser) {
+        rrmUserMapper.updateUserDescription(rrmUser.getId(), rrmUser.getDescription());
         return ResultVO.success();
     }
 

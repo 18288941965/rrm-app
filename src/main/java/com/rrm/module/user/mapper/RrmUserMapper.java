@@ -12,7 +12,7 @@ public interface RrmUserMapper extends BaseMapper<RrmUser> {
 
     void updatePassword(Integer id, String password);
 
-    void updateUserComment(Integer id, String comment);
+    void updateUserDescription(Integer id, String description);
 
     List<RrmUserVO> getAllUser();
 

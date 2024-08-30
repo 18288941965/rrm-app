@@ -28,9 +28,9 @@ public class RrmUser implements Serializable {
     private String password;
 
     /**
-     * 备注
+     * 描述说明
      */
-    private String comment;
+    private String description;
 
     private static final long serialVersionUID = 1L;
 }
