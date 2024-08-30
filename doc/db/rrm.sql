@@ -75,6 +75,40 @@ create table rrm.rrm_menu_element
 )
     comment '菜单组件';
 
+create table rrm.rrm_resource
+(
+    id             varchar(36)       not null comment '主键',
+    class_name     varchar(255)      not null comment '类名',
+    request_path   varchar(500)      not null comment '请求路径',
+    request_method varchar(20)       not null comment '请求方式',
+    name           varchar(255)      not null comment '资源名称',
+    type           varchar(2)        null comment '资源类型(字典)',
+    auth_code      int               not null comment '授权码',
+    created_by     int               not null comment '创建人',
+    created_at     timestamp(6)      not null comment '创建时间',
+    updated_by     int               null comment '更新人',
+    updated_at     timestamp(6)      null comment '更新时间',
+    status         tinyint default 1 not null comment '状态(1：启用，0：停用)',
+    item_code      varchar(2)        not null comment '项目代码'
+)
+    comment '资源管理';
+
+create table rrm.rrm_role
+(
+    id          varchar(36)       not null comment '主键',
+    name        varchar(255)      not null comment '名称',
+    level       int     default 0 not null comment '等级（权限从小到大）',
+    created_by  int               not null comment '创建人',
+    created_at  timestamp(6)      not null comment '创建时间',
+    updated_by  int               null comment '更新人',
+    updated_at  timestamp(6)      null comment '更新时间',
+    sort_order  int               not null comment '顺序号',
+    status      tinyint default 1 not null comment '状态（1：启用，0：停用）',
+    description varchar(255)      null comment '角色描述',
+    item_code   varchar(6)        not null comment '项目代码'
+)
+    comment '角色管理';
+
 create table rrm.rrm_user
 (
     id       int auto_increment comment '主键'
