@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.role.mapper.RrmRoleMapper">
 
+    <select id="searchRolePage" resultType="com.rrm.module.role.domain.model.RrmRole">
+        select * from rrm_role
+        <where>
+            item_code = #{dto.itemCode}
+            <if test="dto.name != null and dto.name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

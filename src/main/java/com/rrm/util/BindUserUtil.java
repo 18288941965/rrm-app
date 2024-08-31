@@ -14,21 +14,21 @@ import java.time.LocalDateTime;
  * @since 1.0
  */
 @Component
-public class BindUserUtil<T extends ModelInfo> {
+public class BindUserUtil {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    public void bindCreateUserInfo(T obj) {
+    public void bindCreateUserInfo(ModelInfo obj) {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         obj.setCreatedBy(userInfo.getId());
         obj.setCreatedAt(LocalDateTime.now());
+        obj.setItemCode(userInfo.getItemCode());
     }
 
-    public void bindUpdateUserInfo(T obj) {
+    public void bindUpdateUserInfo(ModelInfo obj) {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         obj.setUpdatedBy(userInfo.getId());
         obj.setUpdatedAt(LocalDateTime.now());
     }
-
 }

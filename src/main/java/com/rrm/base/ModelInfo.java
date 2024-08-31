@@ -32,4 +32,9 @@ public class ModelInfo {
      * 更新时间
      */
     private LocalDateTime updatedAt;
+
+    /**
+     * 项目代码
+     */
+    private String itemCode;
 }

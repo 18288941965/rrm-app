@@ -1,7 +1,9 @@
 package com.rrm.module.role.controller;
 
 import com.rrm.module.role.domain.model.RrmRole;
+import com.rrm.module.role.dto.RrmRoleDTO;
 import com.rrm.module.role.service.RrmRoleService;
+import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,28 @@ public class RrmRoleController {
     @Autowired
     private RrmRoleService rrmRoleService;
 
+    @ApiOperation(value = "分页查询")
+    @PostMapping("/page")
+    public ResultVO<PageResultVO<RrmRole>> searchRolePage(@RequestBody RrmRoleDTO dto) {
+        return rrmRoleService.searchRolePage(dto);
+    }
+
     @ApiOperation(value = "创建")
     @PostMapping
     public ResultVO<String> createRole(@RequestBody RrmRole rrmRole) {
         return rrmRoleService.createRole(rrmRole);
+    }
+
+    @ApiOperation(value = "更新")
+    @PutMapping
+    public ResultVO<String> updateRole(@RequestBody RrmRole rrmRole) {
+        return rrmRoleService.updateRoleById(rrmRole);
+    }
+
+    @ApiOperation(value = "更新状态")
+    @PutMapping("/status")
+    public ResultVO<String> updateRoleStatus(@RequestBody RrmRole rrmRole) {
+        return rrmRoleService.updateRoleById(rrmRole);
     }
 
     @ApiOperation(value = "删除")

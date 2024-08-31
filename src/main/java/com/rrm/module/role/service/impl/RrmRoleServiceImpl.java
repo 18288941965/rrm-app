@@ -1,15 +1,16 @@
 package com.rrm.module.role.service.impl;
 
-import com.rrm.cache.RrmUserCache;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.role.domain.model.RrmRole;
+import com.rrm.module.role.dto.RrmRoleDTO;
 import com.rrm.module.role.mapper.RrmRoleMapper;
 import com.rrm.module.role.service.RrmRoleService;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
+import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 /**
  * 类描述.
@@ -26,40 +27,39 @@ public class RrmRoleServiceImpl implements RrmRoleService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private BindUserUtil bindUserUtil;
+
     @Override
     public ResultVO<String> createRole(RrmRole rrmRole) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        rrmRole.setCreatedAt(LocalDateTime.now());
-        rrmRole.setCreatedBy(userInfo.getId());
-        rrmRole.setItemCode(userInfo.getItemCode());
+        bindUserUtil.bindCreateUserInfo(rrmRole);
         rrmRoleMapper.insert(rrmRole);
         return ResultVO.success(rrmRole.getId());
     }
 
     @Override
     public ResultVO<String> deleteRoleById(String id) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        RrmRole rrmRole = new RrmRole();
-        rrmRole.setId(id);
-        rrmRole.setStatus((byte)0);
-        rrmRole.setUpdatedBy(userInfo.getId());
-        rrmRole.setUpdatedAt(LocalDateTime.now());
-        rrmRoleMapper.updateById(rrmRole);
+        rrmRoleMapper.deleteById(id);
         // TODO 删除其他关联信息
         return ResultVO.success(id);
     }
 
     @Override
-    public ResultVO<String> updateUserById(RrmRole rrmRole) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        rrmRole.setUpdatedBy(userInfo.getId());
-        rrmRole.setUpdatedAt(LocalDateTime.now());
+    public ResultVO<String> updateRoleById(RrmRole rrmRole) {
+        bindUserUtil.bindUpdateUserInfo(rrmRole);
         rrmRoleMapper.updateById(rrmRole);
         return ResultVO.success(rrmRole.getId());
     }
 
     @Override
     public ResultVO<RrmRole> getRoleById(String id) {
-        return null;
+        return ResultVO.success(rrmRoleMapper.selectById(id));
+    }
+
+    @Override
+    public ResultVO<PageResultVO<RrmRole>> searchRolePage(RrmRoleDTO dto) {
+        dto.setItemCode(jwtTokenUtil.getItemCode());
+        IPage<RrmRole> pageVo = rrmRoleMapper.searchRolePage(dto.getPage(RrmRole.class), dto);
+        return ResultVO.successPage(pageVo);
     }
 }
