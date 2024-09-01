@@ -1,7 +1,12 @@
 package com.rrm.module.resource.controller;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import com.rrm.annotations.PermissionRequired;
+import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.service.RrmResourceService;
+import com.rrm.util.BindUserUtil;
+import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +18,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @ApiOperation("资源扫描")
@@ -23,6 +30,12 @@ public class EndpointScanner {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private BindUserUtil bindUserUtil;
+
+    @Autowired
+    private RrmResourceService rrmResourceService;
 
     private final static String scannerPackage = "com.rrm.module";
 
@@ -49,8 +62,8 @@ public class EndpointScanner {
         Map<String, EndpointScannerBO> classMap = new HashMap<>();
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : map.entrySet()) {
             HandlerMethod method = entry.getValue();
-            String className = method.getBeanType().getName();
-            if (classMap.containsKey(className) || !className.startsWith(scannerPackage)) {
+            String fullyQualifiedName = method.getBeanType().getName();
+            if (classMap.containsKey(fullyQualifiedName) || !fullyQualifiedName.startsWith(scannerPackage)) {
                 continue;
             }
             Class<?> controllerClass = method.getBeanType();
@@ -59,16 +72,18 @@ public class EndpointScanner {
                 PermissionRequired pAnnotation = controllerClass.getAnnotation(PermissionRequired.class);
                 String classAnnotationValue = annotation == null ? "CLASS-RRM" : annotation.value();
                 int authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
-                classMap.put(className, new EndpointScannerBO(classAnnotationValue, authCode));
+                classMap.put(fullyQualifiedName, new EndpointScannerBO(classAnnotationValue, authCode));
             }
         }
+
+        List<RrmResource> resourceList = new ArrayList<>();
 
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : map.entrySet()) {
             // 验证是否是扫描范围内的包
             HandlerMethod method = entry.getValue();
             // 类名
-            String className = method.getBeanType().getName();
-            if (!className.startsWith(scannerPackage)) {
+            String fullyQualifiedName = method.getBeanType().getName();
+            if (!fullyQualifiedName.startsWith(scannerPackage)) {
                 continue;
             }
 
@@ -93,8 +108,32 @@ public class EndpointScanner {
             // 请求方式
             String requestMethod = info.getMethodsCondition().getMethods().iterator().next().toString();
 
-            EndpointScannerBO endpointScannerBO = classMap.get(className);
-            System.out.println(className + "===" + methodPath + "====" + methodAnnotationValue + "===" + requestMethod + "===" + endpointScannerBO.getAnnotationValue() + "==" + endpointScannerBO.getAuthCode());
+            EndpointScannerBO endpointScannerBO = classMap.get(fullyQualifiedName);
+
+            Class<?> beanType = method.getBeanType();
+            String className = beanType.getSimpleName();
+            String packageName = beanType.getPackage().getName();
+
+
+            RrmResource resource = new RrmResource();
+            resource.setStatus((byte)1);
+            bindUserUtil.bindCreateUserInfo(resource);
+
+            resource.setServiceName("RRM");
+            resource.setPackageName(packageName);
+            resource.setClassName(className);
+            resource.setMethodName(method.getMethod().getName());
+            resource.setRequestPath(methodPath);
+            resource.setRequestMethod(requestMethod);
+            resource.setResourceName(endpointScannerBO.getAnnotationValue()+"-"+methodAnnotationValue);
+            resource.setResourceType("99");
+            resource.setAuthCode(endpointScannerBO.getAuthCode());
+            resource.setEnvironment("01");
+            resource.setId(DigestUtil.md5Hex(methodPath+requestMethod+resource.getItemCode()));
+            resourceList.add(resource);
         }
+
+        ResultVO<Integer> integerResultVO = rrmResourceService.batchInsertResource(resourceList);
+        System.out.println("====资源扫描成功===");
     }
 }

@@ -1,79 +1,77 @@
 package com.rrm.module.resource.domain.model;
 
+import com.rrm.base.ModelInfo;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 资源管理
- * rrm_resource
  */
-@Data
-public class RrmResource implements Serializable {
+@Getter
+@Setter
+public class RrmResource extends ModelInfo implements Serializable {
     /**
-     * 主键
-     */
+    * 主键
+    */
     private String id;
 
     /**
-     * 类名
-     */
+    * 服务名称
+    */
+    private String serviceName;
+
+    /**
+    * 包名
+    */
+    private String packageName;
+
+    /**
+    * 类名
+    */
     private String className;
 
     /**
-     * 请求路径
-     */
+    * 方法名
+    */
+    private String methodName;
+
+    /**
+    * 请求路径
+    */
     private String requestPath;
 
     /**
-     * 请求方式
-     */
+    * 请求方式
+    */
     private String requestMethod;
 
     /**
-     * 资源名称
-     */
-    private String name;
+    * 资源名称
+    */
+    private String resourceName;
 
     /**
-     * 资源类型(字典)
-     */
-    private String type;
+    * 资源类型(字典)
+    */
+    private String resourceType;
 
     /**
-     * 授权码
-     */
+    * 授权码
+    */
     private Integer authCode;
 
     /**
-     * 创建人
-     */
-    private Integer createdBy;
+    * 资源环境（dev,production）
+    */
+    private String environment;
 
     /**
-     * 创建时间
-     */
-    private Date createdAt;
-
-    /**
-     * 更新人
-     */
-    private Integer updatedBy;
-
-    /**
-     * 更新时间
-     */
-    private Date updatedAt;
-
-    /**
-     * 状态(1：启用，0：停用)
-     */
+    * 状态(1：启用，0：停用)
+    */
     private Byte status;
 
-    /**
-     * 项目代码
-     */
-    private String itemCode;
-
     private static final long serialVersionUID = 1L;
+
 }

@@ -1,5 +1,10 @@
 package com.rrm.module.resource.service;
 
+import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.vo.ResultVO;
+
+import java.util.List;
+
 /**
  * 接口描述.
  *
@@ -8,4 +13,5 @@ package com.rrm.module.resource.service;
  */
 public interface RrmResourceService {
 
+    ResultVO<Integer> batchInsertResource(List<RrmResource> list);
 }
