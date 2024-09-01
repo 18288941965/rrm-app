@@ -7,7 +7,7 @@
         <where>
             item_code = #{dto.itemCode}
             <if test="dto.name != null and dto.name != ''">
-                name like concat('%',#{name},'%')
+                name like concat('%',#{dto.name},'%')
             </if>
         </where>
     </select>

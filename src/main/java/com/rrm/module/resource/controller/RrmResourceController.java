@@ -1,10 +1,13 @@
 package com.rrm.module.resource.controller;
 
+import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.module.resource.service.RrmResourceService;
+import com.rrm.vo.PageResultVO;
+import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 资源管理.
@@ -19,5 +22,17 @@ public class RrmResourceController {
 
     @Autowired
     private RrmResourceService rrmResourceService;
+
+    @ApiOperation(value = "分页查询")
+    @PostMapping("/page")
+    public ResultVO<PageResultVO<RrmResource>> searchResourcePage(@RequestBody RrmResourceDTO dto) {
+        return rrmResourceService.searchResourcePage(dto);
+    }
+
+    @ApiOperation(value = "更新状态")
+    @PutMapping("/status")
+    public ResultVO<String> updateResourceStatus(@RequestBody RrmResource resource) {
+        return rrmResourceService.updateResourceStatus(resource);
+    }
 
 }
