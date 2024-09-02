@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 @ApiOperation(value = "权限控制")
 @RestController
 @RequestMapping("/auth")
-@PermissionRequired(PermissionRequired.PLevel.AUTH)
 public class AuthController {
 
     @Autowired
@@ -69,6 +68,7 @@ public class AuthController {
 
     @ApiOperation(value = "检查是否登录")
     @GetMapping("/isLogin")
+    @PermissionRequired(PermissionRequired.PLevel.OPEN)
     public ResultVO<Boolean> isLogin() {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         if (userInfo == null || StrUtil.isBlank(userInfo.getUsername())) {
@@ -80,6 +80,7 @@ public class AuthController {
 
     @ApiOperation(value = "退出登录")
     @GetMapping("/logout")
+    @PermissionRequired(PermissionRequired.PLevel.OPEN)
     public ResultVO<String> logOut() {
         String username = jwtTokenUtil.getUsernameFromRequest();
         if (username != null) {

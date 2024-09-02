@@ -30,14 +30,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/auth/login",
             "/auth/isLogin",
             "/auth/logout",
-            "/scanner",
-            "/scanner/dc"
+            "/scanner"
     );
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String servletPath = request.getServletPath();
+
+        RequestMatcher matcher = new RequestMatcher(passUrl);
+        String matchedPattern = matcher.matchRequestToPattern(request);
+        System.out.println("===========" + matchedPattern);
 
         String header = request.getHeader("Authorization");
         String token = null;
