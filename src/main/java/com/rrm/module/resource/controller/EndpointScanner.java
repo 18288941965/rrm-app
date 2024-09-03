@@ -52,7 +52,7 @@ public class EndpointScanner {
 
     @GetMapping
     @ApiOperation("扫描系统资源")
-    public void scanEndpoints() {
+    public ResultVO<Void> scanEndpoints() {
         RequestMappingHandlerMapping requestMappingHandlerMapping =
                 applicationContext.getBean(RequestMappingHandlerMapping.class);
 
@@ -134,6 +134,6 @@ public class EndpointScanner {
         }
 
         ResultVO<Integer> integerResultVO = rrmResourceService.batchInsertResource(resourceList);
-        System.out.println("====资源扫描成功===");
+        return ResultVO.success();
     }
 }

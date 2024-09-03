@@ -48,6 +48,10 @@ public class RrmUserServiceImpl implements RrmUserService {
     @Override
     public RrmUser getUserByName(String username) {
         LambdaQueryWrapper<RrmUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.select(RrmUser::getId
+                , RrmUser::getUsername
+                , RrmUser::getPassword
+                ,RrmUser::getDescription);
         queryWrapper.eq(RrmUser::getUsername, username);
         List<RrmUser> rrmUsers = rrmUserMapper.selectList(queryWrapper);
         return !rrmUsers.isEmpty() ? rrmUsers.get(0) : null;

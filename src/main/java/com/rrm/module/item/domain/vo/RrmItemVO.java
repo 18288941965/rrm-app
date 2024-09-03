@@ -19,7 +19,7 @@ public class RrmItemVO {
     private String itemName;
     private String itemCode;
     private LocalDateTime createdAt;
-    private Integer userId;
+    private Integer createdBy;
 
     private List<RrmUser> userList;
     private Integer loginId;
