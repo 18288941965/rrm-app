@@ -8,6 +8,7 @@ import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.menu.dto.RrmMenuMoveDTO;
 import com.rrm.module.menu.mapper.RrmMenuMapper;
 import com.rrm.module.menu.service.RrmMenuService;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.apache.logging.log4j.util.Strings;
@@ -35,6 +36,9 @@ public class RrmMenuServiceImpl implements RrmMenuService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private BindUserUtil bindUserUtil;
+
     @Override
     public ResultVO<RrmMenuVO> getMenuById(String id) {
         List<RrmMenuVO> dataList = rrmMenuMapper.selectMenuByItemCodeOrId(null, id);
@@ -43,19 +47,14 @@ public class RrmMenuServiceImpl implements RrmMenuService {
 
     @Override
     public ResultVO<String> createMenu(RrmMenu menu) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        menu.setCreatedAt(LocalDateTime.now());
-        menu.setCreatedBy(userInfo.getId());
-        menu.setItemCode(userInfo.getItemCode());
+        bindUserUtil.bindCreateUserInfo(menu);
         rrmMenuMapper.insert(menu);
         return ResultVO.success(menu.getId());
     }
 
     @Override
     public ResultVO<String> updateMenuById(RrmMenu menu) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        menu.setUpdatedAt(LocalDateTime.now());
-        menu.setUpdatedBy(userInfo.getId());
+        bindUserUtil.bindUpdateUserInfo(menu);
         rrmMenuMapper.updateById(menu);
         return ResultVO.success(menu.getId());
     }
@@ -63,11 +62,9 @@ public class RrmMenuServiceImpl implements RrmMenuService {
     @Override
     public ResultVO<Void> deleteMenuById(String ids) {
         String[] split = ids.split(",");
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         RrmMenu menu = new RrmMenu();
         menu.setStatus((byte) 0);
-        menu.setUpdatedAt(LocalDateTime.now());
-        menu.setUpdatedBy(userInfo.getId());
+        bindUserUtil.bindUpdateUserInfo(menu);
         for (String id : split) {
             menu.setId(id);
             rrmMenuMapper.updateById(menu);

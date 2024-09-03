@@ -9,6 +9,7 @@ import com.rrm.module.user.domain.model.RrmUser;
 import com.rrm.module.user.domain.model.RrmUserItem;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
 import com.rrm.module.user.mapper.RrmUserMapper;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,18 @@ public class RrmItemServiceImpl implements RrmItemService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private BindUserUtil bindUserUtil;
+
     @Override
     @Transactional
     public ResultVO<String> createItem(RrmItem rrmItem) {
-        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
-        rrmItem.setCreatedAt(LocalDateTime.now());
-        rrmItem.setUserId(userInfo.getId());
+        bindUserUtil.bindCreateUserInfo(rrmItem);
         itemMapper.insert(rrmItem);
 
         // 插入用户项目关联
         RrmUserItem userItem = new RrmUserItem();
-        userItem.setUserId(userInfo.getId());
+        userItem.setUserId(rrmItem.getCreatedBy());
         userItem.setItemId(rrmItem.getId());
         rrmUserItemMapper.insert(userItem);
 
@@ -73,6 +75,7 @@ public class RrmItemServiceImpl implements RrmItemService {
 
     @Override
     public ResultVO<String> updateItemById(RrmItem rrmItem) {
+        bindUserUtil.bindUpdateUserInfo(rrmItem);
         itemMapper.updateById(rrmItem);
         return ResultVO.success();
     }

@@ -19,7 +19,5 @@ public interface RrmDictEntryMapper extends BaseMapper<RrmDictEntry> {
 
     int countByTypeIdAndEntryCode(Integer typeId, String entryCode);
 
-    void updateEntryStatus(Byte status, Long id);
-
     List<RrmDictVO> getDictEntryByTypeCode(String typeCode, String itemCode);
 }

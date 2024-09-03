@@ -2,16 +2,18 @@ package com.rrm.module.dict.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.rrm.base.ModelInfo;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * rrm_dict_type
  */
-@Data
-public class RrmDictType implements Serializable {
+@Getter
+@Setter
+public class RrmDictType extends ModelInfo implements Serializable {
     /**
      * 主键ID
      */
@@ -32,21 +34,6 @@ public class RrmDictType implements Serializable {
      * 描述
      */
     private String description;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createdAt;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updatedAt;
-
-    /**
-     * 项目代码
-     */
-    private String itemCode;
 
     private static final long serialVersionUID = 1L;
 }

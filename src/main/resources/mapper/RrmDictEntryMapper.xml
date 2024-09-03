@@ -21,10 +21,6 @@
         select count(*) as cnt from rrm_dict_entry where type_id = #{typeId} and entry_code = #{entryCode}
     </select>
 
-    <update id="updateEntryStatus">
-        UPDATE rrm_dict_entry SET status = #{status} WHERE id = #{id}
-    </update>
-
     <select id="getDictEntryByTypeCode" resultType="com.rrm.module.dict.domain.vo.RrmDictVO">
         select a.entry_code, a.entry_name from rrm_dict_entry a
              join rrm_dict_type b on a.type_id = b.id and b.type_code = #{typeCode} and b.item_code = #{itemCode}

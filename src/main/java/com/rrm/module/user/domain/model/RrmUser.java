@@ -2,15 +2,18 @@ package com.rrm.module.user.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.rrm.base.ModelInfo;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 /**
  * rrm_user
  */
-@Data
-public class RrmUser implements Serializable {
+@Getter
+@Setter
+public class RrmUser extends ModelInfo implements Serializable {
     /**
      * 主键
      */

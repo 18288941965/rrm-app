@@ -6,14 +6,13 @@ import com.rrm.module.dict.domain.vo.RrmDictTypeVO;
 import com.rrm.module.dict.dto.RrmDictTypeDTO;
 import com.rrm.module.dict.mapper.RrmDictTypeMapper;
 import com.rrm.module.dict.service.RrmDictTypeService;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.time.LocalDateTime;
 
 /**
  * 字典类型.
@@ -29,6 +28,9 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private BindUserUtil bindUserUtil;
 
     @Override
     public ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto) {
@@ -51,18 +53,14 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
         if (cnt > 0) {
             return ResultVO.badRequest("类型代码已经存在！");
         }
-
-        LocalDateTime now = LocalDateTime.now();
-        dictType.setCreatedAt(now);
-        dictType.setUpdatedAt(now);
+        bindUserUtil.bindCreateUserInfo(dictType);
         rrmDictTypeMapper.insert(dictType);
-
         return ResultVO.success(dictType.getId());
     }
 
     @Override
     public ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType) {
-        rrmDictType.setUpdatedAt(LocalDateTime.now());
+        bindUserUtil.bindUpdateUserInfo(rrmDictType);
         rrmDictTypeMapper.updateById(rrmDictType);
         return ResultVO.success(rrmDictType.getId());
     }

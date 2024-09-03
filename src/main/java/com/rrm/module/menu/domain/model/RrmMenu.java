@@ -2,17 +2,19 @@ package com.rrm.module.menu.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.rrm.base.ModelInfo;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * 接入系统菜单管理
  * rrm_menu
  */
-@Data
-public class RrmMenu implements Serializable {
+@Getter
+@Setter
+public class RrmMenu extends ModelInfo implements Serializable {
     /**
      * 主键
      */
@@ -73,31 +75,6 @@ public class RrmMenu implements Serializable {
      * 版本号
      */
     private String version;
-
-    /**
-     * 创建人
-     */
-    private Integer createdBy;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createdAt;
-
-    /**
-     * 更新人
-     */
-    private Integer updatedBy;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updatedAt;
-
-    /**
-     * 关联的项目
-     */
-    private String itemCode;
 
     /**
      * 状态(1:有效, 0:无效)

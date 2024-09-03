@@ -8,13 +8,13 @@ import com.rrm.module.dict.domain.vo.RrmDictVO;
 import com.rrm.module.dict.dto.RrmDictEntryDTO;
 import com.rrm.module.dict.mapper.RrmDictEntryMapper;
 import com.rrm.module.dict.service.RrmDictEntryService;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -31,6 +31,9 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private BindUserUtil bindUserUtil;
 
     @Override
     public ResultVO<PageResultVO<RrmDictEntryVO>> searchDictEntryPage(RrmDictEntryDTO dto) {
@@ -49,16 +52,14 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
         if (count > 0) {
             return ResultVO.badRequest("字典代码已经存在！");
         }
-        LocalDateTime now = LocalDateTime.now();
-        dictEntry.setUpdatedAt(now);
-        dictEntry.setCreatedAt(now);
+        bindUserUtil.bindCreateUserInfo(dictEntry);
         rrmDictEntryMapper.insert(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
 
     @Override
     public ResultVO<Long> updateDictEntryById(RrmDictEntry dictEntry) {
-        dictEntry.setUpdatedAt(LocalDateTime.now());
+        bindUserUtil.bindUpdateUserInfo(dictEntry);
         rrmDictEntryMapper.updateById(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
@@ -71,7 +72,11 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
 
     @Override
     public ResultVO<Void> updateEntryStatus(Byte status, Long id) {
-        rrmDictEntryMapper.updateEntryStatus(status, id);
+        RrmDictEntry dictEntry = new RrmDictEntry();
+        dictEntry.setStatus(status);
+        dictEntry.setId(id);
+        bindUserUtil.bindUpdateUserInfo(dictEntry);
+        rrmDictEntryMapper.updateById(dictEntry);
         return ResultVO.success();
     }
 

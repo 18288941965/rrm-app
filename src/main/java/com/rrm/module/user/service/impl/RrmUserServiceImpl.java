@@ -11,6 +11,7 @@ import com.rrm.module.user.domain.vo.RrmUserVO;
 import com.rrm.module.user.mapper.RrmUserItemMapper;
 import com.rrm.module.user.mapper.RrmUserMapper;
 import com.rrm.module.user.service.RrmUserService;
+import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class RrmUserServiceImpl implements RrmUserService {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private BindUserUtil bindUserUtil;
+
     @Override
     public RrmUser getUserByName(String username) {
         LambdaQueryWrapper<RrmUser> queryWrapper = new LambdaQueryWrapper<>();
@@ -51,6 +55,7 @@ public class RrmUserServiceImpl implements RrmUserService {
 
     @Override
     public ResultVO<String> createUser(RrmUser rrmUser) {
+        bindUserUtil.bindCreateUserInfo(rrmUser);
         rrmUser.setPassword(SecureUtil.md5(rrmUser.getPassword()));
         rrmUserMapper.insert(rrmUser);
         return ResultVO.success();
