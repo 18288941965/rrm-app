@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.org.mapper.RrmOrgMapper">
 
+    <select id="searchOrgPage"
+            parameterType="com.rrm.module.org.dto.RrmOrgDTO"
+            resultType="com.rrm.module.org.domain.model.RrmOrg">
+        select * from rrm_org
+    </select>
 </mapper>

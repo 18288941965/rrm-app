@@ -13,7 +13,6 @@ create table rrm.rrm_org
     extended_field2 varchar(255)      null comment '扩展字段2',
     created_at      timestamp(6)      not null comment '创建时间',
     updated_at      timestamp(6)      null comment '更新时间',
-    status          tinyint default 1 not null comment '机构状态（1：有效，0：无效）',
     item_code       varchar(6)        not null comment '项目代码'
 )
     comment '任职机构';

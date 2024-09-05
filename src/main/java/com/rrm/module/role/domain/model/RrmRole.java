@@ -1,5 +1,7 @@
 package com.rrm.module.role.domain.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +18,7 @@ public class RrmRole extends ModelInfo implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**

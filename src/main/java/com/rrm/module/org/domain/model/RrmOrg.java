@@ -1,11 +1,14 @@
 package com.rrm.module.org.domain.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -18,6 +21,7 @@ public class RrmOrg extends ModelInfo implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**
@@ -53,7 +57,7 @@ public class RrmOrg extends ModelInfo implements Serializable {
     /**
      * 删除（注销）时间
      */
-    private Date deletedAt;
+    private LocalDateTime deletedAt;
 
     /**
      * 扩展字段
@@ -64,11 +68,6 @@ public class RrmOrg extends ModelInfo implements Serializable {
      * 扩展字段2
      */
     private String extendedField2;
-
-    /**
-     * 机构状态（1：有效，0：无效）
-     */
-    private Byte status;
 
     private static final long serialVersionUID = 1L;
 

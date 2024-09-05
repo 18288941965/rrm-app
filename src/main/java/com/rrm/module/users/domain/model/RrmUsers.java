@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Data;
 import lombok.Getter;
@@ -20,6 +22,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**
@@ -55,7 +58,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      * 出生日期
      */
-    private Date dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
     /**
      * 联系电话
@@ -95,12 +98,12 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      *  注册时间
      */
-    private Date registrationDate;
+    private LocalDateTime registrationDate;
 
     /**
      * 最近登录时间
      */
-    private Date lastLoginTime;
+    private LocalDateTime lastLoginTime;
 
     /**
      * 登录失败次数
@@ -120,7 +123,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      *  审核时间
      */
-    private Date approvalAt;
+    private LocalDateTime approvalAt;
 
     /**
      * 是否删除（注销）(1：是，0：否)
@@ -130,7 +133,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      * 删除（注销时间）
      */
-    private Date deletedAt;
+    private LocalDateTime deletedAt;
 
     /**
      * 扩展字段
@@ -141,16 +144,6 @@ public class RrmUsers extends ModelInfo implements Serializable {
      * 扩展字段2
      */
     private String extendedField2;
-
-    /**
-     * 创建时间
-     */
-    private Date createdAt;
-
-    /**
-     * 更新时间
-     */
-    private Date updatedAt;
 
     /**
      * 项目代码 
