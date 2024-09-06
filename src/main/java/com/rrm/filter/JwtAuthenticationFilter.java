@@ -26,28 +26,43 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private static final List<String> passUrl = Arrays.asList(
+    private static final List<String> LG_URL = Arrays.asList(
             "/auth/login",
             "/auth/isLogin",
-            "/auth/logout",
-            "/scanner"
+            "/auth/logout"
     );
+    private static final String LOGIN_URL = "/";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String servletPath = request.getServletPath();
+        String xRequestedWith = request.getHeader("XRequestedWith");
+        String authorization = request.getHeader("Authorization");
+        String flag = "XMLHttpRequest";
 
-        RequestMatcher matcher = new RequestMatcher(passUrl);
+        // *******************处理前端请求
+        if (!flag.equals(xRequestedWith)) {
+            // 请求登录页或静态文件
+            if (LOGIN_URL.equals(servletPath) || servletPath.contains(".")) {
+                filterChain.doFilter(request, response);
+                return;
+            } else if (authorization == null || !authorization.startsWith("Bearer ")){ // 路由请求并且无token
+                response.sendRedirect(LOGIN_URL);
+                return;
+            }
+        }
+
+        // *******************处理后端请求
+        RequestMatcher matcher = new RequestMatcher(LG_URL);
         String matchedPattern = matcher.matchRequestToPattern(request);
         System.out.println("===========" + matchedPattern);
 
-        String header = request.getHeader("Authorization");
         String token = null;
         String username = null;
 
-        if (header != null && header.startsWith("Bearer ")) {
-            token = header.substring(7);
+        if (authorization != null && authorization.startsWith("Bearer ")) {
+            token = authorization.substring(7);
 
             boolean b = jwtTokenUtil.validateToken(token);
             if (!b){
@@ -64,7 +79,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 response.getWriter().write("未登录或登录超时！");
                 return;
             }
-        } else if (!passUrl.contains(servletPath)) {
+        } else if (!LG_URL.contains(servletPath)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("无效token！");
             return;
