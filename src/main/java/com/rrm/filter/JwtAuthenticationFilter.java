@@ -41,22 +41,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authorization = request.getHeader("Authorization");
         String flag = "XMLHttpRequest";
 
+        System.out.println(servletPath);
+
         // *******************处理前端请求
         if (!flag.equals(xRequestedWith)) {
             // 请求登录页或静态文件
             if (LOGIN_URL.equals(servletPath) || servletPath.contains(".")) {
                 filterChain.doFilter(request, response);
                 return;
-            } else if (authorization == null || !authorization.startsWith("Bearer ")){ // 路由请求并且无token
+            }
+            // 路由请求并且无token（浏览器直接输入地址是没有token的）
+            if (authorization == null || !authorization.startsWith("Bearer ")){
                 response.sendRedirect(LOGIN_URL);
                 return;
             }
+            filterChain.doFilter(request, response);
+            return;
         }
 
         // *******************处理后端请求
         RequestMatcher matcher = new RequestMatcher(LG_URL);
         String matchedPattern = matcher.matchRequestToPattern(request);
-        System.out.println("===========" + matchedPattern);
+        // System.out.println("===========" + matchedPattern);
 
         String token = null;
         String username = null;
