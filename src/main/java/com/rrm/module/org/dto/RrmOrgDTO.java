@@ -14,6 +14,7 @@ import lombok.Setter;
 @Setter
 public class RrmOrgDTO extends PageBase {
 
+    private String id;
     private String itemCode;
     private String code;
     private String name;

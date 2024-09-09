@@ -1,9 +1,11 @@
 package com.rrm.module.org.service;
 
 import com.rrm.module.org.domain.model.RrmOrg;
+import com.rrm.module.org.domain.vo.RrmOrgVO;
 import com.rrm.module.org.dto.RrmOrgDTO;
-import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
+
+import java.util.List;
 
 /**
  * 机构管理.
@@ -21,5 +23,5 @@ public interface RrmOrgService {
 
     ResultVO<RrmOrg> getOrgById(String id);
 
-    ResultVO<PageResultVO<RrmOrg>> searchOrgPage(RrmOrgDTO dto);
+    ResultVO<List<RrmOrgVO>> getOrgTreeByItemCode();
 }

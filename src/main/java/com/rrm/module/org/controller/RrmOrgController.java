@@ -1,13 +1,15 @@
 package com.rrm.module.org.controller;
 
 import com.rrm.module.org.domain.model.RrmOrg;
+import com.rrm.module.org.domain.vo.RrmOrgVO;
 import com.rrm.module.org.dto.RrmOrgDTO;
 import com.rrm.module.org.service.RrmOrgService;
-import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 机构管理.
@@ -24,10 +26,10 @@ public class RrmOrgController {
     @Autowired
     private RrmOrgService rrmOrgService;
 
-    @ApiOperation(value = "分页查询")
-    @PostMapping("/page")
-    public ResultVO<PageResultVO<RrmOrg>> searchOrgPage(@RequestBody RrmOrgDTO dto) {
-        return rrmOrgService.searchOrgPage(dto);
+    @ApiOperation(value = "根据关联项目查询所有机构并构建为tree")
+    @GetMapping("/tree")
+    public ResultVO<List<RrmOrgVO>> getOrgTreeByItemCode() {
+        return rrmOrgService.getOrgTreeByItemCode();
     }
 
     @ApiOperation(value = "创建")

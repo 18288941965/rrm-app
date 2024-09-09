@@ -1,19 +1,20 @@
 package com.rrm.module.org.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.org.domain.model.RrmOrg;
-import com.rrm.module.org.dto.RrmOrgDTO;
+import com.rrm.module.org.domain.vo.RrmOrgVO;
 import com.rrm.module.org.mapper.RrmOrgMapper;
 import com.rrm.module.org.service.RrmOrgService;
-import com.rrm.module.users.domain.model.RrmUsers;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
-import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 机构管理.
@@ -63,10 +64,34 @@ public class RrmOrgServiceImpl implements RrmOrgService {
         return ResultVO.success(rrmOrgMapper.selectById(id));
     }
 
+    public static List<RrmOrgVO> buildOrgTree(List<RrmOrgVO> orgList) {
+        Map<String, RrmOrgVO> orgMap = new HashMap<>();
+        List<RrmOrgVO> rootOrgList = new ArrayList<>();
+
+        // Step 1: 将所有菜单存入 map，key 为机构的 code
+        for (RrmOrgVO org : orgList) {
+            orgMap.put(org.getCode(), org);
+        }
+
+        // Step 2: 构建树结构
+        for (RrmOrgVO org : orgList) {
+            if (!orgMap.containsKey(org.getParentCode())) {
+                rootOrgList.add(org);
+            } else {
+                // 否则，将其添加到对应的父节点的 children 列表中
+                RrmOrgVO parentOrg = orgMap.get(org.getParentCode());
+                if (parentOrg != null) {
+                    parentOrg.getChildren().add(org);
+                }
+            }
+        }
+        return rootOrgList;
+    }
+
     @Override
-    public ResultVO<PageResultVO<RrmOrg>> searchOrgPage(RrmOrgDTO dto) {
-        dto.setItemCode(jwtTokenUtil.getItemCode());
-        IPage<RrmOrg> pageVo = rrmOrgMapper.searchOrgPage(dto.getPage(RrmOrg.class), dto);
-        return ResultVO.successPage(pageVo);
+    public ResultVO<List<RrmOrgVO>> getOrgTreeByItemCode() {
+        List<RrmOrgVO> dataList = rrmOrgMapper.selectOrgByItemCodeOrId(jwtTokenUtil.getItemCode(), null);
+        List<RrmOrgVO> rrmOrgVOList = buildOrgTree(dataList);
+        return ResultVO.success(rrmOrgVOList);
     }
 }

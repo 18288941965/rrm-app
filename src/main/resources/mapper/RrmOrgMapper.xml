@@ -2,9 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.org.mapper.RrmOrgMapper">
 
-    <select id="searchOrgPage"
-            parameterType="com.rrm.module.org.dto.RrmOrgDTO"
-            resultType="com.rrm.module.org.domain.model.RrmOrg">
-        select * from rrm_org
+    <select id="selectOrgByItemCodeOrId"
+            resultType="com.rrm.module.org.domain.vo.RrmOrgVO">
+        select o.* from rrm_org o
+        <where>
+            <if test="itemCode != null and itemCode != ''">
+                and o.item_code = #{itemCode}
+            </if>
+            <if test="id != null and id != ''">
+                and o.id = #{id}
+            </if>
+        </where>
+        order by o.code
     </select>
 </mapper>
