@@ -1,6 +1,7 @@
 package com.rrm.module.dict.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
@@ -56,4 +57,7 @@ public class RrmDictEntry extends ModelInfo implements Serializable {
     private String description;
 
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private String itemCode;
 }

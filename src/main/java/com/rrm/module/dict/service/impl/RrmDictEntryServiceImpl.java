@@ -52,7 +52,7 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
         if (count > 0) {
             return ResultVO.badRequest("字典代码已经存在！");
         }
-        bindUserUtil.bindCreateUserInfo(dictEntry);
+        bindUserUtil.bindCreateUserInfoExcludeItemCode(dictEntry);
         rrmDictEntryMapper.insert(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
