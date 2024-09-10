@@ -70,16 +70,4 @@ public class RrmOrg extends ModelInfo implements Serializable {
     private String extendedField2;
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 创建人, 覆盖继承
-     */
-    @TableField(exist = false)
-    private Integer createdBy;
-
-    /**
-     * 更新人, 覆盖继承
-     */
-    @TableField(exist = false)
-    private Integer updatedBy;
 }

@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +47,7 @@ public class RrmItemServiceImpl implements RrmItemService {
     @Override
     @Transactional
     public ResultVO<String> createItem(RrmItem rrmItem) {
-        bindUserUtil.bindCreateUserInfo(rrmItem);
+        bindUserUtil.bindCreateUserInfoExcludeItemCode(rrmItem);
         itemMapper.insert(rrmItem);
 
         // 插入用户项目关联

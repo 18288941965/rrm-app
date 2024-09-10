@@ -1,16 +1,13 @@
 package com.rrm.module.users.domain.model;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 外部用户信息
@@ -151,17 +148,5 @@ public class RrmUsers extends ModelInfo implements Serializable {
     private String itemCode;
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 创建人, 覆盖继承
-     */
-    @TableField(exist = false)
-    private Integer createdBy;
-
-    /**
-     * 更新人, 覆盖继承
-     */
-    @TableField(exist = false)
-    private Integer updatedBy;
 
 }

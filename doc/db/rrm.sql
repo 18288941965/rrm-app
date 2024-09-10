@@ -94,7 +94,9 @@ create table rrm.rrm_org
     deleted_at      timestamp(6)      null comment '删除（注销）时间',
     extended_field  varchar(255)      null comment '扩展字段',
     extended_field2 varchar(255)      null comment '扩展字段2',
+    created_by      int               not null comment '创建者',
     created_at      timestamp(6)      not null comment '创建时间',
+    updated_by      int               null comment '更新人',
     updated_at      timestamp(6)      null comment '更新时间',
     item_code       varchar(6)        not null comment '项目代码'
 )
@@ -191,7 +193,9 @@ create table rrm.rrm_users
     deleted_at            timestamp(6)      null comment '删除（注销时间）',
     extended_field        varchar(255)      null comment '扩展字段',
     extended_field2       varchar(255)      null comment '扩展字段2',
+    created_by            int               not null comment '创建者',
     created_at            timestamp(6)      not null comment '创建时间',
+    updated_by            int               null comment '更新者',
     updated_at            timestamp(6)      null comment '更新时间',
     item_code             varchar(6)        not null comment '项目代码 '
 )
