@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -55,7 +56,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      * 出生日期
      */
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     /**
      * 联系电话

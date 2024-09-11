@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 
 @Configuration
 public class JacksonConfig {
@@ -21,6 +22,9 @@ public class JacksonConfig {
 
         // Date format for Date class
         objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+
+        // 设置时区为上海
+        objectMapper.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
 
         // Module for java.time classes
         JavaTimeModule javaTimeModule = new JavaTimeModule();
