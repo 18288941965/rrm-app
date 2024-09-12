@@ -2,6 +2,7 @@ package com.rrm.module.users.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.users.domain.model.RrmUsers;
+import com.rrm.module.users.domain.vo.RrmUsersVO;
 import com.rrm.module.users.dto.RrmUsersDTO;
 import com.rrm.module.users.mapper.RrmUsersMapper;
 import com.rrm.module.users.service.RrmUsersService;
@@ -34,6 +35,11 @@ public class RrmUsersServiceImpl implements RrmUsersService {
 
     @Override
     public ResultVO<String> createUsers(RrmUsers rrmUsers) {
+        String itemCode = jwtTokenUtil.getItemCode();
+        int count =  rrmUsersMapper.checkUsername(itemCode, rrmUsers.getUsername(), null);
+        if (count > 0) {
+            return ResultVO.badRequest("用户名已经存在！");
+        }
         bindUserUtil.bindCreateUserInfo(rrmUsers);
         rrmUsersMapper.insert(rrmUsers);
         return ResultVO.success(rrmUsers.getId());
@@ -52,6 +58,11 @@ public class RrmUsersServiceImpl implements RrmUsersService {
 
     @Override
     public ResultVO<String> updateUsersById(RrmUsers rrmUsers) {
+        String itemCode = jwtTokenUtil.getItemCode();
+        int count =  rrmUsersMapper.checkUsername(itemCode, rrmUsers.getUsername(), rrmUsers.getId());
+        if (count > 0) {
+            return ResultVO.badRequest("用户名已经存在！");
+        }
         rrmUsers.setUpdatedAt(LocalDateTime.now());
         rrmUsersMapper.updateById(rrmUsers);
         return ResultVO.success(rrmUsers.getId());
@@ -63,9 +74,9 @@ public class RrmUsersServiceImpl implements RrmUsersService {
     }
 
     @Override
-    public ResultVO<PageResultVO<RrmUsers>> searchUsersPage(RrmUsersDTO dto) {
+    public ResultVO<PageResultVO<RrmUsersVO>> searchUsersPage(RrmUsersDTO dto) {
         dto.setItemCode(jwtTokenUtil.getItemCode());
-        IPage<RrmUsers> pageVo = rrmUsersMapper.searchUsersPage(dto.getPage(RrmUsers.class), dto);
+        IPage<RrmUsersVO> pageVo = rrmUsersMapper.searchUsersPage(dto.getPage(RrmUsersVO.class), dto);
         return ResultVO.successPage(pageVo);
     }
 }

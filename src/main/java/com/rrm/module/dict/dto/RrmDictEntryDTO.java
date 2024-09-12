@@ -11,7 +11,7 @@ public class RrmDictEntryDTO extends PageBase {
     /**
      * 字典类型编码
      */
-    private Integer typeId;
+    private String typeCode;
 
     /**
      * 字典名称

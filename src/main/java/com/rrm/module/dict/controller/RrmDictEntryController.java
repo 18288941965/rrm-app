@@ -39,16 +39,16 @@ public class RrmDictEntryController {
         return rrmDictEntryService.getDictEntryById(id);
     }
 
-    @ApiOperation(value = "根据字典类型ID查询字典")
-    @GetMapping("/subitems/{typeId}")
-    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(@PathVariable Long typeId) {
-        return rrmDictEntryService.getDictEntryByTypeId(typeId);
+    @ApiOperation(value = "根据字典类型代码查询字典")
+    @GetMapping("/subitems/{typeCode}")
+    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeCode(@PathVariable String typeCode) {
+        return rrmDictEntryService.getDictEntryByTypeCode(typeCode);
     }
 
     @ApiOperation(value = "根据字典类型代码查询字典")
     @GetMapping("/select/{typeCode}")
-    public ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(@PathVariable String typeCode) {
-        return rrmDictEntryService.getDictEntryByTypeCode(typeCode);
+    public ResultVO<List<RrmDictVO>> selectDictEntryByTypeCode(@PathVariable String typeCode) {
+        return rrmDictEntryService.selectDictEntryByTypeCode(typeCode);
     }
 
     @ApiOperation(value = "创建新的字典")

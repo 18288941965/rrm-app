@@ -48,11 +48,11 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
 
     @Override
     public ResultVO<Long> createDictEntry(RrmDictEntry dictEntry) {
-        int count = rrmDictEntryMapper.countByTypeIdAndEntryCode(dictEntry.getTypeId(), dictEntry.getEntryCode());
+        int count = rrmDictEntryMapper.countByTypeCodeAndEntryCode(dictEntry.getTypeCode(), dictEntry.getEntryCode());
         if (count > 0) {
             return ResultVO.badRequest("字典代码已经存在！");
         }
-        bindUserUtil.bindCreateUserInfoExcludeItemCode(dictEntry);
+        bindUserUtil.bindCreateUserInfo(dictEntry);
         rrmDictEntryMapper.insert(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
@@ -81,9 +81,9 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     }
 
     @Override
-    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(Long typeId) {
+    public ResultVO<List<RrmDictEntry>> getDictEntryByTypeCode(String typeCode) {
         LambdaQueryWrapper<RrmDictEntry> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(RrmDictEntry::getTypeId, typeId);
+        queryWrapper.eq(RrmDictEntry::getTypeCode, typeCode);
         queryWrapper.orderBy(true, true, RrmDictEntry::getSortOrder);
         List<RrmDictEntry> rrmDictEntries = rrmDictEntryMapper.selectList(queryWrapper);
         return ResultVO.success(rrmDictEntries);
@@ -96,8 +96,8 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     }
 
     @Override
-    public ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(String typeCode) {
+    public ResultVO<List<RrmDictVO>> selectDictEntryByTypeCode(String typeCode) {
         String itemCode = jwtTokenUtil.getItemCode();
-        return ResultVO.success(rrmDictEntryMapper.getDictEntryByTypeCode(typeCode, itemCode));
+        return ResultVO.success(rrmDictEntryMapper.selectDictEntryByTypeCode(typeCode, itemCode));
     }
 }

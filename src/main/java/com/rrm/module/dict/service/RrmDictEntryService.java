@@ -30,9 +30,9 @@ public interface RrmDictEntryService {
 
     ResultVO<Void> updateEntryStatus(Byte status, Long id);
 
-    ResultVO<List<RrmDictEntry>> getDictEntryByTypeId(Long typeId);
+    ResultVO<List<RrmDictEntry>> getDictEntryByTypeCode(String typeCode);
 
     ResultVO<Void> updateDictEntrySort(List<RrmDictEntry> entryList);
 
-    ResultVO<List<RrmDictVO>> getDictEntryByTypeCode(String typeCode);
+    ResultVO<List<RrmDictVO>> selectDictEntryByTypeCode(String typeCode);
 }

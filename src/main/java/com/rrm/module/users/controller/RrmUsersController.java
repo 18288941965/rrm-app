@@ -1,6 +1,7 @@
 package com.rrm.module.users.controller;
 
 import com.rrm.module.users.domain.model.RrmUsers;
+import com.rrm.module.users.domain.vo.RrmUsersVO;
 import com.rrm.module.users.dto.RrmUsersDTO;
 import com.rrm.module.users.service.RrmUsersService;
 import com.rrm.vo.PageResultVO;
@@ -25,7 +26,7 @@ public class RrmUsersController {
 
     @ApiOperation(value = "分页查询")
     @PostMapping("/page")
-    public ResultVO<PageResultVO<RrmUsers>> searchUsersPage(@RequestBody RrmUsersDTO dto) {
+    public ResultVO<PageResultVO<RrmUsersVO>> searchUsersPage(@RequestBody RrmUsersDTO dto) {
         return rrmUsersService.searchUsersPage(dto);
     }
 

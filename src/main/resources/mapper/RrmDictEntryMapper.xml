@@ -7,8 +7,8 @@
                (select entry_name from rrm_dict_entry b where b.id = a.parent_id) as parentEntryName
         from rrm_dict_entry a
         <where>
-            <if test="dto.typeId != null">
-                and a.type_id = #{dto.typeId}
+            <if test="dto.typeCode != null">
+                and a.type_code = #{dto.typeCode}
             </if>
             <if test="dto.entryName != null and dto.entryName != ''">
                 and a.entry_name like concat('%',#{entryName},'%')
@@ -17,14 +17,13 @@
         order by a.sort_order, a.entry_code
     </select>
 
-    <select id="countByTypeIdAndEntryCode" resultType="java.lang.Integer">
-        select count(*) as cnt from rrm_dict_entry where type_id = #{typeId} and entry_code = #{entryCode}
+    <select id="countByTypeCodeAndEntryCode" resultType="java.lang.Integer">
+        select count(*) as cnt from rrm_dict_entry where type_code = #{typeCode} and entry_code = #{entryCode}
     </select>
 
-    <select id="getDictEntryByTypeCode" resultType="com.rrm.module.dict.domain.vo.RrmDictVO">
+    <select id="selectDictEntryByTypeCode" resultType="com.rrm.module.dict.domain.vo.RrmDictVO">
         select a.entry_code, a.entry_name from rrm_dict_entry a
-             join rrm_dict_type b on a.type_id = b.id and b.type_code = #{typeCode} and b.item_code = #{itemCode}
-        where a.status = 1
+        where a.status = 1 and a.type_code = #{typeCode} and a.item_code = #{itemCode}
         order by a.sort_order
     </select>
 

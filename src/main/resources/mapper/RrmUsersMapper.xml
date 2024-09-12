@@ -4,7 +4,20 @@
 
     <select id="searchUsersPage"
             parameterType="com.rrm.module.users.dto.RrmUsersDTO"
-            resultType="com.rrm.module.users.domain.model.RrmUsers">
-        select * from rrm_users
+            resultType="com.rrm.module.users.domain.vo.RrmUsersVO">
+        select a.* from rrm_users a
+        <where>
+            a.item_code = #{dto.itemCode}
+        </where>
+    </select>
+
+    <select id="checkUsername" resultType="java.lang.Integer">
+        select count(*) from rrm_users
+        <where>
+            item_code = #{itemCode} and username = #{username}
+            <if test="id != null">
+                id != #{id}
+            </if>
+        </where>
     </select>
 </mapper>

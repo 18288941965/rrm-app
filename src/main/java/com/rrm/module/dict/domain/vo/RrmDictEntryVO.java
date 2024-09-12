@@ -25,7 +25,7 @@ public class RrmDictEntryVO {
     /**
      * 字典类型ID
      */
-    private Long typeId;
+    private String typeCode;
 
     /**
      * 父级字典项ID
