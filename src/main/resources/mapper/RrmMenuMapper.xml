@@ -17,8 +17,7 @@
                m.version,
                d.entry_name as type_name
         from rrm_menu m
-                 join rrm_dict_entry d on m.type = d.entry_code and d.status = 1
-                 join rrm.rrm_dict_type rdt on d.type_id = rdt.id and rdt.type_code = 'dic_menu_type'
+                 join rrm_dict_entry d on m.type = d.entry_code and d.status = 1 and d.type_code = 'dic_menu_type'
         <where>
             m.status = 1
             <if test="itemCode != null and itemCode != ''">
