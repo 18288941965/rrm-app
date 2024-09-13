@@ -1,6 +1,7 @@
 package com.rrm.module.resource.service;
 
 import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.domain.vo.RrmResourceVO;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
@@ -17,7 +18,7 @@ public interface RrmResourceService {
 
     ResultVO<Integer> batchInsertResource(List<RrmResource> list);
 
-    ResultVO<PageResultVO<RrmResource>> searchResourcePage(RrmResourceDTO dto);
+    ResultVO<PageResultVO<RrmResourceVO>> searchResourcePage(RrmResourceDTO dto);
 
     ResultVO<String> updateResourceStatus(RrmResource resource);
 }

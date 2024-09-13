@@ -2,6 +2,7 @@ package com.rrm.module.resource.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.domain.vo.RrmResourceVO;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.module.resource.mapper.RrmResourceMapper;
 import com.rrm.module.resource.service.RrmResourceService;
@@ -40,9 +41,9 @@ public class RrmResourceServiceImpl implements RrmResourceService {
     }
 
     @Override
-    public ResultVO<PageResultVO<RrmResource>> searchResourcePage(RrmResourceDTO dto) {
+    public ResultVO<PageResultVO<RrmResourceVO>> searchResourcePage(RrmResourceDTO dto) {
         dto.setItemCode(jwtTokenUtil.getItemCode());
-        IPage<RrmResource> pageVo = rrmResourceMapper.searchResourcePage(dto.getPage(RrmResource.class), dto);
+        IPage<RrmResourceVO> pageVo = rrmResourceMapper.searchResourcePage(dto.getPage(RrmResourceVO.class), dto);
         return ResultVO.successPage(pageVo);
     }
 

@@ -4,15 +4,16 @@
 
     <select id="selectOrgByItemCodeOrId"
             resultType="com.rrm.module.org.domain.vo.RrmOrgVO">
-        select o.* from rrm_org o
+        select a.*, rde.entry_name as type_name from rrm_org a
+        left join rrm_dict_entry rde on a.type = rde.entry_code and rde.type_code = 'dic_org_type' and rde.status = 1
         <where>
             <if test="itemCode != null and itemCode != ''">
-                and o.item_code = #{itemCode}
+                and a.item_code = #{itemCode}
             </if>
             <if test="id != null and id != ''">
-                and o.id = #{id}
+                and a.id = #{id}
             </if>
         </where>
-        order by o.code
+        order by a.code
     </select>
 </mapper>

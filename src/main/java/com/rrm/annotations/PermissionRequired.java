@@ -19,14 +19,14 @@ public @interface PermissionRequired {
 
     @Getter
     enum PLevel {
-        AUTH(100, "需要认证并且授权"),
-        LOGIN(101, "需要登录，不需要授权"),
-        OPEN(102, "开放的，无需登录");
+        AUTH("10", "需要认证并且授权"),
+        LOGIN("11", "需要登录，不需要授权"),
+        OPEN("12", "开放的，无需登录");
 
-        private final Integer code;
+        private final String code;
         private final String comment;
 
-        PLevel(Integer code, String comment) {
+        PLevel(String code, String comment) {
             this.code = code;
             this.comment = comment;
         }

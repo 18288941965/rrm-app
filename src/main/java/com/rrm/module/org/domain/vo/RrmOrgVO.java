@@ -56,6 +56,8 @@ public class RrmOrgVO {
      */
     private LocalDateTime deletedAt;
 
+    private String typeName;
+
     // 子菜单
     private List<RrmOrgVO> children = new ArrayList<>();
 }

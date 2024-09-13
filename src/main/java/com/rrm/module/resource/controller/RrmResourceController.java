@@ -1,6 +1,7 @@
 package com.rrm.module.resource.controller;
 
 import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.domain.vo.RrmResourceVO;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.module.resource.service.RrmResourceService;
 import com.rrm.vo.PageResultVO;
@@ -25,7 +26,7 @@ public class RrmResourceController {
 
     @ApiOperation(value = "分页查询")
     @PostMapping("/page")
-    public ResultVO<PageResultVO<RrmResource>> searchResourcePage(@RequestBody RrmResourceDTO dto) {
+    public ResultVO<PageResultVO<RrmResourceVO>> searchResourcePage(@RequestBody RrmResourceDTO dto) {
         return rrmResourceService.searchResourcePage(dto);
     }
 

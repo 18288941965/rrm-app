@@ -5,7 +5,10 @@
     <select id="searchUsersPage"
             parameterType="com.rrm.module.users.dto.RrmUsersDTO"
             resultType="com.rrm.module.users.domain.vo.RrmUsersVO">
-        select a.* from rrm_users a
+        select a.*, rde.entry_name as type_name, rde2.entry_name as gender_name, rde3.entry_name as nation_name from rrm_users a
+        left join rrm_dict_entry rde on a.type = rde.entry_code and rde.type_code = 'dic_user_type' and rde.status = 1
+        left join rrm_dict_entry rde2 on a.gender = rde2.entry_code and rde2.type_code = 'dic_user_gender' and rde2.status = 1
+        left join rrm_dict_entry rde3 on a.nation = rde3.entry_code and rde3.type_code = 'dic_user_nation' and rde3.status = 1
         <where>
             a.item_code = #{dto.itemCode}
         </where>

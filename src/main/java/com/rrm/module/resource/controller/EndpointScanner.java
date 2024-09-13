@@ -42,9 +42,9 @@ public class EndpointScanner {
     @Data
     static class EndpointScannerBO{
         private String annotationValue;
-        private Integer authCode;
+        private String authCode;
 
-        public EndpointScannerBO(String annotationValue, Integer authCode) {
+        public EndpointScannerBO(String annotationValue, String authCode) {
             this.annotationValue = annotationValue;
             this.authCode = authCode;
         }
@@ -71,7 +71,7 @@ public class EndpointScanner {
                 ApiOperation annotation = controllerClass.getAnnotation(ApiOperation.class);
                 PermissionRequired pAnnotation = controllerClass.getAnnotation(PermissionRequired.class);
                 String classAnnotationValue = annotation == null ? "CLASS-RRM" : annotation.value();
-                int authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
+                String authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
                 classMap.put(fullyQualifiedName, new EndpointScannerBO(classAnnotationValue, authCode));
             }
         }
@@ -126,7 +126,7 @@ public class EndpointScanner {
             resource.setRequestPath(methodPath);
             resource.setRequestMethod(requestMethod);
             resource.setResourceName(endpointScannerBO.getAnnotationValue()+"-"+methodAnnotationValue);
-            resource.setResourceType("99");
+            resource.setResourceType("01");
             resource.setAuthCode(endpointScannerBO.getAuthCode());
             resource.setEnvironment("01");
             resource.setId(DigestUtil.md5Hex(methodPath+requestMethod+resource.getItemCode()));

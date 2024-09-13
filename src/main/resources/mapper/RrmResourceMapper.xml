@@ -2,8 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.resource.mapper.RrmResourceMapper">
 
-    <select id="searchResourcePage" resultType="com.rrm.module.resource.domain.model.RrmResource">
-        select * from rrm_resource
+    <select id="searchResourcePage" resultType="com.rrm.module.resource.domain.vo.RrmResourceVO">
+        select a.*, rde.entry_name as resource_type_name, rde2.entry_name as environment_name, rde3.entry_name as auth_code_name from rrm_resource a
+        left join rrm_dict_entry rde on a.resource_type = rde.entry_code and rde.type_code = 'dic_res_type' and rde.status = 1
+        left join rrm_dict_entry rde2 on a.environment = rde2.entry_code and rde2.type_code = 'dic_res_environment' and rde2.status = 1
+        left join rrm_dict_entry rde3 on a.auth_code = rde3.entry_code and rde3.type_code = 'dic_res_auth_code' and rde3.status = 1
+        <where>
+            a.item_code = #{dto.itemCode}
+        </where>
     </select>
 
 </mapper>

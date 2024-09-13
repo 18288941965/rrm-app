@@ -1,17 +1,15 @@
-package com.rrm.module.resource.domain.model;
+package com.rrm.module.resource.domain.vo;
 
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 /**
  * 资源管理
  */
 @Getter
 @Setter
-public class RrmResource extends ModelInfo implements Serializable {
+public class RrmResourceVO extends ModelInfo {
     /**
     * 主键
     */
@@ -72,6 +70,8 @@ public class RrmResource extends ModelInfo implements Serializable {
     */
     private Byte status;
 
-    private static final long serialVersionUID = 1L;
+    private String resourceTypeName;
+    private String environmentName;
+    private String authCodeName;
 
 }
