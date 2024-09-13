@@ -12,7 +12,7 @@
         <where>
             a.item_code = #{dto.itemCode}
             <if test="dto.typeName != null and dto.typeName != ''">
-                a.type_name like concat('%',#{dto.typeName},'%')
+                and a.type_name like concat('%',#{dto.typeName},'%')
             </if>
         </where>
         order by a.updated_at desc

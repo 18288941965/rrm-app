@@ -11,7 +11,7 @@
                 and a.type_code = #{dto.typeCode}
             </if>
             <if test="dto.entryName != null and dto.entryName != ''">
-                and a.entry_name like concat('%',#{entryName},'%')
+                and a.entry_name like concat('%',#{dto.entryName},'%')
             </if>
         </where>
         order by a.sort_order, a.entry_code

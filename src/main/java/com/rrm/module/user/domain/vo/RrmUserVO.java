@@ -37,7 +37,17 @@ public class RrmUserVO {
     private String description;
 
     /**
+     * 创建者
+     */
+    private Integer createdBy;
+
+    /**
      * 用户关联的项目
      */
     private List<RrmItem> itemList;
+
+    /**
+     * 登录用户ID
+     */
+    private Integer loginId;
 }

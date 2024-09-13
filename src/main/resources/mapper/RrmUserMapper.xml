@@ -11,7 +11,7 @@
     </update>
 
     <select id="getAllUser" resultType="com.rrm.module.user.domain.vo.RrmUserVO">
-        select id, username, description from rrm_user
+        select id, username, description, created_by from rrm_user
     </select>
 
     <select id="getAllUser2" resultType="com.rrm.module.user.domain.model.RrmUser">

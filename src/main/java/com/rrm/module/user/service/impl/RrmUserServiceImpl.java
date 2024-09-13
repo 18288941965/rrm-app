@@ -59,7 +59,7 @@ public class RrmUserServiceImpl implements RrmUserService {
 
     @Override
     public ResultVO<String> createUser(RrmUser rrmUser) {
-        bindUserUtil.bindCreateUserInfo(rrmUser);
+        bindUserUtil.bindCreateUserInfoExcludeItemCode(rrmUser);
         rrmUser.setPassword(SecureUtil.md5(rrmUser.getPassword()));
         rrmUserMapper.insert(rrmUser);
         return ResultVO.success();
@@ -96,7 +96,7 @@ public class RrmUserServiceImpl implements RrmUserService {
 
     @Override
     public ResultVO<List<RrmUserVO>> getAllUser() {
-
+        RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         // 所有用户
         List<RrmUserVO> rrmUsers = rrmUserMapper.getAllUser();
         // 所有用户关联项目
@@ -115,6 +115,7 @@ public class RrmUserServiceImpl implements RrmUserService {
                     .filter(item -> correlationItemId.contains(item.getId()))
                     .collect(Collectors.toList());
             user.setItemList(correlationItem);
+            user.setLoginId(userInfo.getId());
         });
 
         return ResultVO.success(rrmUsers);
