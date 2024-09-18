@@ -15,4 +15,6 @@ public interface RrmMenuMapper extends BaseMapper<RrmMenu> {
     List<RrmMenuVO> selectMenuByItemCodeOrId(String itemCode, String id);
 
     void batchUpdateMenuParent(@Param("dto") RrmMenuMoveDTO menuMoveDTO);
+
+    List<RrmMenuVO> getRoleBindMenuByRoleId(String roleId);
 }

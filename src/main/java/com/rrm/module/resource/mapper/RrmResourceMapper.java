@@ -9,8 +9,14 @@ import com.rrm.module.resource.dto.RrmResourceDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface RrmResourceMapper extends BaseMapper<RrmResource> {
 
     IPage<RrmResourceVO> searchResourcePage(Page<RrmResourceVO> page, @Param("dto") RrmResourceDTO dto);
+
+    List<RrmResourceVO> getMenuBindResource(String menuId);
+
+    Integer countMenuBindResource(String menuId);
 }

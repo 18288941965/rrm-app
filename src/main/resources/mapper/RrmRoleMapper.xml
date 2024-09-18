@@ -11,4 +11,12 @@
             </if>
         </where>
     </select>
+
+    <select id="getUsersBindRoleByUserId" resultType="com.rrm.module.role.domain.model.RrmRole">
+        select a.* from rrm_role a
+        join rrm_users_role b on a.id = b.role_id
+        <where>
+            b.users_id = #{usersId}
+        </where>
+    </select>
 </mapper>

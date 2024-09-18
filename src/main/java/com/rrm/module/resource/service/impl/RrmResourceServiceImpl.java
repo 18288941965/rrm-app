@@ -1,5 +1,6 @@
 package com.rrm.module.resource.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
@@ -51,5 +52,13 @@ public class RrmResourceServiceImpl implements RrmResourceService {
     public ResultVO<String> updateResourceStatus(RrmResource resource) {
         bindUserUtil.bindUpdateUserInfo(resource);
         return ResultVO.success(resource.getId());
+    }
+
+    @Override
+    public ResultVO<Long> countResourceByItemCode() {
+        String itemCode = jwtTokenUtil.getItemCode();
+        QueryWrapper<RrmResource> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("item_code", itemCode);
+        return ResultVO.success(rrmResourceMapper.selectCount(queryWrapper));
     }
 }

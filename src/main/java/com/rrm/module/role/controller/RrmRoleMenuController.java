@@ -1,8 +1,14 @@
 package com.rrm.module.role.controller;
 
+import com.rrm.module.menu.domain.vo.RrmMenuVO;
+import com.rrm.module.role.domain.model.RrmRoleMenu;
+import com.rrm.module.role.service.RrmRoleMenuService;
+import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色菜单（元素）关联.
@@ -15,4 +21,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/role-menu")
 public class RrmRoleMenuController {
 
+    @Autowired
+    private RrmRoleMenuService rrmRoleMenuService;
+
+    @ApiOperation(value = "绑定")
+    @PostMapping
+    public ResultVO<String> bindRoleMenu(@RequestBody RrmRoleMenu rrmRoleMenu) {
+        return rrmRoleMenuService.bindRoleMenu(rrmRoleMenu);
+    }
+
+    @ApiOperation(value = "查询绑定数据")
+    @GetMapping("/{roleId}")
+    public ResultVO<List<RrmMenuVO>> getRoleBindMenuByRoleId(@PathVariable String roleId) {
+        return rrmRoleMenuService.getRoleBindMenuByRoleId(roleId);
+    }
+
+    @ApiOperation(value = "取消绑定")
+    @DeleteMapping("/{roleId}/{menuId}")
+    public ResultVO<Void> unbindMenuResource(@PathVariable String roleId, @PathVariable String menuId) {
+        return rrmRoleMenuService.unbindRoleMenu(roleId, menuId);
+    }
 }

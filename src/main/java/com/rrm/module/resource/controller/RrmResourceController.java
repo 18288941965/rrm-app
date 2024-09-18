@@ -36,4 +36,10 @@ public class RrmResourceController {
         return rrmResourceService.updateResourceStatus(resource);
     }
 
+    @ApiOperation(value = "统计资源数")
+    @GetMapping("/count")
+    public ResultVO<Long> countResourceByItemCode() {
+        return rrmResourceService.countResourceByItemCode();
+    }
+
 }

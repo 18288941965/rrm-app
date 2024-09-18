@@ -21,4 +21,6 @@ public interface RrmResourceService {
     ResultVO<PageResultVO<RrmResourceVO>> searchResourcePage(RrmResourceDTO dto);
 
     ResultVO<String> updateResourceStatus(RrmResource resource);
+
+    ResultVO<Long> countResourceByItemCode();
 }

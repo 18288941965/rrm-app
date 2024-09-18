@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Data;
 import lombok.Getter;
@@ -20,6 +22,7 @@ public class RrmUsersRole extends ModelInfo implements Serializable {
     /**
      * 主键
      */
+    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**
@@ -31,6 +34,11 @@ public class RrmUsersRole extends ModelInfo implements Serializable {
      * 角色ID
      */
     private String roleId;
+
+    /**
+     * 机构代码
+     */
+    private String orgCode;
 
     /**
      * 更新人

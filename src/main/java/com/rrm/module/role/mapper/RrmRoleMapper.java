@@ -8,8 +8,12 @@ import com.rrm.module.role.dto.RrmRoleDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface RrmRoleMapper extends BaseMapper<RrmRole> {
 
     IPage<RrmRole> searchRolePage(Page<RrmRole> page, @Param("dto") RrmRoleDTO dto);
+
+    List<RrmRole> getUsersBindRoleByUserId(String usersId);
 }
