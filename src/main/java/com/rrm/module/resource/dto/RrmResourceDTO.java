@@ -51,7 +51,7 @@ public class RrmResourceDTO extends PageBase {
     /**
      * 授权码
      */
-    private Integer authCode;
+    private String authCode;
 
     /**
      * 资源环境（dev,production）
