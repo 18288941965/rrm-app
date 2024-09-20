@@ -37,7 +37,7 @@ CREATE TABLE `rrm_dict_entry` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `item_code` varchar(6) DEFAULT NULL COMMENT '项目代码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `rrm_dict_entry` (
 
 LOCK TABLES `rrm_dict_entry` WRITE;
 /*!40000 ALTER TABLE `rrm_dict_entry` DISABLE KEYS */;
-INSERT INTO `rrm_dict_entry` VALUES (3,'01','类型一','dic_org_type',0,0,1,'',1,'2024-09-10 12:15:40',1,'2024-09-13 15:18:57','100020'),(4,'02','类型二','dic_org_type',0,0,1,'',1,'2024-09-10 12:15:55',1,'2024-09-13 15:19:02','100020'),(5,'0','未知的性别','dic_user_gender',0,3,1,'',1,'2024-09-11 16:21:30',NULL,'2024-09-12 06:21:37','100020'),(6,'1','男性','dic_user_gender',0,1,1,'',1,'2024-09-11 16:21:40',NULL,'2024-09-12 06:21:37','100020'),(7,'2','女性','dic_user_gender',0,2,1,'',1,'2024-09-11 16:21:47',NULL,'2024-09-12 06:21:37','100020'),(8,'9','未说明的性别','dic_user_gender',0,4,1,'',1,'2024-09-11 16:21:53',NULL,'2024-09-12 06:21:37','100020'),(9,'01','汉族','dic_user_nation',0,1,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(10,'02','蒙古族','dic_user_nation',0,2,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(11,'03','回族','dic_user_nation',0,3,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(12,'04','藏族','dic_user_nation',0,4,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(13,'05','维吾尔族','dic_user_nation',0,5,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(14,'06','苗族','dic_user_nation',0,6,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(15,'07','彝族','dic_user_nation',0,7,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(16,'08','壮族','dic_user_nation',0,8,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(17,'09','布依族','dic_user_nation',0,9,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(18,'10','朝鲜族','dic_user_nation',0,10,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(19,'11','满族','dic_user_nation',0,11,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(20,'12','侗族','dic_user_nation',0,12,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(21,'13','瑶族','dic_user_nation',0,13,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(22,'14','白族','dic_user_nation',0,14,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(23,'15','土家族','dic_user_nation',0,15,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(24,'16','哈尼族','dic_user_nation',0,16,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(25,'17','哈萨克族','dic_user_nation',0,17,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(26,'18','傣族','dic_user_nation',0,18,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(27,'19','黎族','dic_user_nation',0,19,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(28,'20','傈僳族','dic_user_nation',0,20,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(29,'21','佤族','dic_user_nation',0,21,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(30,'22','畲族','dic_user_nation',0,22,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(31,'23','高山族','dic_user_nation',0,23,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(32,'24','拉祜族','dic_user_nation',0,24,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(33,'25','水族','dic_user_nation',0,25,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(34,'26','东乡族','dic_user_nation',0,26,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(35,'27','纳西族','dic_user_nation',0,27,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(36,'28','景颇族','dic_user_nation',0,28,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(37,'29','柯尔克孜族','dic_user_nation',0,29,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(38,'30','土族','dic_user_nation',0,30,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(39,'31','达斡尔族','dic_user_nation',0,31,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(40,'32','仫佬族','dic_user_nation',0,32,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(41,'33','羌族','dic_user_nation',0,33,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(42,'34','布朗族','dic_user_nation',0,34,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(43,'35','撒拉族','dic_user_nation',0,35,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(44,'36','毛南族','dic_user_nation',0,36,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(45,'37','仡佬族','dic_user_nation',0,37,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(46,'38','锡伯族','dic_user_nation',0,38,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(47,'39','阿昌族','dic_user_nation',0,39,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(48,'40','普米族','dic_user_nation',0,40,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(49,'41','塔吉克族','dic_user_nation',0,41,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(50,'42','怒族','dic_user_nation',0,42,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(51,'43','乌孜别克族','dic_user_nation',0,43,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(52,'44','俄罗斯族','dic_user_nation',0,44,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(53,'45','鄂温克族','dic_user_nation',0,45,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(54,'46','德昂族','dic_user_nation',0,46,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(55,'47','保安族','dic_user_nation',0,47,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(56,'48','裕固族','dic_user_nation',0,48,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(57,'49','京族','dic_user_nation',0,49,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(58,'50','塔塔尔族','dic_user_nation',0,50,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(59,'51','独龙族','dic_user_nation',0,51,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(60,'52','鄂伦春族','dic_user_nation',0,52,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(61,'53','赫哲族','dic_user_nation',0,53,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(62,'54','门巴族','dic_user_nation',0,54,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(63,'55','珞巴族','dic_user_nation',0,55,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(64,'56','基诺族','dic_user_nation',0,56,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(65,'01','类型一','dic_user_type',0,1,1,'',1,'2024-09-11 16:30:16',1,'2024-09-13 15:19:29','100020'),(66,'02','类型二','dic_user_type',0,2,1,'',1,'2024-09-11 16:30:31',1,'2024-09-13 15:19:34','100020'),(67,'01','all','dic_res_environment',0,0,1,'',1,'2024-09-13 14:37:01',1,'2024-09-13 06:49:10','100020'),(68,'02','dev','dic_res_environment',0,0,1,'',1,'2024-09-13 14:37:55',NULL,'2024-09-13 06:49:10','100020'),(69,'03','prod','dic_res_environment',0,0,1,'',1,'2024-09-13 14:38:01',NULL,'2024-09-13 06:49:10','100020'),(70,'10','授权','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:10',NULL,'2024-09-13 06:48:38','100020'),(71,'11','登录','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:15',NULL,'2024-09-13 06:48:38','100020'),(72,'12','开放','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:23',NULL,'2024-09-13 06:48:38','100020'),(73,'01','内部接口','dic_res_type',0,0,1,'',1,'2024-09-13 14:46:52',1,'2024-09-13 14:47:26','100020'),(74,'99','外部接口','dic_res_type',0,0,1,'',1,'2024-09-13 14:47:20',NULL,'2024-09-13 06:47:20','100020'),(75,'01','类型一','dic_menu_type',0,0,1,'',1,'2024-09-13 15:17:59',NULL,'2024-09-13 07:18:00','100020'),(76,'02','类型二','dic_menu_type',0,0,1,'',1,'2024-09-13 15:18:08',NULL,'2024-09-13 07:18:08','100020');
+INSERT INTO `rrm_dict_entry` VALUES (3,'01','类型一','dic_org_type',0,0,1,'',1,'2024-09-10 12:15:40',1,'2024-09-13 15:18:57','100020'),(4,'02','类型二','dic_org_type',0,0,1,'',1,'2024-09-10 12:15:55',1,'2024-09-13 15:19:02','100020'),(5,'0','未知的性别','dic_user_gender',0,3,1,'',1,'2024-09-11 16:21:30',NULL,'2024-09-12 06:21:37','100020'),(6,'1','男性','dic_user_gender',0,1,1,'',1,'2024-09-11 16:21:40',NULL,'2024-09-12 06:21:37','100020'),(7,'2','女性','dic_user_gender',0,2,1,'',1,'2024-09-11 16:21:47',NULL,'2024-09-12 06:21:37','100020'),(8,'9','未说明的性别','dic_user_gender',0,4,1,'',1,'2024-09-11 16:21:53',NULL,'2024-09-12 06:21:37','100020'),(9,'01','汉族','dic_user_nation',0,1,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(10,'02','蒙古族','dic_user_nation',0,2,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(11,'03','回族','dic_user_nation',0,3,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(12,'04','藏族','dic_user_nation',0,4,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(13,'05','维吾尔族','dic_user_nation',0,5,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(14,'06','苗族','dic_user_nation',0,6,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(15,'07','彝族','dic_user_nation',0,7,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(16,'08','壮族','dic_user_nation',0,8,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(17,'09','布依族','dic_user_nation',0,9,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(18,'10','朝鲜族','dic_user_nation',0,10,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(19,'11','满族','dic_user_nation',0,11,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(20,'12','侗族','dic_user_nation',0,12,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(21,'13','瑶族','dic_user_nation',0,13,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(22,'14','白族','dic_user_nation',0,14,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(23,'15','土家族','dic_user_nation',0,15,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(24,'16','哈尼族','dic_user_nation',0,16,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(25,'17','哈萨克族','dic_user_nation',0,17,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(26,'18','傣族','dic_user_nation',0,18,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(27,'19','黎族','dic_user_nation',0,19,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(28,'20','傈僳族','dic_user_nation',0,20,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(29,'21','佤族','dic_user_nation',0,21,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(30,'22','畲族','dic_user_nation',0,22,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(31,'23','高山族','dic_user_nation',0,23,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(32,'24','拉祜族','dic_user_nation',0,24,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(33,'25','水族','dic_user_nation',0,25,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(34,'26','东乡族','dic_user_nation',0,26,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(35,'27','纳西族','dic_user_nation',0,27,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(36,'28','景颇族','dic_user_nation',0,28,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(37,'29','柯尔克孜族','dic_user_nation',0,29,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(38,'30','土族','dic_user_nation',0,30,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(39,'31','达斡尔族','dic_user_nation',0,31,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(40,'32','仫佬族','dic_user_nation',0,32,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(41,'33','羌族','dic_user_nation',0,33,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(42,'34','布朗族','dic_user_nation',0,34,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(43,'35','撒拉族','dic_user_nation',0,35,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(44,'36','毛南族','dic_user_nation',0,36,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(45,'37','仡佬族','dic_user_nation',0,37,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(46,'38','锡伯族','dic_user_nation',0,38,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(47,'39','阿昌族','dic_user_nation',0,39,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(48,'40','普米族','dic_user_nation',0,40,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(49,'41','塔吉克族','dic_user_nation',0,41,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(50,'42','怒族','dic_user_nation',0,42,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(51,'43','乌孜别克族','dic_user_nation',0,43,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(52,'44','俄罗斯族','dic_user_nation',0,44,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(53,'45','鄂温克族','dic_user_nation',0,45,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(54,'46','德昂族','dic_user_nation',0,46,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(55,'47','保安族','dic_user_nation',0,47,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(56,'48','裕固族','dic_user_nation',0,48,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(57,'49','京族','dic_user_nation',0,49,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(58,'50','塔塔尔族','dic_user_nation',0,50,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(59,'51','独龙族','dic_user_nation',0,51,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(60,'52','鄂伦春族','dic_user_nation',0,52,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(61,'53','赫哲族','dic_user_nation',0,53,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(62,'54','门巴族','dic_user_nation',0,54,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(63,'55','珞巴族','dic_user_nation',0,55,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(64,'56','基诺族','dic_user_nation',0,56,1,NULL,1,'2024-09-11 08:28:47',NULL,'2024-09-12 06:22:01','100020'),(65,'01','类型一','dic_user_type',0,1,1,'',1,'2024-09-11 16:30:16',1,'2024-09-13 15:19:29','100020'),(66,'02','类型二','dic_user_type',0,2,1,'',1,'2024-09-11 16:30:31',1,'2024-09-13 15:19:34','100020'),(67,'01','all','dic_res_environment',0,0,1,'',1,'2024-09-13 14:37:01',1,'2024-09-13 06:49:10','100020'),(68,'02','dev','dic_res_environment',0,0,1,'',1,'2024-09-13 14:37:55',NULL,'2024-09-13 06:49:10','100020'),(69,'03','prod','dic_res_environment',0,0,1,'',1,'2024-09-13 14:38:01',NULL,'2024-09-13 06:49:10','100020'),(70,'10','授权','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:10',NULL,'2024-09-13 06:48:38','100020'),(71,'11','登录','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:15',NULL,'2024-09-13 06:48:38','100020'),(72,'12','开放','dic_res_auth_code',0,0,1,'',1,'2024-09-13 14:44:23',NULL,'2024-09-13 06:48:38','100020'),(73,'01','内部接口','dic_res_type',0,0,1,'',1,'2024-09-13 14:46:52',1,'2024-09-13 14:47:26','100020'),(74,'99','外部接口','dic_res_type',0,0,1,'',1,'2024-09-13 14:47:20',NULL,'2024-09-13 06:47:20','100020'),(75,'01','类型一','dic_menu_type',0,0,1,'',1,'2024-09-13 15:17:59',NULL,'2024-09-13 07:18:00','100020'),(76,'02','类型二','dic_menu_type',0,0,1,'',1,'2024-09-13 15:18:08',NULL,'2024-09-13 07:18:08','100020'),(77,'01','按钮','dic_menu_element_type',0,0,1,'',1,'2024-09-18 14:34:11',NULL,'2024-09-18 06:34:11','100020'),(78,'02','tab页','dic_menu_element_type',0,0,1,'',1,'2024-09-18 14:34:26',NULL,'2024-09-18 06:34:26','100020'),(79,'03','链接','dic_menu_element_type',0,0,1,'',1,'2024-09-18 14:34:36',NULL,'2024-09-18 06:34:35','100020'),(80,'GET','GET','dic_axios_type',0,1,1,'',1,'2024-09-19 14:50:26',NULL,'2024-09-19 06:51:00','100020'),(81,'POST','POST','dic_axios_type',0,2,1,'',1,'2024-09-19 14:50:39',NULL,'2024-09-19 06:51:00','100020'),(82,'PUT','PUT','dic_axios_type',0,3,1,'',1,'2024-09-19 14:50:44',NULL,'2024-09-19 06:51:00','100020'),(83,'DELETE','DELETE','dic_axios_type',0,4,1,'',1,'2024-09-19 14:50:50',NULL,'2024-09-19 06:51:00','100020'),(84,'01','普通角色','dic_role_type',0,0,1,'',1,'2024-09-20 14:34:19',NULL,'2024-09-20 06:34:18','100020'),(85,'99','超级管理员角色','dic_role_type',0,0,1,'',1,'2024-09-20 14:34:32',NULL,'2024-09-20 06:34:32','100020');
 /*!40000 ALTER TABLE `rrm_dict_entry` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `rrm_dict_type` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `item_code` varchar(6) NOT NULL COMMENT '项目代码',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ CREATE TABLE `rrm_dict_type` (
 
 LOCK TABLES `rrm_dict_type` WRITE;
 /*!40000 ALTER TABLE `rrm_dict_type` DISABLE KEYS */;
-INSERT INTO `rrm_dict_type` VALUES (3,'dic_org_type','机构类型','',1,'2024-09-10 12:10:44',NULL,'2024-09-10 04:10:45','100020'),(4,'dic_user_gender','性别','',1,'2024-09-11 16:21:07',NULL,'2024-09-11 08:21:07','100020'),(5,'dic_user_nation','民族','',1,'2024-09-11 16:24:55',NULL,'2024-09-11 08:24:54','100020'),(6,'dic_user_type','用户类型','',1,'2024-09-11 16:30:07',NULL,'2024-09-11 08:30:07','100020'),(8,'dic_res_environment','环境','',1,'2024-09-13 14:35:36',NULL,'2024-09-13 06:49:17','100020'),(9,'dic_res_auth_code','授权码','',1,'2024-09-13 14:39:27',NULL,'2024-09-13 06:48:19','100020'),(10,'dic_res_type','资源类型','',1,'2024-09-13 14:46:43',NULL,'2024-09-13 06:46:43','100020'),(11,'dic_menu_type','菜单类型','',1,'2024-09-13 15:17:51',NULL,'2024-09-13 07:17:52','100020');
+INSERT INTO `rrm_dict_type` VALUES (3,'dic_org_type','机构类型','',1,'2024-09-10 12:10:44',NULL,'2024-09-10 04:10:45','100020'),(4,'dic_user_gender','性别','',1,'2024-09-11 16:21:07',NULL,'2024-09-11 08:21:07','100020'),(5,'dic_user_nation','民族','',1,'2024-09-11 16:24:55',NULL,'2024-09-11 08:24:54','100020'),(6,'dic_user_type','用户类型','',1,'2024-09-11 16:30:07',NULL,'2024-09-11 08:30:07','100020'),(8,'dic_res_environment','环境','',1,'2024-09-13 14:35:36',NULL,'2024-09-13 06:49:17','100020'),(9,'dic_res_auth_code','授权码','',1,'2024-09-13 14:39:27',NULL,'2024-09-13 06:48:19','100020'),(10,'dic_res_type','资源类型','',1,'2024-09-13 14:46:43',NULL,'2024-09-13 06:46:43','100020'),(11,'dic_menu_type','菜单类型','',1,'2024-09-13 15:17:51',NULL,'2024-09-13 07:17:52','100020'),(12,'dic_menu_element_type','菜单元素类型','',1,'2024-09-18 14:33:25',NULL,'2024-09-18 06:33:25','100020'),(13,'dic_axios_type','接口请求方式','',1,'2024-09-19 14:49:32',NULL,'2024-09-19 06:49:33','100020'),(14,'dic_role_type','角色类型','',1,'2024-09-20 14:33:57',NULL,'2024-09-20 06:33:56','100020');
 /*!40000 ALTER TABLE `rrm_dict_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ CREATE TABLE `rrm_menu` (
 
 LOCK TABLES `rrm_menu` WRITE;
 /*!40000 ALTER TABLE `rrm_menu` DISABLE KEYS */;
-INSERT INTO `rrm_menu` VALUES ('8a5522cec0003b64bdde24e7d6bbfc8d',NULL,'11',NULL,2,1,'11','01','_self',NULL,0,'1.0',1,'2024-09-02 17:20:29.641000',NULL,NULL,1,'100020');
+INSERT INTO `rrm_menu` VALUES ('19683e2a52820cb267dbd8192801035a','3b6195fe5f85577aee418df9edc94085','开发工具',NULL,3,1,'/system/dev','01','_self',NULL,0,'1.0',1,'2024-09-18 14:31:21.013000',NULL,NULL,1,'100020'),('2df1d2a48bf08929628b56a965857814','19683e2a52820cb267dbd8192801035a','代码生成',NULL,0,1,'/system/dev/code','01','_self',NULL,0,'1.0',1,'2024-09-18 14:31:56.854000',NULL,NULL,1,'100020'),('3b6195fe5f85577aee418df9edc94085',NULL,'系统管理中心',NULL,0,1,'/system/dashboard','01','_blank',NULL,0,'1.0',1,'2024-09-18 14:29:58.749000',NULL,NULL,1,'100020'),('8a5522cec0003b64bdde24e7d6bbfc8d',NULL,'数据采集',NULL,2,1,'/data','02','_blank',NULL,0,'1.0',1,'2024-09-02 17:20:29.641000',1,'2024-09-18 14:30:31.930000',1,'100020'),('8f3170fa29ac27b27e7f48cfaab5c571','3b6195fe5f85577aee418df9edc94085','菜单管理',NULL,1,1,'/system/menu','01','_self',NULL,0,'1.0',1,'2024-09-18 14:30:53.655000',NULL,NULL,1,'100020'),('934d9d69de005fb9c1090c54f16d291a','3b6195fe5f85577aee418df9edc94085','角色管理',NULL,2,1,'/system/role','01','_self',NULL,0,'1.0',1,'2024-09-18 14:31:41.005000',NULL,NULL,1,'100020');
 /*!40000 ALTER TABLE `rrm_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,8 +178,36 @@ CREATE TABLE `rrm_menu_element` (
 
 LOCK TABLES `rrm_menu_element` WRITE;
 /*!40000 ALTER TABLE `rrm_menu_element` DISABLE KEYS */;
-INSERT INTO `rrm_menu_element` VALUES ('e2c4d9813b8cc4b643124b43a4ab97d3','8a5522cec0003b64bdde24e7d6bbfc8d','编辑按钮','01',0,1,'2024-09-03 08:54:59.578000',1,'2024-09-03 09:35:52.867000','100020'),('fe1ed87f0863d6f3caddb4981a41097a','8a5522cec0003b64bdde24e7d6bbfc8d','删除','01',0,1,'2024-09-03 08:57:41.076000',1,'2024-09-03 09:33:33.372000','100020');
+INSERT INTO `rrm_menu_element` VALUES ('aad5633b48a58592aa2415d4d906f3d7','2df1d2a48bf08929628b56a965857814','编辑','01',1,1,'2024-09-18 14:34:46.730000',NULL,NULL,'100020'),('b0158c7d40c80830eb19f4b9ab72dcdc','2df1d2a48bf08929628b56a965857814','GitHub','03',1,1,'2024-09-18 14:35:17.388000',NULL,NULL,'100020'),('e2c4d9813b8cc4b643124b43a4ab97d3','8a5522cec0003b64bdde24e7d6bbfc8d','编辑按钮','01',0,1,'2024-09-03 08:54:59.578000',1,'2024-09-03 09:35:52.867000','100020'),('fe1ed87f0863d6f3caddb4981a41097a','8a5522cec0003b64bdde24e7d6bbfc8d','删除','01',0,1,'2024-09-03 08:57:41.076000',1,'2024-09-03 09:33:33.372000','100020');
 /*!40000 ALTER TABLE `rrm_menu_element` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rrm_menu_resource`
+--
+
+DROP TABLE IF EXISTS `rrm_menu_resource`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rrm_menu_resource` (
+  `id` varchar(36) NOT NULL COMMENT '主键',
+  `menu_id` varchar(36) NOT NULL COMMENT '菜单ID',
+  `resource_id` varchar(36) NOT NULL COMMENT '资源ID',
+  `type` varchar(2) NOT NULL COMMENT '类型',
+  `created_by` int NOT NULL COMMENT '创建人',
+  `created_at` timestamp(6) NOT NULL COMMENT '创建时间',
+  `item_code` varchar(6) NOT NULL COMMENT '项目代码',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='菜单（元素）资源关联表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rrm_menu_resource`
+--
+
+LOCK TABLES `rrm_menu_resource` WRITE;
+/*!40000 ALTER TABLE `rrm_menu_resource` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rrm_menu_resource` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -268,7 +296,7 @@ DROP TABLE IF EXISTS `rrm_role`;
 CREATE TABLE `rrm_role` (
   `id` varchar(36) NOT NULL COMMENT '主键',
   `name` varchar(255) NOT NULL COMMENT '名称',
-  `level` int NOT NULL DEFAULT '0' COMMENT '等级（权限从小到大）',
+  `type` varchar(2) NOT NULL DEFAULT '0' COMMENT '类型',
   `sort_order` int NOT NULL COMMENT '顺序号',
   `description` varchar(255) DEFAULT NULL COMMENT '角色描述',
   `created_by` int NOT NULL COMMENT '创建人',
@@ -286,7 +314,36 @@ CREATE TABLE `rrm_role` (
 
 LOCK TABLES `rrm_role` WRITE;
 /*!40000 ALTER TABLE `rrm_role` DISABLE KEYS */;
+INSERT INTO `rrm_role` VALUES ('0f154b3a3adce8018a822b5881e2e917','01','01',0,'ddd',1,'2024-09-20 14:36:38.777000',NULL,NULL,1,'100020'),('18c7de133849c359facdabd3d0d4cf40','334','99',0,'dfsdf',1,'2024-09-20 14:36:44.494000',NULL,NULL,1,'100020');
 /*!40000 ALTER TABLE `rrm_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rrm_role_menu`
+--
+
+DROP TABLE IF EXISTS `rrm_role_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rrm_role_menu` (
+  `id` varchar(36) NOT NULL COMMENT '主键',
+  `role_id` varchar(36) NOT NULL COMMENT '角色ID',
+  `menu_id` varchar(36) NOT NULL COMMENT '菜单或元素ID',
+  `type` varchar(2) NOT NULL COMMENT '类型',
+  `created_by` int NOT NULL COMMENT '创建人',
+  `created_at` timestamp(6) NOT NULL COMMENT '创建时间',
+  `item_code` varchar(6) NOT NULL COMMENT '项目代码',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色菜单（元素）关联表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rrm_role_menu`
+--
+
+LOCK TABLES `rrm_role_menu` WRITE;
+/*!40000 ALTER TABLE `rrm_role_menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rrm_role_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -396,6 +453,34 @@ LOCK TABLES `rrm_users` WRITE;
 INSERT INTO `rrm_users` VALUES ('91e1e8810999fad4783b9547d3075c85','usabcc','123454','sf','0','02','53262619960302251X','2024-09-13','18255469875',NULL,'11','22666','01',NULL,1,NULL,NULL,NULL,NULL,-1,NULL,0,NULL,NULL,NULL,1,'2024-09-13 15:22:50.843000',NULL,NULL,'100020'),('bc3ea5e79338f0169f889c3c9cb2e462','usabc','123456','111','0','05','53262619960104200X','2024-08-16','18288954685',NULL,'ORG002','分公司A',NULL,'',1,NULL,NULL,NULL,NULL,-1,NULL,0,NULL,NULL,NULL,1,'2024-09-11 14:12:58.825000',NULL,'2024-09-12 12:24:53.013000','100020');
 /*!40000 ALTER TABLE `rrm_users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `rrm_users_role`
+--
+
+DROP TABLE IF EXISTS `rrm_users_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rrm_users_role` (
+  `id` varchar(36) NOT NULL COMMENT '主键',
+  `users_id` varchar(36) NOT NULL COMMENT '用户ID',
+  `role_id` varchar(36) NOT NULL COMMENT '角色ID',
+  `org_code` varchar(20) NOT NULL COMMENT '机构代码',
+  `created_by` int NOT NULL COMMENT '创建人',
+  `created_at` timestamp(6) NOT NULL COMMENT '创建时间',
+  `item_code` varchar(6) NOT NULL COMMENT '项目代码',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户角色关联表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rrm_users_role`
+--
+
+LOCK TABLES `rrm_users_role` WRITE;
+/*!40000 ALTER TABLE `rrm_users_role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rrm_users_role` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -406,4 +491,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-14  9:25:34
+-- Dump completed on 2024-09-20  9:26:50
