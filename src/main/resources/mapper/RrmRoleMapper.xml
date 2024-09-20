@@ -3,17 +3,19 @@
 <mapper namespace="com.rrm.module.role.mapper.RrmRoleMapper">
 
     <select id="searchRolePage" resultType="com.rrm.module.role.domain.model.RrmRole">
-        select * from rrm_role
+        select a.*, d.entry_name as typeName from rrm_role a
+        join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
         <where>
-            item_code = #{dto.itemCode}
+            a.item_code = #{dto.itemCode}
             <if test="dto.name != null and dto.name != ''">
-                name like concat('%',#{dto.name},'%')
+                a.name like concat('%',#{dto.name},'%')
             </if>
         </where>
     </select>
 
     <select id="getUsersBindRoleByUserId" resultType="com.rrm.module.role.domain.model.RrmRole">
-        select a.* from rrm_role a
+        select a.*, d.entry_name as typeName from rrm_role a
+        join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
         join rrm_users_role b on a.id = b.role_id
         <where>
             b.users_id = #{usersId}

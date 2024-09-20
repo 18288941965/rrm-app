@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 public @interface PermissionRequired {
 
     @Getter
-    enum PLevel {
+    enum AuthCodeEnum {
         AUTH("10", "需要认证并且授权"),
         LOGIN("11", "需要登录，不需要授权"),
         OPEN("12", "开放的，无需登录");
@@ -26,11 +26,11 @@ public @interface PermissionRequired {
         private final String code;
         private final String comment;
 
-        PLevel(String code, String comment) {
+        AuthCodeEnum(String code, String comment) {
             this.code = code;
             this.comment = comment;
         }
     }
 
-    PLevel value() default PLevel.AUTH;
+    AuthCodeEnum value() default AuthCodeEnum.AUTH;
 }

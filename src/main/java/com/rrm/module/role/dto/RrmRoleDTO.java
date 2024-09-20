@@ -18,10 +18,9 @@ public class RrmRoleDTO extends PageBase {
     private String name;
 
     /**
-     * 等级（权限从小到大）
+     * 类型
      */
-    private Integer level;
-
+    private String type;
 
     private String itemCode;
 

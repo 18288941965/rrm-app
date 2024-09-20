@@ -36,7 +36,7 @@ public class AuthController {
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")
-    @PermissionRequired(PermissionRequired.PLevel.OPEN)
+    @PermissionRequired(PermissionRequired.AuthCodeEnum.OPEN)
     public ResultVO<String> logIn(@RequestBody RrmUserDTO userDTO) {
         if (StrUtil.isBlank(userDTO.getUsername()) || StrUtil.isBlank(userDTO.getPassword())) {
             return ResultVO.unauthorized("用户名或密码为空！");
@@ -68,7 +68,7 @@ public class AuthController {
 
     @ApiOperation(value = "检查是否登录")
     @GetMapping("/isLogin")
-    @PermissionRequired(PermissionRequired.PLevel.OPEN)
+    @PermissionRequired(PermissionRequired.AuthCodeEnum.OPEN)
     public ResultVO<Boolean> isLogin() {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         if (userInfo == null || StrUtil.isBlank(userInfo.getUsername())) {
@@ -80,7 +80,7 @@ public class AuthController {
 
     @ApiOperation(value = "退出登录")
     @GetMapping("/logout")
-    @PermissionRequired(PermissionRequired.PLevel.OPEN)
+    @PermissionRequired(PermissionRequired.AuthCodeEnum.OPEN)
     public ResultVO<String> logOut() {
         String username = jwtTokenUtil.getUsernameFromRequest();
         if (username != null) {

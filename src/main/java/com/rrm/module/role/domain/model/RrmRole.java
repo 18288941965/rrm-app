@@ -1,6 +1,7 @@
 package com.rrm.module.role.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
@@ -27,9 +28,9 @@ public class RrmRole extends ModelInfo implements Serializable {
     private String name;
 
     /**
-     * 等级（权限从小到大）
+     * 角色类型
      */
-    private Integer level;
+    private String type;
 
     /**
      * 顺序号
@@ -47,4 +48,7 @@ public class RrmRole extends ModelInfo implements Serializable {
     private String description;
 
     private static final long serialVersionUID = 1L;
+
+    @TableField(exist = false)
+    private String typeName;
 }

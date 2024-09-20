@@ -71,7 +71,7 @@ public class EndpointScanner {
                 ApiOperation annotation = controllerClass.getAnnotation(ApiOperation.class);
                 PermissionRequired pAnnotation = controllerClass.getAnnotation(PermissionRequired.class);
                 String classAnnotationValue = annotation == null ? "CLASS-RRM" : annotation.value();
-                String authCode = pAnnotation == null ? PermissionRequired.PLevel.AUTH.getCode() : pAnnotation.value().getCode();
+                String authCode = pAnnotation == null ? PermissionRequired.AuthCodeEnum.AUTH.getCode() : pAnnotation.value().getCode();
                 classMap.put(fullyQualifiedName, new EndpointScannerBO(classAnnotationValue, authCode));
             }
         }
