@@ -61,4 +61,9 @@ public class RrmResourceServiceImpl implements RrmResourceService {
         queryWrapper.eq("item_code", itemCode);
         return ResultVO.success(rrmResourceMapper.selectCount(queryWrapper));
     }
+
+    @Override
+    public ResultVO<List<String>> getServiceNameList() {
+        return ResultVO.success(rrmResourceMapper.getServiceNameList(jwtTokenUtil.getItemCode()));
+    }
 }

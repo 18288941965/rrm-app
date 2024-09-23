@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 资源管理.
  *
@@ -41,5 +43,12 @@ public class RrmResourceController {
     public ResultVO<Long> countResourceByItemCode() {
         return rrmResourceService.countResourceByItemCode();
     }
+
+    @ApiOperation(value = "去重查询所有微服务名")
+    @GetMapping("/serviceNameList")
+    public ResultVO<List<String>> getServiceNameList() {
+        return rrmResourceService.getServiceNameList();
+    }
+
 
 }

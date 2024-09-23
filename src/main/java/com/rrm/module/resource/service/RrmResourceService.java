@@ -23,4 +23,6 @@ public interface RrmResourceService {
     ResultVO<String> updateResourceStatus(RrmResource resource);
 
     ResultVO<Long> countResourceByItemCode();
+
+    ResultVO<List<String>> getServiceNameList();
 }

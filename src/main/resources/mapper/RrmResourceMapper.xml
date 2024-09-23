@@ -31,7 +31,7 @@
                 and a.environment = #{dto.environment}
             </if>
             <if test="dto.status != null">
-                and a.status = #{status}
+                and a.status = #{dto.status}
             </if>
         </where>
     </select>
@@ -54,5 +54,10 @@
             b.menu_id = #{menuId}
         </where>
     </select>
+
+    <select id="getServiceNameList" resultType="java.lang.String">
+        select distinct service_name from rrm_resource where item_code = #{itemCode}
+    </select>
+
 
 </mapper>

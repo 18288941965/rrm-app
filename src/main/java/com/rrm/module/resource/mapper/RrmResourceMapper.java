@@ -19,4 +19,6 @@ public interface RrmResourceMapper extends BaseMapper<RrmResource> {
     List<RrmResourceVO> getMenuBindResource(String menuId);
 
     Integer countMenuBindResource(String menuId);
+
+    List<String> getServiceNameList(String itemCode);
 }
