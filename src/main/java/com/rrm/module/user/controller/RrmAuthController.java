@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @ApiOperation(value = "权限控制")
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class RrmAuthController {
 
     @Autowired
     private RrmUserService rrmUserService;

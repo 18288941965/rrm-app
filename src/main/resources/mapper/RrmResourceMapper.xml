@@ -9,6 +9,30 @@
         left join rrm_dict_entry rde3 on a.auth_code = rde3.entry_code and rde3.type_code = 'dic_res_auth_code' and rde3.status = 1
         <where>
             a.item_code = #{dto.itemCode}
+            <if test="dto.serviceName != null and dto.serviceName != ''">
+                and a.service_name = #{dto.serviceName}
+            </if>
+            <if test="dto.className != null and dto.className != ''">
+                and a.class_name like concat('%',#{dto.className},'%')
+            </if>
+            <if test="dto.resourceName != null and dto.resourceName != ''">
+                and a.resource_name like concat('%',#{dto.resourceName},'%')
+            </if>
+            <if test="dto.requestMethod != null and dto.requestMethod != ''">
+                and a.request_method = #{dto.requestMethod}
+            </if>
+            <if test="dto.resourceType != null and dto.resourceType != ''">
+                and a.resource_type = #{dto.resourceType}
+            </if>
+            <if test="dto.authCode != null and dto.authCode != ''">
+                and a.auth_code = #{dto.authCode}
+            </if>
+            <if test="dto.environment != null and dto.environment != ''">
+                and a.environment = #{dto.environment}
+            </if>
+            <if test="dto.status != null">
+                and a.status = #{status}
+            </if>
         </where>
     </select>
 
