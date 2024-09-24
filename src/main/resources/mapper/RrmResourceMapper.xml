@@ -59,5 +59,8 @@
         select distinct service_name from rrm_resource where item_code = #{itemCode}
     </select>
 
+    <select id="getPackageNameList" resultType="java.lang.String">
+        SELECT distinct CONCAT_WS('.', service_name, package_name) AS result FROM rrm_resource where item_code = #{itemCode}
+    </select>
 
 </mapper>

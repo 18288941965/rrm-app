@@ -2,6 +2,7 @@ package com.rrm.module.resource.service;
 
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
+import com.rrm.module.resource.domain.vo.TreeNode;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
@@ -25,4 +26,6 @@ public interface RrmResourceService {
     ResultVO<Long> countResourceByItemCode();
 
     ResultVO<List<String>> getServiceNameList();
+
+    ResultVO<List<TreeNode>> getPackageNameByTree();
 }

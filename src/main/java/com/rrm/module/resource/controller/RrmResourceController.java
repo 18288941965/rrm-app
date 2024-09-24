@@ -2,6 +2,7 @@ package com.rrm.module.resource.controller;
 
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
+import com.rrm.module.resource.domain.vo.TreeNode;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.module.resource.service.RrmResourceService;
 import com.rrm.vo.PageResultVO;
@@ -50,5 +51,9 @@ public class RrmResourceController {
         return rrmResourceService.getServiceNameList();
     }
 
-
+    @ApiOperation(value = "构建包为树结构")
+    @GetMapping("/packageNameByTree")
+    public ResultVO<List<TreeNode>> getPackageNameByTree() {
+        return rrmResourceService.getPackageNameByTree();
+    }
 }

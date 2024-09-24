@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
+import com.rrm.module.resource.domain.vo.TreeNode;
 import com.rrm.module.resource.dto.RrmResourceDTO;
 import com.rrm.module.resource.mapper.RrmResourceMapper;
 import com.rrm.module.resource.service.RrmResourceService;
@@ -65,5 +66,12 @@ public class RrmResourceServiceImpl implements RrmResourceService {
     @Override
     public ResultVO<List<String>> getServiceNameList() {
         return ResultVO.success(rrmResourceMapper.getServiceNameList(jwtTokenUtil.getItemCode()));
+    }
+
+    @Override
+    public ResultVO<List<TreeNode>> getPackageNameByTree() {
+        List<String> dataList = rrmResourceMapper.getPackageNameList(jwtTokenUtil.getItemCode());
+        List<TreeNode> treeNodes = new TreeNode().buildTree(dataList);
+        return ResultVO.success(treeNodes);
     }
 }
