@@ -1,6 +1,7 @@
 package com.rrm.module.role.controller;
 
 import com.rrm.module.role.domain.model.RrmRole;
+import com.rrm.module.role.domain.vo.RrmRoleVO;
 import com.rrm.module.role.dto.RrmRoleDTO;
 import com.rrm.module.role.service.RrmRoleService;
 import com.rrm.vo.PageResultVO;
@@ -25,7 +26,7 @@ public class RrmRoleController {
 
     @ApiOperation(value = "分页查询")
     @PostMapping("/page")
-    public ResultVO<PageResultVO<RrmRole>> searchRolePage(@RequestBody RrmRoleDTO dto) {
+    public ResultVO<PageResultVO<RrmRoleVO>> searchRolePage(@RequestBody RrmRoleDTO dto) {
         return rrmRoleService.searchRolePage(dto);
     }
 

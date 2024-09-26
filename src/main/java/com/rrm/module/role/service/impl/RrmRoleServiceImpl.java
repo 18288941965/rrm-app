@@ -2,6 +2,7 @@ package com.rrm.module.role.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.rrm.module.role.domain.model.RrmRole;
+import com.rrm.module.role.domain.vo.RrmRoleVO;
 import com.rrm.module.role.dto.RrmRoleDTO;
 import com.rrm.module.role.mapper.RrmRoleMapper;
 import com.rrm.module.role.service.RrmRoleService;
@@ -57,9 +58,9 @@ public class RrmRoleServiceImpl implements RrmRoleService {
     }
 
     @Override
-    public ResultVO<PageResultVO<RrmRole>> searchRolePage(RrmRoleDTO dto) {
+    public ResultVO<PageResultVO<RrmRoleVO>> searchRolePage(RrmRoleDTO dto) {
         dto.setItemCode(jwtTokenUtil.getItemCode());
-        IPage<RrmRole> pageVo = rrmRoleMapper.searchRolePage(dto.getPage(RrmRole.class), dto);
+        IPage<RrmRoleVO> pageVo = rrmRoleMapper.searchRolePage(dto.getPage(RrmRoleVO.class), dto);
         return ResultVO.successPage(pageVo);
     }
 }

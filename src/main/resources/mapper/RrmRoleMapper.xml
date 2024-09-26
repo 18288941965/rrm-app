@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.role.mapper.RrmRoleMapper">
 
-    <select id="searchRolePage" resultType="com.rrm.module.role.domain.model.RrmRole">
-        select a.*, d.entry_name as typeName from rrm_role a
+    <select id="searchRolePage" resultType="com.rrm.module.role.domain.vo.RrmRoleVO">
+        select a.*, d.entry_name as typeName,
+        (select count(*) from rrm_role_menu m where a.id = m.role_id and m.type = '01') as bindMenuCount,
+        (select count(*) from rrm_role_menu m where a.id = m.role_id and m.type = '02') as bindElementCount
+        from rrm_role a
         join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
         <where>
             a.item_code = #{dto.itemCode}
