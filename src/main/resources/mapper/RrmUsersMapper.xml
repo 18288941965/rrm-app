@@ -19,7 +19,7 @@
         <where>
             item_code = #{itemCode} and username = #{username}
             <if test="id != null">
-                id != #{id}
+                and id != #{id}
             </if>
         </where>
     </select>
