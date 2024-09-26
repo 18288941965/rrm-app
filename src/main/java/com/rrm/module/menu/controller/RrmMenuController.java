@@ -41,6 +41,12 @@ public class RrmMenuController {
         return rrmMenuService.getMenuByParentId(parentId);
     }
 
+    @ApiOperation(value = "根据项目统计菜单项")
+    @GetMapping("/count")
+    public ResultVO<Long> countByItemCode() {
+        return rrmMenuService.countByItemCode();
+    }
+
     @ApiOperation(value = "创建菜单")
     @PostMapping
     public ResultVO<String> createMenu(@RequestBody RrmMenu menu) {

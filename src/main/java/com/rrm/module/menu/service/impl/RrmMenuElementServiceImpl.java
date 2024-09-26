@@ -5,6 +5,7 @@ import com.rrm.module.menu.domain.model.RrmMenuElement;
 import com.rrm.module.menu.mapper.RrmMenuElementMapper;
 import com.rrm.module.menu.service.RrmMenuElementService;
 import com.rrm.util.BindUserUtil;
+import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class RrmMenuElementServiceImpl implements RrmMenuElementService {
 
     @Autowired
     private BindUserUtil bindUserUtil;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
 
     @Override
@@ -63,5 +67,14 @@ public class RrmMenuElementServiceImpl implements RrmMenuElementService {
         menuElement.setId(id);
         rrmMenuElementMapper.updateById(menuElement);
         return ResultVO.success();
+    }
+
+    @Override
+    public ResultVO<Long> countByItemCode() {
+        LambdaQueryWrapper<RrmMenuElement> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(RrmMenuElement::getItemCode, jwtTokenUtil.getItemCode());
+        queryWrapper.eq(RrmMenuElement::getStatus, (byte)1);
+        Long menuCount = rrmMenuElementMapper.selectCount(queryWrapper);
+        return ResultVO.success(menuCount);
     }
 }

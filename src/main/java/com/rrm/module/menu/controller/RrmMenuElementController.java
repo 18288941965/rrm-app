@@ -33,6 +33,12 @@ public class RrmMenuElementController {
         return rrmMenuElementService.getMenuElementById(id);
     }
 
+    @ApiOperation(value = "根据项目统计控件项")
+    @GetMapping("/count")
+    public ResultVO<Long> countByItemCode() {
+        return rrmMenuElementService.countByItemCode();
+    }
+
     @ApiOperation(value = "创建菜单元素")
     @PostMapping
     public ResultVO<String> createMenuElement(@RequestBody RrmMenuElement menuElement) {

@@ -30,4 +30,6 @@ public interface RrmMenuService {
     ResultVO<List<RrmMenu>> getMenuByParentId(String parentId);
 
     ResultVO<Void> updateMenuSort(List<RrmMenu> menuList);
+
+    ResultVO<Long> countByItemCode();
 }

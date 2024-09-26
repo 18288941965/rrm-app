@@ -137,4 +137,13 @@ public class RrmMenuServiceImpl implements RrmMenuService {
         rrmMenuMapper.updateById(menuList);
         return ResultVO.success();
     }
+
+    @Override
+    public ResultVO<Long> countByItemCode() {
+        LambdaQueryWrapper<RrmMenu> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(RrmMenu::getItemCode, jwtTokenUtil.getItemCode());
+        queryWrapper.eq(RrmMenu::getStatus, (byte)1);
+        Long menuCount = rrmMenuMapper.selectCount(queryWrapper);
+        return ResultVO.success(menuCount);
+    }
 }

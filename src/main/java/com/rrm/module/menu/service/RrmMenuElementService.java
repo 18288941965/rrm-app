@@ -23,4 +23,5 @@ public interface RrmMenuElementService {
 
     ResultVO<Void> deleteMenuElementById(String id);
 
+    ResultVO<Long> countByItemCode();
 }
