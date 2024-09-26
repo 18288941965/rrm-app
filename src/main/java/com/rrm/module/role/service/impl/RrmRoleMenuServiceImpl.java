@@ -1,8 +1,7 @@
 package com.rrm.module.role.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.rrm.module.menu.domain.vo.RrmMenuVO;
-import com.rrm.module.menu.mapper.RrmMenuMapper;
+import com.rrm.module.menu.domain.model.RrmMenuElement;
+import com.rrm.module.menu.service.RrmMenuElementService;
 import com.rrm.module.role.domain.model.RrmRoleMenu;
 import com.rrm.module.role.mapper.RrmRoleMenuMapper;
 import com.rrm.module.role.service.RrmRoleMenuService;
@@ -10,7 +9,9 @@ import com.rrm.util.BindUserUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,32 +24,58 @@ import java.util.List;
 public class RrmRoleMenuServiceImpl implements RrmRoleMenuService {
 
     @Autowired
-    private RrmMenuMapper rrmMenuMapper;
-
-    @Autowired
     private BindUserUtil bindUserUtil;
 
     @Autowired
     private RrmRoleMenuMapper rrmRoleMenuMapper;
 
+    @Autowired
+    private RrmMenuElementService rrmMenuElementService;
+
     @Override
-    public ResultVO<List<RrmMenuVO>> getRoleBindMenuByRoleId(String roleId) {
-        return ResultVO.success(rrmMenuMapper.getRoleBindMenuByRoleId(roleId));
+    public ResultVO<List<RrmRoleMenu>> getRoleBindMenuByRoleId(String roleId) {
+        return ResultVO.success(rrmRoleMenuMapper.getBindMenuIds(roleId));
     }
 
     @Override
+    @Transactional
     public ResultVO<String> bindRoleMenu(RrmRoleMenu rrmRoleMenu) {
         bindUserUtil.bindCreateUserInfo(rrmRoleMenu);
-        rrmRoleMenuMapper.insert(rrmRoleMenu);
-        return ResultVO.success(rrmRoleMenu.getId());
+        String[] menuIds = rrmRoleMenu.getMenuId().split(",");
+        for (String menuId : menuIds) {
+            RrmRoleMenu bean = new RrmRoleMenu();
+            bean.setRoleId(rrmRoleMenu.getRoleId());
+            bean.setMenuId(menuId);
+            bean.setType(rrmRoleMenu.getType());
+            bean.setCreatedBy(rrmRoleMenu.getCreatedBy());
+            bean.setCreatedAt(rrmRoleMenu.getCreatedAt());
+            bean.setItemCode(rrmRoleMenu.getItemCode());
+            rrmRoleMenuMapper.insert(bean);
+        }
+        return ResultVO.success("");
     }
 
     @Override
-    public ResultVO<Void> unbindRoleMenu(String roleId, String menuId) {
-        LambdaQueryWrapper<RrmRoleMenu> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(RrmRoleMenu::getRoleId, roleId);
-        queryWrapper.eq(RrmRoleMenu::getMenuId, menuId);
-        rrmRoleMenuMapper.delete(queryWrapper);
-        return ResultVO.success();
+    @Transactional
+    public ResultVO<List<String>> unbindRoleMenu(String roleId, String menuId, String type) {
+        String[] menuIds = menuId.split(",");
+        List<String> removeElementIds = new ArrayList<>();
+        for (String id : menuIds) {
+
+            // 取消绑定菜单下的控件：严格遵循绑定上下级关系
+            String flag = "01";
+            if (flag.equals(type)) {
+                List<RrmMenuElement> menuElementList = rrmMenuElementService.getMenuElementByMenuId(id).getData();
+                for (RrmMenuElement rrmMenuElement : menuElementList) {
+                    int changeRow = rrmRoleMenuMapper.deleteByRoleIdAndMenuId(roleId, rrmMenuElement.getId());
+                    if (changeRow > 0) {
+                        removeElementIds.add(rrmMenuElement.getId());
+                    }
+                }
+            }
+
+            rrmRoleMenuMapper.deleteByRoleIdAndMenuId(roleId, id);
+        }
+        return ResultVO.success(removeElementIds);
     }
 }

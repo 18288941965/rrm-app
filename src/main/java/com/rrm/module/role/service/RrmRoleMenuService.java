@@ -1,6 +1,5 @@
 package com.rrm.module.role.service;
 
-import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.role.domain.model.RrmRoleMenu;
 import com.rrm.vo.ResultVO;
 
@@ -14,10 +13,10 @@ import java.util.List;
  */
 public interface RrmRoleMenuService {
 
-    ResultVO<List<RrmMenuVO>> getRoleBindMenuByRoleId(String roleId);
+    ResultVO<List<RrmRoleMenu>> getRoleBindMenuByRoleId(String roleId);
 
     ResultVO<String> bindRoleMenu(RrmRoleMenu rrmRoleMenu);
 
-    ResultVO<Void> unbindRoleMenu(String roleId, String menuId);
+    ResultVO<List<String>> unbindRoleMenu(String roleId, String menuId, String type);
 
 }

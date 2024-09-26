@@ -1,6 +1,5 @@
 package com.rrm.module.role.controller;
 
-import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.role.domain.model.RrmRoleMenu;
 import com.rrm.module.role.service.RrmRoleMenuService;
 import com.rrm.vo.ResultVO;
@@ -32,13 +31,13 @@ public class RrmRoleMenuController {
 
     @ApiOperation(value = "查询绑定数据")
     @GetMapping("/{roleId}")
-    public ResultVO<List<RrmMenuVO>> getRoleBindMenuByRoleId(@PathVariable String roleId) {
+    public ResultVO<List<RrmRoleMenu>> getRoleBindMenuByRoleId(@PathVariable String roleId) {
         return rrmRoleMenuService.getRoleBindMenuByRoleId(roleId);
     }
 
     @ApiOperation(value = "取消绑定")
-    @DeleteMapping("/{roleId}/{menuId}")
-    public ResultVO<Void> unbindMenuResource(@PathVariable String roleId, @PathVariable String menuId) {
-        return rrmRoleMenuService.unbindRoleMenu(roleId, menuId);
+    @DeleteMapping("/{roleId}/{menuId}/{type}")
+    public ResultVO<List<String>> unbindMenuResource(@PathVariable String roleId, @PathVariable String menuId, @PathVariable String type) {
+        return rrmRoleMenuService.unbindRoleMenu(roleId, menuId, type);
     }
 }
