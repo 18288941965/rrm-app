@@ -13,5 +13,5 @@ public class RrmUserItemDTO {
 
     private Integer id;
     private Integer UserId;
-    private Integer ItemId;
+    private String itemCode;
 }

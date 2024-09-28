@@ -74,6 +74,11 @@ public class RrmMenuVO {
     // 菜单类型名称
     private String typeName;
 
+    /**
+     * 状态(1:有效, 0:无效)
+     */
+    private Byte status;
+
     // 子菜单
     private List<RrmMenuVO> children = new ArrayList<>();
 }

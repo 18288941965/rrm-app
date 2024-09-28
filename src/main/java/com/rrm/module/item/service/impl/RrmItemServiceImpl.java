@@ -53,7 +53,7 @@ public class RrmItemServiceImpl implements RrmItemService {
         // 插入用户项目关联
         RrmUserItem userItem = new RrmUserItem();
         userItem.setUserId(rrmItem.getCreatedBy());
-        userItem.setItemId(rrmItem.getId());
+        userItem.setItemCode(rrmItem.getItemCode());
         rrmUserItemMapper.insert(userItem);
 
         return ResultVO.success();
@@ -94,7 +94,7 @@ public class RrmItemServiceImpl implements RrmItemService {
             // 项目关联的userIdList
             List<Integer> userIdList = rrmUserItems
                     .stream()
-                    .filter(rrmUserItem -> item.getId().equals(rrmUserItem.getItemId()))
+                    .filter(rrmUserItem -> item.getItemCode().equals(rrmUserItem.getItemCode()))
                     .map(RrmUserItem::getUserId)
                     .collect(Collectors.toList());
 

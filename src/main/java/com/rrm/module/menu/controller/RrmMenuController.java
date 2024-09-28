@@ -23,6 +23,7 @@ public class RrmMenuController {
     @Autowired
     private RrmMenuService rrmMenuService;
 
+    // 全部
     @ApiOperation(value = "根据关联项目查询所有菜单并构建为tree")
     @GetMapping("/tree")
     public ResultVO<List<RrmMenuVO>> getMenuTreeByItemCode() {
@@ -35,12 +36,14 @@ public class RrmMenuController {
         return rrmMenuService.getMenuById(id);
     }
 
+    // 可用
     @ApiOperation(value = "根据parentId查询子菜单")
     @GetMapping("/children/{parentId}")
     public ResultVO<List<RrmMenu>> getMenuByParentId(@PathVariable String parentId) {
         return rrmMenuService.getMenuByParentId(parentId);
     }
 
+    // 可用
     @ApiOperation(value = "根据项目统计菜单项")
     @GetMapping("/count")
     public ResultVO<Long> countByItemCode() {

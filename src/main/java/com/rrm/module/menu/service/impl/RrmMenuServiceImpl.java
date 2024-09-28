@@ -61,15 +61,7 @@ public class RrmMenuServiceImpl implements RrmMenuService {
 
     @Override
     public ResultVO<Void> deleteMenuById(String ids) {
-        String[] split = ids.split(",");
-        RrmMenu menu = new RrmMenu();
-        menu.setStatus((byte) 0);
-        bindUserUtil.bindUpdateUserInfo(menu);
-        for (String id : split) {
-            menu.setId(id);
-            rrmMenuMapper.updateById(menu);
-        }
-
+        rrmMenuMapper.deleteById(ids);
         // TODO 删除关联的资源，删除角色绑定的菜单等
         return ResultVO.success();
     }

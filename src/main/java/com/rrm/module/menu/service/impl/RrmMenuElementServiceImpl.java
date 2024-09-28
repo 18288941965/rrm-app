@@ -35,7 +35,6 @@ public class RrmMenuElementServiceImpl implements RrmMenuElementService {
     public ResultVO<List<RrmMenuElement>> getMenuElementByMenuId(String menuId) {
         LambdaQueryWrapper<RrmMenuElement> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(RrmMenuElement::getMenuId, menuId);
-        queryWrapper.eq(RrmMenuElement::getStatus, 1);
         List<RrmMenuElement> rrmMenuElements = rrmMenuElementMapper.selectList(queryWrapper);
         return ResultVO.success(rrmMenuElements);
     }

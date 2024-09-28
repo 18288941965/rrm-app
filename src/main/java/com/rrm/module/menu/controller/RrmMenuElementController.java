@@ -21,6 +21,7 @@ public class RrmMenuElementController {
     @Autowired
     private RrmMenuElementService rrmMenuElementService;
 
+    // 全部
     @ApiOperation(value = "根据菜单id查询元素")
     @GetMapping("/{menuId}/children")
     public ResultVO<List<RrmMenuElement>> getMenuElementByMenuId(@PathVariable String menuId) {
@@ -33,6 +34,7 @@ public class RrmMenuElementController {
         return rrmMenuElementService.getMenuElementById(id);
     }
 
+    // 可用
     @ApiOperation(value = "根据项目统计控件项")
     @GetMapping("/count")
     public ResultVO<Long> countByItemCode() {

@@ -105,14 +105,14 @@ public class RrmUserServiceImpl implements RrmUserService {
         List<RrmItem> rrmItems = rrmItemMapper.selectList(null);
 
         rrmUsers.forEach(user -> {
-            List<Integer> correlationItemId = rrmUserItems
+            List<String> correlationItemCode = rrmUserItems
                     .stream()
                     .filter(rrmUserItem -> Objects.equals(user.getId(), rrmUserItem.getUserId()))
-                    .map(RrmUserItem::getItemId)
+                    .map(RrmUserItem::getItemCode)
                     .collect(Collectors.toList());
             List<RrmItem> correlationItem = rrmItems
                     .stream()
-                    .filter(item -> correlationItemId.contains(item.getId()))
+                    .filter(item -> correlationItemCode.contains(item.getItemCode()))
                     .collect(Collectors.toList());
             user.setItemList(correlationItem);
             user.setLoginId(userInfo.getId());
