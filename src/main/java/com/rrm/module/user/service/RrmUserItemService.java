@@ -11,7 +11,7 @@ import com.rrm.vo.ResultVO;
  */
 public interface RrmUserItemService {
 
-    ResultVO<Integer> deleteUserItem(Integer userId, Integer itemId);
+    ResultVO<Integer> deleteUserItem(Integer userId, String itemCode);
 
     ResultVO<Integer> createUserItem(RrmUserItem rrmUserItem);
 }

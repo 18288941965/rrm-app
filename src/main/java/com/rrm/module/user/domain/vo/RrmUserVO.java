@@ -4,6 +4,7 @@ import com.rrm.module.item.domain.model.RrmItem;
 import com.rrm.module.user.domain.model.RrmUser;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -42,6 +43,11 @@ public class RrmUserVO {
     private Integer createdBy;
 
     /**
+     * 创建时间
+     */
+    private LocalDateTime createdAt;
+
+    /**
      * 用户关联的项目
      */
     private List<RrmItem> itemList;
@@ -50,4 +56,9 @@ public class RrmUserVO {
      * 登录用户ID
      */
     private Integer loginId;
+
+    /**
+     * 创建用户
+     */
+    private String createdUsername;
 }

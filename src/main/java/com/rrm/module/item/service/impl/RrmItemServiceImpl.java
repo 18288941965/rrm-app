@@ -67,8 +67,10 @@ public class RrmItemServiceImpl implements RrmItemService {
     @Override
     @Transactional
     public ResultVO<String> deleteItemAndAssociations(Integer id) {
+        RrmItem rrmItem = itemMapper.selectById(id);
+        String itemCode = rrmItem.getItemCode();
         itemMapper.deleteById(id);
-        rrmUserItemMapper.deleteByItemId(id);
+        rrmUserItemMapper.deleteByItemCode(itemCode);
         return ResultVO.success();
     }
 
@@ -116,7 +118,7 @@ public class RrmItemServiceImpl implements RrmItemService {
     }
 
     @Override
-    public ResultVO<List<Integer>> getCorrelationUserId(Integer id) {
-        return ResultVO.success(rrmUserItemMapper.getCorrelationUserId(id));
+    public ResultVO<List<Integer>> getCorrelationUserId(String itemCode) {
+        return ResultVO.success(rrmUserItemMapper.getCorrelationUserId(itemCode));
     }
 }

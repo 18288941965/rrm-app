@@ -9,11 +9,11 @@ import java.util.List;
 @Mapper
 public interface RrmUserItemMapper extends BaseMapper<RrmUserItem> {
 
-    int deleteByItemId(int itemId);
+    int deleteByItemCode(String itemCode);
 
     int deleteByUserId(int userId);
 
-    List<Integer> getCorrelationUserId(Integer itemId);
+    List<Integer> getCorrelationUserId(String itemCode);
 
-    int deleteUserItem(Integer userId, Integer itemId);
+    int deleteUserItem(Integer userId, String itemCode);
 }

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.user.mapper.RrmUserItemMapper">
 
-    <delete id="deleteByItemId">
-        delete from rrm_user_item where item_id = #{itemId}
+    <delete id="deleteByItemCode">
+        delete from rrm_user_item where item_code = #{itemCode}
     </delete>
 
     <delete id="deleteByUserId">
@@ -11,10 +11,10 @@
     </delete>
 
     <select id="getCorrelationUserId" resultType="java.lang.Integer">
-        select user_id from rrm_user_item where item_id = #{itemId}
+        select user_id from rrm_user_item where item_code = #{itemCode}
     </select>
 
     <delete id="deleteUserItem">
-        delete from rrm_user_item where user_id = #{userId} and item_id = #{itemId}
+        delete from rrm_user_item where user_id = #{userId} and item_code = #{itemCode}
     </delete>
 </mapper>

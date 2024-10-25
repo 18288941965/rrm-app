@@ -22,9 +22,9 @@ public class RrmUserItemController {
     private RrmUserItemService rrmUserItemService;
 
     @ApiOperation(value = "删除关联信息")
-    @DeleteMapping("/{userId}/{itemId}")
-    public ResultVO<Integer> deleteUserItem(@PathVariable Integer userId, @PathVariable Integer itemId) {
-        return rrmUserItemService.deleteUserItem(userId, itemId);
+    @DeleteMapping("/{userId}/{itemCode}")
+    public ResultVO<Integer> deleteUserItem(@PathVariable Integer userId, @PathVariable String itemCode) {
+        return rrmUserItemService.deleteUserItem(userId, itemCode);
     }
 
     @ApiOperation(value = "创建关联信息")

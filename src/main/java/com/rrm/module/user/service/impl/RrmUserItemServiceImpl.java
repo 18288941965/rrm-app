@@ -22,8 +22,8 @@ public class RrmUserItemServiceImpl implements RrmUserItemService {
 
 
     @Override
-    public ResultVO<Integer> deleteUserItem(Integer userId, Integer itemId) {
-        int i = rrmUserItemMapper.deleteUserItem(userId, itemId);
+    public ResultVO<Integer> deleteUserItem(Integer userId, String itemCode) {
+        int i = rrmUserItemMapper.deleteUserItem(userId, itemCode);
         return ResultVO.success(i);
     }
 

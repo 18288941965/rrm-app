@@ -59,9 +59,9 @@ public class RrmItemController {
         return rrmItemService.getAllItem();
     }
 
-    @ApiOperation(value = "获取关联信息")
-    @GetMapping("/correlationUserId/{id}")
-    public ResultVO<List<Integer>> getCorrelationUserId(@PathVariable Integer id) {
-        return rrmItemService.getCorrelationUserId(id);
+    @ApiOperation(value = "获取项目关联的用户信息")
+    @GetMapping("/correlationUserId/{itemCode}")
+    public ResultVO<List<Integer>> getCorrelationUserId(@PathVariable String itemCode) {
+        return rrmItemService.getCorrelationUserId(itemCode);
     }
 }

@@ -27,5 +27,5 @@ public interface RrmItemService {
 
     ResultVO<RrmItem> getItemById(Integer id);
 
-    ResultVO<List<Integer>> getCorrelationUserId(Integer id);
+    ResultVO<List<Integer>> getCorrelationUserId(String itemCode);
 }
