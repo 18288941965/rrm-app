@@ -29,7 +29,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final List<String> LG_URL = Arrays.asList(
             "/auth/login",
             "/auth/isLogin",
-            "/auth/logout"
+            "/auth/logout",
+            "/scanner/run"
     );
     private static final String LOGIN_URL = "/";
 
