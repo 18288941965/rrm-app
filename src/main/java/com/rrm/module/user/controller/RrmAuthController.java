@@ -37,7 +37,7 @@ public class RrmAuthController {
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     @PermissionRequired(PermissionRequired.AuthCodeEnum.OPEN)
-    public ResultVO<String> logIn(@RequestBody RrmUserDTO userDTO) {
+    public ResultVO<RrmUserCache> logIn(@RequestBody RrmUserDTO userDTO) {
         if (StrUtil.isBlank(userDTO.getUsername()) || StrUtil.isBlank(userDTO.getPassword())) {
             return ResultVO.unauthorized("用户名或密码为空！");
         }
@@ -60,9 +60,10 @@ public class RrmAuthController {
         RrmUserCache cache = new RrmUserCache();
         cache.setId(user.getId());
         cache.setUsername(user.getUsername());
+        cache.setToken(token);
         userCacheService.cacheUser(user.getUsername(), cache);
 
-        return ResultVO.success(token);
+        return ResultVO.success(cache);
     }
 
 

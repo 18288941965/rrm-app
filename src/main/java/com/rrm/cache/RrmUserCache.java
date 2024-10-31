@@ -24,5 +24,10 @@ public class RrmUserCache implements Serializable {
      */
     private String itemCode;
 
+    /**
+     * 登录token
+     */
+    private String token;
+
     private static final long serialVersionUID = 1L;
 }

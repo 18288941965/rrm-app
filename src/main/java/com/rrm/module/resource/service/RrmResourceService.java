@@ -1,5 +1,6 @@
 package com.rrm.module.resource.service;
 
+import com.rrm.module.api.dto.ApiScannerDTO;
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
 import com.rrm.module.resource.domain.vo.TreeNode;
@@ -28,4 +29,6 @@ public interface RrmResourceService {
     ResultVO<List<String>> getServiceNameList();
 
     ResultVO<List<TreeNode>> getPackageNameByTree();
+
+    void batchDeleteResource(ApiScannerDTO apiScannerDTO);
 }

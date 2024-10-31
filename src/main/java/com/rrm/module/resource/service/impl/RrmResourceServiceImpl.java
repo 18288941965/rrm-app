@@ -2,6 +2,7 @@ package com.rrm.module.resource.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.rrm.module.api.dto.ApiScannerDTO;
 import com.rrm.module.resource.domain.model.RrmResource;
 import com.rrm.module.resource.domain.vo.RrmResourceVO;
 import com.rrm.module.resource.domain.vo.TreeNode;
@@ -73,5 +74,10 @@ public class RrmResourceServiceImpl implements RrmResourceService {
         List<String> dataList = rrmResourceMapper.getPackageNameList(jwtTokenUtil.getItemCode());
         List<TreeNode> treeNodes = new TreeNode().buildTree(dataList);
         return ResultVO.success(treeNodes);
+    }
+
+    @Override
+    public void batchDeleteResource(ApiScannerDTO apiScannerDTO) {
+        rrmResourceMapper.batchDeleteResource(apiScannerDTO);
     }
 }

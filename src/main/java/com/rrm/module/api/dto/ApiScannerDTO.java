@@ -16,10 +16,20 @@ public class ApiScannerDTO {
     /*
      * 扫描的微服务
      */
-    private String microservice;
+    private String serviceName;
 
     /*
      * apiKey 用来验证请求接口是否合法
      */
     private String apiKey;
+
+    /*
+     * 创建人ID
+     */
+    private Integer createdBy;
+
+    /*
+     * 项目代码
+     */
+    private String itemCode;
 }

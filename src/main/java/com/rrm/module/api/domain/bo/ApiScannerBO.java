@@ -14,6 +14,9 @@ public class ApiScannerBO {
     private String annotationValue;
     private String authCode;
 
+    public ApiScannerBO() {
+    }
+
     public ApiScannerBO(String annotationValue, String authCode) {
         this.annotationValue = annotationValue;
         this.authCode = authCode;

@@ -63,4 +63,8 @@
         SELECT distinct CONCAT_WS('.', service_name, package_name) AS result FROM rrm_resource where item_code = #{itemCode}
     </select>
 
+    <delete id="batchDeleteResource" parameterType="com.rrm.module.api.dto.ApiScannerDTO">
+        delete from rrm_resource where service_name = #{serviceName} and item_code = #{itemCode}
+    </delete>
+
 </mapper>
