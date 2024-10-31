@@ -26,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private static final List<String> LG_URL = Arrays.asList(
+    private static final List<String> PASS_URL = Arrays.asList(
             "/auth/login",
             "/auth/isLogin",
             "/auth/logout",
@@ -38,14 +38,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String servletPath = request.getServletPath();
-        String xRequestedWith = request.getHeader("XRequestedWith");
+        String xRequestedWith = request.getHeader("X-Requested-With");
         String authorization = request.getHeader("Authorization");
         String flag = "XMLHttpRequest";
 
         System.out.println(servletPath);
 
         // *******************处理前端请求
-        if (!flag.equals(xRequestedWith)) {
+        if (!flag.equals(xRequestedWith) && !PASS_URL.contains(servletPath)) {
             // 请求登录页或静态文件
             if (LOGIN_URL.equals(servletPath) || servletPath.contains(".")) {
                 filterChain.doFilter(request, response);
@@ -61,10 +61,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // *******************处理后端请求
-        RequestMatcher matcher = new RequestMatcher(LG_URL);
-        String matchedPattern = matcher.matchRequestToPattern(request);
-        // System.out.println("===========" + matchedPattern);
-
         String token = null;
         String username = null;
 
@@ -86,7 +82,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 response.getWriter().write("未登录或登录超时！");
                 return;
             }
-        } else if (!LG_URL.contains(servletPath)) {
+        } else if (!PASS_URL.contains(servletPath)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("无效token！");
             return;
