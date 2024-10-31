@@ -1,5 +1,6 @@
 package com.rrm.module.api.controller;
 
+import com.rrm.annotations.PermissionRequired;
 import com.rrm.module.api.dto.ApiScannerDTO;
 import com.rrm.module.api.service.ApiScannerService;
 import com.rrm.vo.ResultVO;
@@ -29,6 +30,7 @@ public class ApiScannerController {
 
     @PostMapping("/run")
     @ApiOperation("资源扫描-执行")
+    @PermissionRequired(value = PermissionRequired.AuthCodeEnum.LOGIN)
     public ResultVO<Void> run(@RequestBody ApiScannerDTO apiScannerDTO) {
         if (!API_KEY.equals(apiScannerDTO.getApiKey())) {
             return ResultVO.badRequest("无效的apiKey");
