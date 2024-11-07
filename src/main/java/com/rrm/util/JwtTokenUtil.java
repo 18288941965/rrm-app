@@ -1,5 +1,6 @@
 package com.rrm.util;
 
+import cn.hutool.core.util.StrUtil;
 import com.rrm.cache.RrmUserCache;
 import com.rrm.cache.UserCacheService;
 import io.jsonwebtoken.Claims;
@@ -61,10 +62,16 @@ public class JwtTokenUtil {
 
     public RrmUserCache getUserInfo() {
         String username = getUsernameFromRequest();
+        if (StrUtil.isBlank(username)) {
+            return null;
+        }
         return userCacheService.getCachedUser(username);
     }
 
     public RrmUserCache getUserInfo(String username) {
+        if (StrUtil.isBlank(username)) {
+            return null;
+        }
         return userCacheService.getCachedUser(username);
     }
 

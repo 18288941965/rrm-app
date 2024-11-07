@@ -46,8 +46,7 @@ public class RrmOrgServiceImpl implements RrmOrgService {
         RrmOrg rrmOrg = new RrmOrg();
         rrmOrg.setId(id);
         rrmOrg.setUpdatedAt(LocalDateTime.now());
-        rrmOrg.setIsDeleted((byte)1);
-        rrmOrg.setDeletedAt(LocalDateTime.now());
+        rrmOrg.setOrgStatus((byte)0);
         rrmOrgMapper.updateById(rrmOrg);
         return ResultVO.success(rrmOrg.getId());
     }

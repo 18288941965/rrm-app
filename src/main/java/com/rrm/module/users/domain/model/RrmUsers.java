@@ -89,7 +89,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     private String description;
 
     /**
-     * 账户状态（1：活跃，-1：锁定、0：禁用）
+     * 账户状态（1：活跃，2：锁定、3：禁用, 0: 注销）
      */
     private Byte accountStatus;
 
@@ -112,26 +112,6 @@ public class RrmUsers extends ModelInfo implements Serializable {
      * 登录次数
      */
     private Integer loginCount;
-
-    /**
-     * 审核状态（-1：审核中，1：审核通过，0：审核不通过）
-     */
-    private Byte approvalStatus;
-
-    /**
-     *  审核时间
-     */
-    private LocalDateTime approvalAt;
-
-    /**
-     * 是否删除（注销）(1：是，0：否)
-     */
-    private Byte isDeleted;
-
-    /**
-     * 删除（注销时间）
-     */
-    private LocalDateTime deletedAt;
 
     /**
      * 扩展字段

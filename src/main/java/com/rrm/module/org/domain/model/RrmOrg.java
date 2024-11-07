@@ -1,15 +1,12 @@
 package com.rrm.module.org.domain.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 任职机构
@@ -50,14 +47,9 @@ public class RrmOrg extends ModelInfo implements Serializable {
     private String type;
 
     /**
-     * 是否删除（注销）（1：是，0：否）
+     * 机构状态（1：正常, 0: 注销）
      */
-    private Byte isDeleted;
-
-    /**
-     * 删除（注销）时间
-     */
-    private LocalDateTime deletedAt;
+    private Byte orgStatus;
 
     /**
      * 扩展字段
