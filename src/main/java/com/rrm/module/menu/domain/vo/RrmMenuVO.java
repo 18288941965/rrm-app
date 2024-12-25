@@ -21,6 +21,8 @@ public class RrmMenuVO extends RrmMenu {
 
     private String netTypeName;
 
+    private long childrenCount;
+
     // 子菜单
     private List<RrmMenuVO> children = new ArrayList<>();
 }

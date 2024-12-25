@@ -18,6 +18,9 @@
                m.status,
                m.terminal,
                m.net_type,
+                <if test="id != null and id != ''">
+                (select count(*) from rrm_menu t where m.id = t.parent_id) as childrenCount,
+                </if>
                d.entry_name as type_name,
                d2.entry_name as terminalName,
                d3.entry_name as netTypeName
