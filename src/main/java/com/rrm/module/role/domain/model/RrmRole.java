@@ -46,5 +46,15 @@ public class RrmRole extends ModelInfo implements Serializable {
      */
     private String description;
 
+    /**
+     * 终端
+     */
+    private String terminal;
+
+    /**
+     * 网络类型
+     */
+    private String netType;
+
     private static final long serialVersionUID = 1L;
 }

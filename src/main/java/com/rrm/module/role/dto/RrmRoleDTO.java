@@ -22,6 +22,16 @@ public class RrmRoleDTO extends PageBase {
      */
     private String type;
 
+    /**
+     * 终端
+     */
+    private String terminal;
+
+    /**
+     * 网络类型
+     */
+    private String netType;
+
     private String itemCode;
 
 }

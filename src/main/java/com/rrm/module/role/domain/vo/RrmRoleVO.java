@@ -14,6 +14,10 @@ public class RrmRoleVO extends RrmRole {
 
     private String typeName;
 
+    private String terminalName;
+
+    private String netTypeName;
+
     private Integer bindMenuCount;
 
     private Integer bindElementCount;

@@ -3,11 +3,13 @@
 <mapper namespace="com.rrm.module.role.mapper.RrmRoleMapper">
 
     <select id="searchRolePage" resultType="com.rrm.module.role.domain.vo.RrmRoleVO">
-        select a.*, d.entry_name as typeName,
+        select a.*, d.entry_name as typeName, d2.entry_name as terminalName, d3.entry_name as netTypeName,
         (select count(*) from rrm_role_menu m where a.id = m.role_id and m.type = '01') as bindMenuCount,
         (select count(*) from rrm_role_menu m where a.id = m.role_id and m.type = '02') as bindElementCount
         from rrm_role a
         join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
+        join rrm_dict_entry d2 on a.terminal = d2.entry_code and d2.status = 1 and d2.type_code = 'dic_terminal'
+        join rrm_dict_entry d3 on a.net_type = d3.entry_code and d3.status = 1 and d3.type_code = 'dic_net_type'
         <where>
             a.item_code = #{dto.itemCode}
             <if test="dto.name != null and dto.name != ''">
@@ -16,7 +18,7 @@
         </where>
     </select>
 
-    <select id="getUsersBindRoleByUserId" resultType="com.rrm.module.role.domain.model.RrmRole">
+    <select id="getUsersBindRoleByUserId" resultType="com.rrm.module.role.domain.vo.RrmRoleVO">
         select a.*, d.entry_name as typeName from rrm_role a
         join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
         join rrm_users_role b on a.id = b.role_id
