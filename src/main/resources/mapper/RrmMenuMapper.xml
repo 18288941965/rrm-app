@@ -15,10 +15,16 @@
                m.page_name,
                m.page_cache,
                m.version,
-                m.status,
-               d.entry_name as type_name
+               m.status,
+               m.terminal,
+               m.net_type,
+               d.entry_name as type_name,
+               d2.entry_name as terminalName,
+               d3.entry_name as netTypeName
         from rrm_menu m
                  join rrm_dict_entry d on m.type = d.entry_code and d.status = 1 and d.type_code = 'dic_menu_type'
+                join rrm_dict_entry d2 on m.terminal = d2.entry_code and d2.status = 1 and d2.type_code = 'dic_terminal'
+                join rrm_dict_entry d3 on m.net_type = d3.entry_code and d3.status = 1 and d3.type_code = 'dic_net_type'
         <where>
             <if test="itemCode != null and itemCode != ''">
                 and m.item_code = #{itemCode}
@@ -43,10 +49,16 @@
         m.page_name,
         m.page_cache,
         m.version,
-        d.entry_name as type_name
+        m.terminal,
+        m.net_type,
+        d.entry_name as type_name,
+        d2.entry_name as terminalName,
+        d3.entry_name as netTypeName
         from rrm_menu m
         join rrm_role_menu b on m.id = b.menu_id
         join rrm_dict_entry d on m.type = d.entry_code and d.status = 1 and d.type_code = 'dic_menu_type'
+        join rrm_dict_entry d2 on m.terminal = d2.entry_code and d2.status = 1 and d2.type_code = 'dic_terminal'
+        join rrm_dict_entry d3 on m.net_type = d3.entry_code and d3.status = 1 and d3.type_code = 'dic_net_type'
         <where>
             m.status = 1 and b.role_id = #{roleId}
         </where>

@@ -81,5 +81,15 @@ public class RrmMenu extends ModelInfo implements Serializable {
      */
     private Byte status;
 
+    /**
+     * 终端
+     */
+    private String terminal;
+
+    /**
+     * 网络类型
+     */
+    private String netType;
+
     private static final long serialVersionUID = 1L;
 }
