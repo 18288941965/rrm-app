@@ -11,6 +11,15 @@
         left join rrm_dict_entry rde3 on a.nation = rde3.entry_code and rde3.type_code = 'dic_user_nation' and rde3.status = 1
         <where>
             a.item_code = #{dto.itemCode}
+            <if test="dto.username != null and dto.username != ''">
+                and username != #{dto.username}
+            </if>
+            <if test="dto.accountStatus != null and dto.accountStatus != ''">
+                and account_status != #{dto.accountStatus}
+            </if>
+            <if test="dto.name != null and dto.name != ''">
+                and a.name like concat('%',#{name},'%')
+            </if>
         </where>
     </select>
 
@@ -18,7 +27,7 @@
         select count(*) from rrm_users
         <where>
             item_code = #{itemCode} and username = #{username}
-            <if test="id != null">
+            <if test="id != null and id != ''">
                 and id != #{id}
             </if>
         </where>

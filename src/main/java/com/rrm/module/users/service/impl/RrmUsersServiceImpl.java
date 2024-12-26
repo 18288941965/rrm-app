@@ -50,7 +50,7 @@ public class RrmUsersServiceImpl implements RrmUsersService {
         RrmUsers rrmUsers = new RrmUsers();
         rrmUsers.setId(id);
         rrmUsers.setUpdatedAt(LocalDateTime.now());
-        rrmUsers.setAccountStatus((byte)0);
+        rrmUsers.setAccountStatus("99");
         rrmUsersMapper.updateById(rrmUsers);
         return ResultVO.success(rrmUsers.getId());
     }

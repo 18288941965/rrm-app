@@ -15,6 +15,8 @@ import lombok.Setter;
 public class RrmUsersDTO extends PageBase {
 
     private String itemCode;
+    private String accountStatus;
+    private String username;
     private String name;
     private String orgCode;
     private String orgName;

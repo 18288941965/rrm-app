@@ -89,9 +89,9 @@ public class RrmUsers extends ModelInfo implements Serializable {
     private String description;
 
     /**
-     * 账户状态（1：活跃，2：锁定、3：禁用, 0: 注销）
+     * 账户状态
      */
-    private Byte accountStatus;
+    private String accountStatus;
 
     /**
      *  注册时间
