@@ -42,7 +42,7 @@ public class RrmRoleMenu extends ModelInfo implements Serializable {
      * 更新人
      */
     @TableField(exist = false)
-    private Integer updatedBy;
+    private String updatedBy;
 
     /**
      * 更新时间

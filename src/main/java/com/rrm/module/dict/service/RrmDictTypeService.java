@@ -17,11 +17,11 @@ public interface RrmDictTypeService {
 
     ResultVO<PageResultVO<RrmDictTypeVO>> searchDictTypePage(@RequestBody RrmDictTypeDTO dto);
 
-    ResultVO<RrmDictType> getDictTypeById(Long id);
+    ResultVO<RrmDictType> getDictTypeById(String id);
 
-    ResultVO<Long> createDictType(RrmDictType dictType);
+    ResultVO<String> createDictType(RrmDictType dictType);
 
-    ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType);
+    ResultVO<String> updateDictTypeById(RrmDictType rrmDictType);
 
-    ResultVO<Void> deleteDictTypeById(Long id);
+    ResultVO<Void> deleteDictTypeById(String id);
 }

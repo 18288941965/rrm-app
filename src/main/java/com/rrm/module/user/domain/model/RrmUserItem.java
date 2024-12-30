@@ -20,13 +20,13 @@ import java.time.LocalDateTime;
 @Setter
 public class RrmUserItem extends ModelInfo implements Serializable {
 
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
 
-    private Integer UserId;
+    private String UserId;
 
     @TableField(exist = false)
-    private Integer updatedBy;
+    private String updatedBy;
 
     @TableField(exist = false)
     private LocalDateTime updatedAt;

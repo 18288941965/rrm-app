@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper
 public interface RrmUserMapper extends BaseMapper<RrmUser> {
 
-    void updatePassword(Integer id, String password);
+    void updatePassword(String id, String password);
 
-    void updateUserDescription(Integer id, String description);
+    void updateUserDescription(String id, String description);
 
     List<RrmUserVO> getAllUser();
 

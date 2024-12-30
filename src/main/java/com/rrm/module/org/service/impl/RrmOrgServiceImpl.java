@@ -43,10 +43,12 @@ public class RrmOrgServiceImpl implements RrmOrgService {
 
     @Override
     public ResultVO<String> deleteOrgById(String id) {
+        LocalDateTime now = LocalDateTime.now();
         RrmOrg rrmOrg = new RrmOrg();
         rrmOrg.setId(id);
-        rrmOrg.setUpdatedAt(LocalDateTime.now());
-        rrmOrg.setOrgStatus((byte)0);
+        rrmOrg.setUpdatedAt(now);
+        rrmOrg.setIsDeleted((byte)1);
+        rrmOrg.setDeletedAt(now);
         rrmOrgMapper.updateById(rrmOrg);
         return ResultVO.success(rrmOrg.getId());
     }

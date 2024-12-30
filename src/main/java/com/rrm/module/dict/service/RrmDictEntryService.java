@@ -20,15 +20,15 @@ public interface RrmDictEntryService {
 
     ResultVO<PageResultVO<RrmDictEntryVO>> searchDictEntryPage(@RequestBody RrmDictEntryDTO dto);
 
-    ResultVO<RrmDictEntry> getDictEntryById(Long id);
+    ResultVO<RrmDictEntry> getDictEntryById(String id);
 
-    ResultVO<Long> createDictEntry(RrmDictEntry dictEntry);
+    ResultVO<String> createDictEntry(RrmDictEntry dictEntry);
 
-    ResultVO<Long> updateDictEntryById(RrmDictEntry dictEntry);
+    ResultVO<String> updateDictEntryById(RrmDictEntry dictEntry);
 
-    ResultVO<Void> deleteDictEntryById(Long id);
+    ResultVO<Void> deleteDictEntryById(String id);
 
-    ResultVO<Void> updateEntryStatus(Byte status, Long id);
+    ResultVO<Void> updateEntryStatus(Byte status, String id);
 
     ResultVO<List<RrmDictEntry>> getDictEntryByTypeCode(String typeCode);
 

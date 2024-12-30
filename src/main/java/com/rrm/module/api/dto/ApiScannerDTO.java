@@ -26,7 +26,7 @@ public class ApiScannerDTO {
     /*
      * 创建人ID
      */
-    private Integer createdBy;
+    private String createdBy;
 
     /*
      * 项目代码

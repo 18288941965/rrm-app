@@ -47,10 +47,12 @@ public class RrmUsersServiceImpl implements RrmUsersService {
 
     @Override
     public ResultVO<String> deleteUsersById(String id) {
+        LocalDateTime now = LocalDateTime.now();
         RrmUsers rrmUsers = new RrmUsers();
         rrmUsers.setId(id);
-        rrmUsers.setUpdatedAt(LocalDateTime.now());
-        rrmUsers.setAccountStatus("99");
+        rrmUsers.setUpdatedAt(now);
+        rrmUsers.setIsDeleted((byte)1);
+        rrmUsers.setDeletedAt(now);
         rrmUsersMapper.updateById(rrmUsers);
         return ResultVO.success(rrmUsers.getId());
     }

@@ -17,8 +17,8 @@ public class RrmDictEntry extends ModelInfo implements Serializable {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
 
     /**
      * 字典项编码
@@ -38,7 +38,7 @@ public class RrmDictEntry extends ModelInfo implements Serializable {
     /**
      * 父级字典项ID
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 排序
@@ -46,7 +46,7 @@ public class RrmDictEntry extends ModelInfo implements Serializable {
     private Integer sortOrder;
 
     /**
-     * 状态(1:启用, 0:禁用)
+     * 状态（1：启用 ，0：停用）
      */
     private Byte status;
 

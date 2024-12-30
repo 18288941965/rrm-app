@@ -14,8 +14,8 @@
             <if test="dto.username != null and dto.username != ''">
                 and username != #{dto.username}
             </if>
-            <if test="dto.accountStatus != null and dto.accountStatus != ''">
-                and account_status != #{dto.accountStatus}
+            <if test="dto.status != null and dto.status != ''">
+                and status != #{dto.status}
             </if>
             <if test="dto.name != null and dto.name != ''">
                 and a.name like concat('%',#{name},'%')

@@ -12,7 +12,7 @@ public class RrmUserCache implements Serializable {
     /**
      * 主键
      */
-    private Integer id;
+    private String id;
 
     /**
      * 账号

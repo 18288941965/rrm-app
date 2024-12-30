@@ -35,7 +35,7 @@ public class RrmDictEntryController {
 
     @ApiOperation(value = "根据ID查询字典")
     @GetMapping("/{id}")
-    public ResultVO<RrmDictEntry> getDictEntry(@PathVariable Long id) {
+    public ResultVO<RrmDictEntry> getDictEntry(@PathVariable String id) {
         return rrmDictEntryService.getDictEntryById(id);
     }
 
@@ -53,13 +53,13 @@ public class RrmDictEntryController {
 
     @ApiOperation(value = "创建新的字典")
     @PostMapping
-    public ResultVO<Long> createDictEntry(@RequestBody RrmDictEntry dictEntry) {
+    public ResultVO<String> createDictEntry(@RequestBody RrmDictEntry dictEntry) {
         return rrmDictEntryService.createDictEntry(dictEntry);
     }
 
     @ApiOperation(value = "更新字典")
     @PutMapping
-    public ResultVO<Long> updateDictEntry(@RequestBody RrmDictEntry rrmDictEntry) {
+    public ResultVO<String> updateDictEntry(@RequestBody RrmDictEntry rrmDictEntry) {
         return rrmDictEntryService.updateDictEntryById(rrmDictEntry);
     }
 
@@ -77,7 +77,7 @@ public class RrmDictEntryController {
 
     @ApiOperation(value = "删除字典")
     @DeleteMapping("/{id}")
-    public ResultVO<Void> deleteDictEntry(@PathVariable Long id) {
+    public ResultVO<Void> deleteDictEntry(@PathVariable String id) {
         return rrmDictEntryService.deleteDictEntryById(id);
     }
 }

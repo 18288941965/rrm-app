@@ -40,12 +40,12 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
     }
 
     @Override
-    public ResultVO<RrmDictType> getDictTypeById(Long id) {
+    public ResultVO<RrmDictType> getDictTypeById(String id) {
         return ResultVO.success(rrmDictTypeMapper.selectById(id));
     }
 
     @Override
-    public ResultVO<Long> createDictType(RrmDictType dictType) {
+    public ResultVO<String> createDictType(RrmDictType dictType) {
         String itemCode = jwtTokenUtil.getItemCode();
         dictType.setItemCode(itemCode);
 
@@ -59,14 +59,14 @@ public class RrmDictTypeServiceImpl implements RrmDictTypeService {
     }
 
     @Override
-    public ResultVO<Long> updateDictTypeById(RrmDictType rrmDictType) {
+    public ResultVO<String> updateDictTypeById(RrmDictType rrmDictType) {
         bindUserUtil.bindUpdateUserInfo(rrmDictType);
         rrmDictTypeMapper.updateById(rrmDictType);
         return ResultVO.success(rrmDictType.getId());
     }
 
     @Override
-    public ResultVO<Void> deleteDictTypeById(Long id) {
+    public ResultVO<Void> deleteDictTypeById(String id) {
         rrmDictTypeMapper.deleteById(id);
         return ResultVO.success();
     }

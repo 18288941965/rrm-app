@@ -16,7 +16,7 @@ public class ModelInfo {
     /**
      * 创建人
      */
-    private Integer createdBy;
+    private String createdBy;
 
     /**
      * 创建时间
@@ -26,7 +26,7 @@ public class ModelInfo {
     /**
      * 更新人
      */
-    private Integer updatedBy;
+    private String updatedBy;
 
     /**
      * 更新时间

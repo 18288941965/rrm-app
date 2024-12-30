@@ -94,7 +94,7 @@ public class RrmItemServiceImpl implements RrmItemService {
 
         itemList.forEach(item -> {
             // 项目关联的userIdList
-            List<Integer> userIdList = rrmUserItems
+            List<String> userIdList = rrmUserItems
                     .stream()
                     .filter(rrmUserItem -> item.getItemCode().equals(rrmUserItem.getItemCode()))
                     .map(RrmUserItem::getUserId)
@@ -113,12 +113,12 @@ public class RrmItemServiceImpl implements RrmItemService {
     }
 
     @Override
-    public ResultVO<RrmItem> getItemById(Integer id) {
+    public ResultVO<RrmItem> getItemById(String id) {
         return ResultVO.success(itemMapper.selectById(id));
     }
 
     @Override
-    public ResultVO<List<Integer>> getCorrelationUserId(String itemCode) {
+    public ResultVO<List<String>> getCorrelationUserId(String itemCode) {
         return ResultVO.success(rrmUserItemMapper.getCorrelationUserId(itemCode));
     }
 }

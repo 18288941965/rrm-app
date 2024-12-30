@@ -4,9 +4,11 @@
 
     <select id="selectOrgByItemCodeOrId"
             resultType="com.rrm.module.org.domain.vo.RrmOrgVO">
-        select a.*, rde.entry_name as type_name from rrm_org a
-        left join rrm_dict_entry rde on a.type = rde.entry_code and rde.type_code = 'dic_org_type' and rde.status = 1
+        select a.*, d.entry_name as type_name, d2.entry_name as statusName from rrm_org a
+        left join rrm_dict_entry d on a.type = d.entry_code and d.type_code = 'dic_org_type' and d.status = 1
+        left join rrm_dict_entry d2 on a.status = d2.entry_code and d2.type_code = 'dic_org_status' and d2.status = 1
         <where>
+            a.is_deleted = 0
             <if test="itemCode != null and itemCode != ''">
                 and a.item_code = #{itemCode}
             </if>

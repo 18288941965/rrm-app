@@ -69,16 +69,6 @@ public class RrmUsers extends ModelInfo implements Serializable {
     private String avatar;
 
     /**
-     * 任职机构代码
-     */
-    private String orgCode;
-
-    /**
-     * 任职机构名称
-     */
-    private String orgName;
-
-    /**
      * 用户类型（dic_user_type）
      */
     private String type;
@@ -91,7 +81,7 @@ public class RrmUsers extends ModelInfo implements Serializable {
     /**
      * 账户状态
      */
-    private String accountStatus;
+    private String status;
 
     /**
      *  注册时间
@@ -127,6 +117,16 @@ public class RrmUsers extends ModelInfo implements Serializable {
      * 项目代码 
      */
     private String itemCode;
+
+    /**
+     * 是否删除
+     */
+    private Byte isDeleted;
+
+    /**
+     * 删除时间
+     */
+    private LocalDateTime deletedAt;
 
     private static final long serialVersionUID = 1L;
 

@@ -49,7 +49,7 @@ public class RrmItemController {
 
     @ApiOperation(value = "根据ID查询")
     @GetMapping("/{id}")
-    public ResultVO<RrmItem> getItem(@PathVariable Integer id) {
+    public ResultVO<RrmItem> getItem(@PathVariable String id) {
         return rrmItemService.getItemById(id);
     }
 
@@ -61,7 +61,7 @@ public class RrmItemController {
 
     @ApiOperation(value = "获取项目关联的用户信息")
     @GetMapping("/correlationUserId/{itemCode}")
-    public ResultVO<List<Integer>> getCorrelationUserId(@PathVariable String itemCode) {
+    public ResultVO<List<String>> getCorrelationUserId(@PathVariable String itemCode) {
         return rrmItemService.getCorrelationUserId(itemCode);
     }
 }

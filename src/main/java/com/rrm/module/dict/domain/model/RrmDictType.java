@@ -17,8 +17,8 @@ public class RrmDictType extends ModelInfo implements Serializable {
     /**
      * 主键ID
      */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
 
     /**
      * 字典类型编码

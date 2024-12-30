@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 任职机构
@@ -47,9 +48,9 @@ public class RrmOrg extends ModelInfo implements Serializable {
     private String type;
 
     /**
-     * 机构状态（1：正常, 0: 注销）
+     * 机构状态
      */
-    private Byte orgStatus;
+    private String status;
 
     /**
      * 扩展字段
@@ -60,6 +61,16 @@ public class RrmOrg extends ModelInfo implements Serializable {
      * 扩展字段2
      */
     private String extendedField2;
+
+    /**
+     * 是否删除
+     */
+    private Byte isDeleted;
+
+    /**
+     * 删除时间
+     */
+    private LocalDateTime deletedAt;
 
     private static final long serialVersionUID = 1L;
 }

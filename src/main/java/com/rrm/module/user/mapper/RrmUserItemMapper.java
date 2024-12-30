@@ -13,7 +13,7 @@ public interface RrmUserItemMapper extends BaseMapper<RrmUserItem> {
 
     int deleteByUserId(int userId);
 
-    List<Integer> getCorrelationUserId(String itemCode);
+    List<String> getCorrelationUserId(String itemCode);
 
     int deleteUserItem(Integer userId, String itemCode);
 }

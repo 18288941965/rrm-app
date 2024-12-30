@@ -32,25 +32,25 @@ public class RrmDictTypeController {
 
     @ApiOperation(value = "根据ID查询字典类型")
     @GetMapping("/{id}")
-    public ResultVO<RrmDictType> getDictType(@PathVariable Long id) {
+    public ResultVO<RrmDictType> getDictType(@PathVariable String id) {
         return rrmDictTypeService.getDictTypeById(id);
     }
 
     @ApiOperation(value = "创建新的字典类型")
     @PostMapping
-    public ResultVO<Long> createDictType(@RequestBody RrmDictType dictType) {
+    public ResultVO<String> createDictType(@RequestBody RrmDictType dictType) {
         return rrmDictTypeService.createDictType(dictType);
     }
 
     @ApiOperation(value = "更新字典类型")
     @PutMapping
-    public ResultVO<Long> updateDictType(@RequestBody RrmDictType rrmDictType) {
+    public ResultVO<String> updateDictType(@RequestBody RrmDictType rrmDictType) {
         return rrmDictTypeService.updateDictTypeById(rrmDictType);
     }
 
     @ApiOperation(value = "删除字典类型")
     @DeleteMapping("/{id}")
-    public ResultVO<Void> deleteDictType(@PathVariable Long id) {
+    public ResultVO<Void> deleteDictType(@PathVariable String id) {
         return rrmDictTypeService.deleteDictTypeById(id);
     }
 }

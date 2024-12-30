@@ -10,7 +10,7 @@
         delete from rrm_user_item where user_id = #{userId}
     </delete>
 
-    <select id="getCorrelationUserId" resultType="java.lang.Integer">
+    <select id="getCorrelationUserId" resultType="java.lang.String">
         select user_id from rrm_user_item where item_code = #{itemCode}
     </select>
 

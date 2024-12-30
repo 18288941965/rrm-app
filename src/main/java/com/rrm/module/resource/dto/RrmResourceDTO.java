@@ -59,7 +59,7 @@ public class RrmResourceDTO extends PageBase {
     private String environment;
 
     /**
-     * 状态(1：启用，0：停用)
+     * 状态（1：启用 ，0：停用）
      */
     private Byte status;
 

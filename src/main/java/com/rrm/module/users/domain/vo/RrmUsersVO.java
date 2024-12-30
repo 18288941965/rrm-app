@@ -1,8 +1,11 @@
 package com.rrm.module.users.domain.vo;
 
+import com.rrm.module.users.domain.bo.RrmUsersOrgBO;
 import com.rrm.module.users.domain.model.RrmUsers;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * 外部用户信息
@@ -26,5 +29,10 @@ public class RrmUsersVO extends RrmUsers {
      * 用户类型（dic_user_type）
      */
     private String typeName;
+
+    /**
+     * 关联机构列表
+     */
+    private List<RrmUsersOrgBO> orgList;
 
 }

@@ -18,8 +18,8 @@ public class RrmUser extends ModelInfo implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
 
     /**
      * 账号

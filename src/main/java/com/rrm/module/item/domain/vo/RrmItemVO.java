@@ -15,12 +15,12 @@ import java.util.List;
 @Data
 public class RrmItemVO {
 
-    private Integer id;
+    private String id;
     private String itemName;
     private String itemCode;
     private LocalDateTime createdAt;
-    private Integer createdBy;
+    private String createdBy;
 
     private List<RrmUser> userList;
-    private Integer loginId;
+    private String loginId;
 }

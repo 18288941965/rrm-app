@@ -18,7 +18,7 @@ public class RrmMenuMoveDTO {
 
     private String parentId;
 
-    private Integer updatedBy;
+    private String updatedBy;
 
     private LocalDateTime updatedAt;
 }

@@ -37,7 +37,7 @@ public class RrmMenuElement extends ModelInfo implements Serializable {
     private String type;
 
     /**
-     * 状态（1：可用，0：不可用）
+     * 状态（1：启用 ，0：停用）
      */
     private Byte status;
 

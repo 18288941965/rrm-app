@@ -77,7 +77,7 @@ public class RrmMenu extends ModelInfo implements Serializable {
     private String version;
 
     /**
-     * 状态(1:有效, 0:无效)
+     * 状态（1：启用 ，0：停用）
      */
     private Byte status;
 

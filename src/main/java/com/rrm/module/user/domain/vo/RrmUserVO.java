@@ -15,7 +15,7 @@ public class RrmUserVO {
     /**
      * 主键
      */
-    private Integer id;
+    private String id;
 
     /**
      * 账号
@@ -40,7 +40,7 @@ public class RrmUserVO {
     /**
      * 创建者
      */
-    private Integer createdBy;
+    private String createdBy;
 
     /**
      * 创建时间
@@ -55,7 +55,7 @@ public class RrmUserVO {
     /**
      * 登录用户ID
      */
-    private Integer loginId;
+    private String loginId;
 
     /**
      * 创建用户

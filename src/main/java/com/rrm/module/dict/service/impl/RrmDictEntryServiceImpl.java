@@ -42,12 +42,12 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     }
 
     @Override
-    public ResultVO<RrmDictEntry> getDictEntryById(Long id) {
+    public ResultVO<RrmDictEntry> getDictEntryById(String id) {
         return ResultVO.success(rrmDictEntryMapper.selectById(id));
     }
 
     @Override
-    public ResultVO<Long> createDictEntry(RrmDictEntry dictEntry) {
+    public ResultVO<String> createDictEntry(RrmDictEntry dictEntry) {
         int count = rrmDictEntryMapper.countByTypeCodeAndEntryCode(dictEntry.getTypeCode(), dictEntry.getEntryCode());
         if (count > 0) {
             return ResultVO.badRequest("字典代码已经存在！");
@@ -58,20 +58,20 @@ public class RrmDictEntryServiceImpl implements RrmDictEntryService {
     }
 
     @Override
-    public ResultVO<Long> updateDictEntryById(RrmDictEntry dictEntry) {
+    public ResultVO<String> updateDictEntryById(RrmDictEntry dictEntry) {
         bindUserUtil.bindUpdateUserInfo(dictEntry);
         rrmDictEntryMapper.updateById(dictEntry);
         return ResultVO.success(dictEntry.getId());
     }
 
     @Override
-    public ResultVO<Void> deleteDictEntryById(Long id) {
+    public ResultVO<Void> deleteDictEntryById(String id) {
         rrmDictEntryMapper.deleteById(id);
         return ResultVO.success();
     }
 
     @Override
-    public ResultVO<Void> updateEntryStatus(Byte status, Long id) {
+    public ResultVO<Void> updateEntryStatus(Byte status, String id) {
         RrmDictEntry dictEntry = new RrmDictEntry();
         dictEntry.setStatus(status);
         dictEntry.setId(id);

@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class RrmUserItemDTO {
 
-    private Integer id;
-    private Integer UserId;
+    private String id;
+    private String UserId;
     private String itemCode;
 }
