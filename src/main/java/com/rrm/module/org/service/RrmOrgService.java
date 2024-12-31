@@ -21,7 +21,7 @@ public interface RrmOrgService {
 
     ResultVO<String> updateOrgById(RrmOrg rrmOrg);
 
-    ResultVO<RrmOrg> getOrgById(String id);
+    ResultVO<RrmOrgVO> getOrgById(String id);
 
     ResultVO<List<RrmOrgVO>> getOrgTreeByItemCode();
 }

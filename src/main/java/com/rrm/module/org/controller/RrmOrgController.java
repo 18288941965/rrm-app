@@ -52,7 +52,7 @@ public class RrmOrgController {
 
     @ApiOperation(value = "根据ID获取")
     @GetMapping("/{id}")
-    public ResultVO<RrmOrg> getOrg(@PathVariable String id) {
+    public ResultVO<RrmOrgVO> getOrg(@PathVariable String id) {
         return rrmOrgService.getOrgById(id);
     }
 }

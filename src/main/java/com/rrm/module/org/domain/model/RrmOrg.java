@@ -28,9 +28,9 @@ public class RrmOrg extends ModelInfo implements Serializable {
     private String code;
 
     /**
-     * 上级机构代码
+     * 上级机构ID
      */
-    private String parentCode;
+    private String parentId;
 
     /**
      * 机构名称

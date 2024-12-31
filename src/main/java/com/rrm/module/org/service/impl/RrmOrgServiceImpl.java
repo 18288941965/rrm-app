@@ -61,8 +61,9 @@ public class RrmOrgServiceImpl implements RrmOrgService {
     }
 
     @Override
-    public ResultVO<RrmOrg> getOrgById(String id) {
-        return ResultVO.success(rrmOrgMapper.selectById(id));
+    public ResultVO<RrmOrgVO> getOrgById(String id) {
+        List<RrmOrgVO> dataList = rrmOrgMapper.selectOrgByItemCodeOrId(jwtTokenUtil.getItemCode(), id);
+        return ResultVO.success(dataList.get(0));
     }
 
     public static List<RrmOrgVO> buildOrgTree(List<RrmOrgVO> orgList) {
@@ -71,16 +72,16 @@ public class RrmOrgServiceImpl implements RrmOrgService {
 
         // Step 1: 将所有菜单存入 map，key 为机构的 code
         for (RrmOrgVO org : orgList) {
-            orgMap.put(org.getCode(), org);
+            orgMap.put(org.getId(), org);
         }
 
         // Step 2: 构建树结构
         for (RrmOrgVO org : orgList) {
-            if (!orgMap.containsKey(org.getParentCode())) {
+            if (!orgMap.containsKey(org.getParentId())) {
                 rootOrgList.add(org);
             } else {
                 // 否则，将其添加到对应的父节点的 children 列表中
-                RrmOrgVO parentOrg = orgMap.get(org.getParentCode());
+                RrmOrgVO parentOrg = orgMap.get(org.getParentId());
                 if (parentOrg != null) {
                     parentOrg.getChildren().add(org);
                 }
