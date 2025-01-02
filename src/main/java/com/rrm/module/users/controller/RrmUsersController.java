@@ -1,6 +1,7 @@
 package com.rrm.module.users.controller;
 
 import com.rrm.module.users.domain.model.RrmUsers;
+import com.rrm.module.users.domain.model.RrmUsersOrg;
 import com.rrm.module.users.domain.vo.RrmUsersVO;
 import com.rrm.module.users.dto.RrmUsersDTO;
 import com.rrm.module.users.service.RrmUsersService;
@@ -42,6 +43,12 @@ public class RrmUsersController {
         return rrmUsersService.updateUsersById(rrmUsers);
     }
 
+    @ApiOperation(value = "更新关联的机构为默认登录机构")
+    @PutMapping("/defaultLoginOrg")
+    public ResultVO<Void> updateDefaultLoginOrg(@RequestBody RrmUsersOrg rrmUsersOrg) {
+        return rrmUsersService.updateDefaultLoginOrg(rrmUsersOrg);
+    }
+
     @ApiOperation(value = "删除")
     @DeleteMapping("/{id}")
     public ResultVO<String> deleteUsers(@PathVariable String id) {
@@ -50,7 +57,7 @@ public class RrmUsersController {
 
     @ApiOperation(value = "根据ID获取")
     @GetMapping("/{id}")
-    public ResultVO<RrmUsers> getUsers(@PathVariable String id) {
+    public ResultVO<RrmUsersVO> getUsers(@PathVariable String id) {
         return rrmUsersService.getUsersById(id);
     }
 }

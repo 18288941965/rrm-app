@@ -1,6 +1,7 @@
 package com.rrm.module.users.service;
 
 import com.rrm.module.users.domain.model.RrmUsers;
+import com.rrm.module.users.domain.model.RrmUsersOrg;
 import com.rrm.module.users.domain.vo.RrmUsersVO;
 import com.rrm.module.users.dto.RrmUsersDTO;
 import com.rrm.vo.PageResultVO;
@@ -20,7 +21,9 @@ public interface RrmUsersService {
 
     ResultVO<String> updateUsersById(RrmUsers rrmUsers);
 
-    ResultVO<RrmUsers> getUsersById(String id);
+    ResultVO<RrmUsersVO> getUsersById(String id);
 
     ResultVO<PageResultVO<RrmUsersVO>> searchUsersPage(RrmUsersDTO dto);
+
+    ResultVO<Void> updateDefaultLoginOrg(RrmUsersOrg rrmUsersOrg);
 }

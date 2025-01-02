@@ -14,5 +14,7 @@ public interface RrmUsersMapper extends BaseMapper<RrmUsers> {
 
     IPage<RrmUsersVO> searchUsersPage(Page<RrmUsersVO> page, @Param("dto") RrmUsersDTO dto);
 
+    RrmUsersVO getDetailById(String id);
+
     int checkUsername(@Param("itemCode") String itemCode, @Param("username") String username, @Param("id") String id);
 }

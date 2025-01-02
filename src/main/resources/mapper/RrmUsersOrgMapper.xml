@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rrm.module.users.mapper.RrmUsersOrgMapper">
+
+    <insert id="batchInsert" parameterType="com.rrm.module.users.domain.model.RrmUsersOrg">
+        INSERT INTO rrm_users_org (
+        id,users_id,org_id,created_by,created_at,item_code
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},#{item.usersId},#{item.orgId},#{item.createdBy}, #{item.createdAt}, #{item.itemCode}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="batchDelete" parameterType="java.lang.String">
+        delete from rrm_users_org where users_id = #{usersId}
+    </delete>
+
+    <select id="selectByUsersId" resultType="com.rrm.module.org.domain.bo.RrmOrgBO" parameterType="java.lang.String">
+        select o.id, o.code, o.name, a.default_login
+        from rrm_users_org a
+        join rrm_org o on a.org_id = o.id and o.is_deleted = 0
+        where users_id = #{usersId}
+        order by o.code
+    </select>
+
+    <update id="cleanDefaultLogin" parameterType="java.lang.String">
+        update rrm_users_org set default_login = 0 where users_id = #{usersId}
+    </update>
+
+    <update id="updateDefaultLogin" parameterType="com.rrm.module.users.domain.model.RrmUsersOrg">
+        update rrm_users_org set default_login = 1 where users_id = #{dto.usersId} and org_id = #{dto.orgId}
+    </update>
+</mapper>

@@ -1,5 +1,6 @@
 package com.rrm.module.users.domain.vo;
 
+import com.rrm.module.org.domain.bo.RrmOrgBO;
 import com.rrm.module.users.domain.bo.RrmUsersOrgBO;
 import com.rrm.module.users.domain.model.RrmUsers;
 import lombok.Getter;
@@ -33,6 +34,6 @@ public class RrmUsersVO extends RrmUsers {
     /**
      * 关联机构列表
      */
-    private List<RrmUsersOrgBO> orgList;
+    private List<RrmOrgBO> orgList;
 
 }

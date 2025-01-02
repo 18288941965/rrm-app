@@ -26,6 +26,10 @@ public class BindUserUtil {
         obj.setItemCode(userInfo.getItemCode());
     }
 
+    public RrmUserCache getRrmUserCache() {
+        return jwtTokenUtil.getUserInfo();
+    }
+
     public void bindCreateUserInfoExcludeItemCode(ModelInfo obj) {
         RrmUserCache userInfo = jwtTokenUtil.getUserInfo();
         obj.setCreatedBy(userInfo.getId());

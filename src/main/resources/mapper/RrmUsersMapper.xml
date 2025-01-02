@@ -2,13 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.users.mapper.RrmUsersMapper">
 
+    <sql id="rrmUsersSelectBase">
+        select a.*, rde.entry_name as type_name, rde2.entry_name as gender_name, rde3.entry_name as nation_name from rrm_users a
+         left join rrm_dict_entry rde on a.type = rde.entry_code and rde.type_code = 'dic_user_type' and rde.status = 1
+         left join rrm_dict_entry rde2 on a.gender = rde2.entry_code and rde2.type_code = 'dic_user_gender' and rde2.status = 1
+         left join rrm_dict_entry rde3 on a.nation = rde3.entry_code and rde3.type_code = 'dic_user_nation' and rde3.status = 1
+    </sql>
+
     <select id="searchUsersPage"
             parameterType="com.rrm.module.users.dto.RrmUsersDTO"
             resultType="com.rrm.module.users.domain.vo.RrmUsersVO">
-        select a.*, rde.entry_name as type_name, rde2.entry_name as gender_name, rde3.entry_name as nation_name from rrm_users a
-        left join rrm_dict_entry rde on a.type = rde.entry_code and rde.type_code = 'dic_user_type' and rde.status = 1
-        left join rrm_dict_entry rde2 on a.gender = rde2.entry_code and rde2.type_code = 'dic_user_gender' and rde2.status = 1
-        left join rrm_dict_entry rde3 on a.nation = rde3.entry_code and rde3.type_code = 'dic_user_nation' and rde3.status = 1
+        <include refid="rrmUsersSelectBase" />
         <where>
             a.item_code = #{dto.itemCode}
             <if test="dto.username != null and dto.username != ''">
@@ -20,6 +24,15 @@
             <if test="dto.name != null and dto.name != ''">
                 and a.name like concat('%',#{name},'%')
             </if>
+        </where>
+    </select>
+
+    <select id="getDetailById"
+            parameterType="java.lang.String"
+            resultType="com.rrm.module.users.domain.vo.RrmUsersVO">
+        <include refid="rrmUsersSelectBase" />
+        <where>
+            a.id = #{id}
         </where>
     </select>
 
