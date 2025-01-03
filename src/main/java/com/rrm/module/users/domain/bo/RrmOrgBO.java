@@ -1,4 +1,4 @@
-package com.rrm.module.org.domain.bo;
+package com.rrm.module.users.domain.bo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +30,8 @@ public class RrmOrgBO {
      */
     private Byte defaultLogin;
 
+    /**
+     * 绑定角色统计
+     */
+    private long roleCount;
 }

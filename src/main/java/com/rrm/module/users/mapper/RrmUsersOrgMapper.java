@@ -1,7 +1,7 @@
 package com.rrm.module.users.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rrm.module.org.domain.bo.RrmOrgBO;
+import com.rrm.module.users.domain.bo.RrmOrgBO;
 import com.rrm.module.users.domain.model.RrmUsersOrg;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -19,6 +19,4 @@ public class RrmUsersDTO extends PageBase {
     private String status;
     private String username;
     private String name;
-    private String orgCode;
-    private String orgName;
 }

@@ -17,8 +17,13 @@
         delete from rrm_users_org where users_id = #{usersId}
     </delete>
 
-    <select id="selectByUsersId" resultType="com.rrm.module.org.domain.bo.RrmOrgBO" parameterType="java.lang.String">
-        select o.id, o.code, o.name, a.default_login
+    <select id="selectByUsersId" resultType="com.rrm.module.users.domain.bo.RrmOrgBO" parameterType="java.lang.String">
+        select
+            o.id,
+            o.code,
+            o.name,
+            a.default_login,
+            (select count(*) from rrm_users_role r where a.users_id = r.users_id and a.org_id = r.org_id) as role_count
         from rrm_users_org a
         join rrm_org o on a.org_id = o.id and o.is_deleted = 0
         where users_id = #{usersId}

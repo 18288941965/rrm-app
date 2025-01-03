@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
-import com.rrm.module.org.domain.bo.RrmOrgBO;
+import com.rrm.module.users.domain.bo.RrmOrgBO;
 import lombok.Getter;
 import lombok.Setter;
 

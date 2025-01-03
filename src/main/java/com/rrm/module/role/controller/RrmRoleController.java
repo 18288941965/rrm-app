@@ -2,13 +2,13 @@ package com.rrm.module.role.controller;
 
 import com.rrm.module.role.domain.model.RrmRole;
 import com.rrm.module.role.domain.vo.RrmRoleVO;
-import com.rrm.module.role.dto.RrmRoleDTO;
 import com.rrm.module.role.service.RrmRoleService;
-import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色管理.
@@ -24,10 +24,11 @@ public class RrmRoleController {
     @Autowired
     private RrmRoleService rrmRoleService;
 
-    @ApiOperation(value = "分页查询")
-    @PostMapping("/page")
-    public ResultVO<PageResultVO<RrmRoleVO>> searchRolePage(@RequestBody RrmRoleDTO dto) {
-        return rrmRoleService.searchRolePage(dto);
+    // 全部
+    @ApiOperation(value = "根据关联项目查询所有角色并构建为tree")
+    @GetMapping("/tree")
+    public ResultVO<List<RrmRoleVO>> getRoleTreeByItemCode() {
+        return rrmRoleService.getRoleTreeByItemCode();
     }
 
     @ApiOperation(value = "创建")

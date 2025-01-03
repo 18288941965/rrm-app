@@ -2,9 +2,9 @@ package com.rrm.module.role.service;
 
 import com.rrm.module.role.domain.model.RrmRole;
 import com.rrm.module.role.domain.vo.RrmRoleVO;
-import com.rrm.module.role.dto.RrmRoleDTO;
-import com.rrm.vo.PageResultVO;
 import com.rrm.vo.ResultVO;
+
+import java.util.List;
 
 /**
  * 用户信息管理.
@@ -22,5 +22,5 @@ public interface RrmRoleService {
 
     ResultVO<RrmRole> getRoleById(String id);
 
-    ResultVO<PageResultVO<RrmRoleVO>> searchRolePage(RrmRoleDTO dto);
+    ResultVO<List<RrmRoleVO>> getRoleTreeByItemCode();
 }

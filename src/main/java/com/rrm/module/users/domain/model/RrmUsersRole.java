@@ -36,9 +36,9 @@ public class RrmUsersRole extends ModelInfo implements Serializable {
     private String roleId;
 
     /**
-     * 机构代码
+     * 机构ID
      */
-    private String orgCode;
+    private String orgId;
 
     /**
      * 更新人

@@ -1,7 +1,6 @@
 package com.rrm.module.users.domain.vo;
 
-import com.rrm.module.org.domain.bo.RrmOrgBO;
-import com.rrm.module.users.domain.bo.RrmUsersOrgBO;
+import com.rrm.module.users.domain.bo.RrmOrgBO;
 import com.rrm.module.users.domain.model.RrmUsers;
 import lombok.Getter;
 import lombok.Setter;

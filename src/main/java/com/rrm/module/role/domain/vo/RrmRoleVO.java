@@ -4,6 +4,9 @@ import com.rrm.module.role.domain.model.RrmRole;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 角色管理
  * rrm_role
@@ -21,5 +24,7 @@ public class RrmRoleVO extends RrmRole {
     private Integer bindMenuCount;
 
     private Integer bindElementCount;
+
+    private List<RrmRoleVO> children = new ArrayList<>();;
 
 }

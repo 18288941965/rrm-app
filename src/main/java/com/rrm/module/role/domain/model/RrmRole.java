@@ -56,5 +56,10 @@ public class RrmRole extends ModelInfo implements Serializable {
      */
     private String netType;
 
+    /**
+     * 父菜单ID
+     */
+    private String parentId;
+
     private static final long serialVersionUID = 1L;
 }
