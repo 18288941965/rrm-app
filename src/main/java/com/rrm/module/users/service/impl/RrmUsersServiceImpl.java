@@ -9,6 +9,7 @@ import com.rrm.module.users.domain.vo.RrmUsersVO;
 import com.rrm.module.users.dto.RrmUsersDTO;
 import com.rrm.module.users.mapper.RrmUsersMapper;
 import com.rrm.module.users.mapper.RrmUsersOrgMapper;
+import com.rrm.module.users.mapper.RrmUsersRoleMapper;
 import com.rrm.module.users.service.RrmUsersService;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
@@ -36,6 +37,9 @@ public class RrmUsersServiceImpl implements RrmUsersService {
 
     @Autowired
     private RrmUsersOrgMapper rrmUsersOrgMapper;
+
+    @Autowired
+    private RrmUsersRoleMapper rrmUsersRoleMapper;
 
     @Autowired
     private BindUserUtil bindUserUtil;
@@ -78,6 +82,7 @@ public class RrmUsersServiceImpl implements RrmUsersService {
     }
 
     @Override
+    @Transactional
     public ResultVO<String> deleteUsersById(String id) {
         LocalDateTime now = LocalDateTime.now();
         RrmUsers rrmUsers = new RrmUsers();
@@ -85,7 +90,12 @@ public class RrmUsersServiceImpl implements RrmUsersService {
         rrmUsers.setUpdatedAt(now);
         rrmUsers.setIsDeleted((byte)1);
         rrmUsers.setDeletedAt(now);
+        // 更新用户删除状态
         rrmUsersMapper.updateById(rrmUsers);
+        // 根据用户id删除 用户 机构 关联信息
+        rrmUsersOrgMapper.deleteByUsersId(rrmUsers.getId());
+        // 根据用户id删除 用户 机构 角色 关联信息
+        rrmUsersRoleMapper.deleteByUsersId(rrmUsers.getId());
         return ResultVO.success(rrmUsers.getId());
     }
 
@@ -101,14 +111,14 @@ public class RrmUsersServiceImpl implements RrmUsersService {
         rrmUsersMapper.updateById(rrmUsers);
 
         // 先删除用户和机构的关联信息
-        rrmUsersOrgMapper.batchDelete(rrmUsers.getId());
-        List<RrmUsersOrg> rrmUsersOrgs = buildObject(rrmUsers);
+        rrmUsersOrgMapper.deleteByUsersId(rrmUsers.getId());
+        List<RrmUsersOrg> rrmUsersOrgList = buildObject(rrmUsers);
         // 再插入新的关联信息
-        if (!rrmUsersOrgs.isEmpty()) {
-            rrmUsersOrgMapper.batchInsert(rrmUsersOrgs);
+        if (!rrmUsersOrgList.isEmpty()) {
+            rrmUsersOrgMapper.batchInsert(rrmUsersOrgList);
         }
         // 清理掉历史机构关联的角色信息（机构已经取消关联了）
-        rrmUsersOrgMapper.cleanRelation(rrmUsers.getId());
+        rrmUsersRoleMapper.deleteByUsersId(rrmUsers.getId());
 
         return ResultVO.success(rrmUsers.getId());
     }

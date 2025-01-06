@@ -4,11 +4,14 @@ import com.rrm.module.org.domain.model.RrmOrg;
 import com.rrm.module.org.domain.vo.RrmOrgVO;
 import com.rrm.module.org.mapper.RrmOrgMapper;
 import com.rrm.module.org.service.RrmOrgService;
+import com.rrm.module.users.mapper.RrmUsersOrgMapper;
+import com.rrm.module.users.mapper.RrmUsersRoleMapper;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,6 +32,12 @@ public class RrmOrgServiceImpl implements RrmOrgService {
     private RrmOrgMapper rrmOrgMapper;
 
     @Autowired
+    private RrmUsersOrgMapper rrmUsersOrgMapper;
+
+    @Autowired
+    private RrmUsersRoleMapper rrmUsersRoleMapper;
+
+    @Autowired
     private BindUserUtil bindUserUtil;
 
     @Autowired
@@ -42,6 +51,7 @@ public class RrmOrgServiceImpl implements RrmOrgService {
     }
 
     @Override
+    @Transactional
     public ResultVO<String> deleteOrgById(String id) {
         LocalDateTime now = LocalDateTime.now();
         RrmOrg rrmOrg = new RrmOrg();
@@ -49,7 +59,12 @@ public class RrmOrgServiceImpl implements RrmOrgService {
         rrmOrg.setUpdatedAt(now);
         rrmOrg.setIsDeleted((byte)1);
         rrmOrg.setDeletedAt(now);
+        // 更新机构删除状态
         rrmOrgMapper.updateById(rrmOrg);
+        // 根据机构id删除 用户 机构 关系信息
+        rrmUsersOrgMapper.deleteByOrgId(id);
+        // 根据机构id删除 用户 机构 角色 关联信息
+        rrmUsersRoleMapper.deleteByOrgId(id);
         return ResultVO.success(rrmOrg.getId());
     }
 

@@ -13,4 +13,18 @@
         </foreach>
     </insert>
 
+    <delete id="deleteByUsersId" parameterType="java.lang.String">
+        delete from rrm_users_role where users_id = #{usersId} and org_id not in (
+            select org_id from rrm_users_org where users_id = #{usersId}
+        )
+    </delete>
+
+    <delete id="deleteByOrgId" parameterType="java.lang.String">
+        delete from rrm_users_role where org_id = #{orgId}
+    </delete>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.String">
+        delete from rrm_users_role where role_id = #{roleId}
+    </delete>
+
 </mapper>

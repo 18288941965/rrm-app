@@ -7,13 +7,16 @@ import com.rrm.module.menu.domain.model.RrmMenu;
 import com.rrm.module.menu.domain.vo.RrmMenuVO;
 import com.rrm.module.menu.dto.RrmMenuMoveDTO;
 import com.rrm.module.menu.mapper.RrmMenuMapper;
+import com.rrm.module.menu.mapper.RrmMenuResourceMapper;
 import com.rrm.module.menu.service.RrmMenuService;
+import com.rrm.module.role.mapper.RrmRoleMenuMapper;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,6 +35,12 @@ public class RrmMenuServiceImpl implements RrmMenuService {
 
     @Autowired
     private RrmMenuMapper rrmMenuMapper;
+
+    @Autowired
+    private RrmMenuResourceMapper rrmMenuResourceMapper;
+
+    @Autowired
+    private RrmRoleMenuMapper rrmRoleMenuMapper;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -60,9 +69,15 @@ public class RrmMenuServiceImpl implements RrmMenuService {
     }
 
     @Override
+    @Transactional
     public ResultVO<Void> deleteMenuById(String ids) {
+        // 删除菜单
         rrmMenuMapper.deleteById(ids);
-        // TODO 删除关联的资源，删除角色绑定的菜单等
+        // 根据id删除 菜单 资源 关联信息
+        rrmMenuResourceMapper.deleteByMenuId(ids);
+        // 根据id删除 菜单 角色 关联信息
+        rrmRoleMenuMapper.deleteByMenuId(ids);
+        // 必须先删除菜单下的控件，才能删除菜单，所以这里不考虑和控件的关联关系
         return ResultVO.success();
     }
 

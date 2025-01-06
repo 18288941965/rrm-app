@@ -10,4 +10,12 @@
     <delete id="deleteByRoleIdAndMenuId">
         delete from rrm_role_menu where role_id = #{roleId} and menu_id = #{menuId}
     </delete>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.String">
+        delete from rrm_role_menu where role_id = #{roleId}
+    </delete>
+
+    <delete id="deleteByMenuId" parameterType="java.lang.String">
+        delete from rrm_role_menu where menu_id = #{menuId}
+    </delete>
 </mapper>

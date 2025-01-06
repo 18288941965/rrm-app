@@ -3,13 +3,16 @@ package com.rrm.module.role.service.impl;
 import com.rrm.module.role.domain.model.RrmRole;
 import com.rrm.module.role.domain.vo.RrmRoleVO;
 import com.rrm.module.role.mapper.RrmRoleMapper;
+import com.rrm.module.role.mapper.RrmRoleMenuMapper;
 import com.rrm.module.role.service.RrmRoleService;
+import com.rrm.module.users.mapper.RrmUsersRoleMapper;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +32,12 @@ public class RrmRoleServiceImpl implements RrmRoleService {
     private RrmRoleMapper rrmRoleMapper;
 
     @Autowired
+    private RrmUsersRoleMapper rrmUsersRoleMapper;
+
+    @Autowired
+    private RrmRoleMenuMapper rrmRoleMenuMapper;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
@@ -42,9 +51,14 @@ public class RrmRoleServiceImpl implements RrmRoleService {
     }
 
     @Override
+    @Transactional
     public ResultVO<String> deleteRoleById(String id) {
+        // 删除角色信息
         rrmRoleMapper.deleteById(id);
-        // TODO 删除其他关联信息
+        // 根据角色id删除 角色 菜单|控件 关联信息
+        rrmRoleMenuMapper.deleteByRoleId(id);
+        // 根据角色ID删除 用户 机构 角色关联信息
+        rrmUsersRoleMapper.deleteByRoleId(id);
         return ResultVO.success(id);
     }
 

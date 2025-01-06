@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.menu.mapper.RrmMenuResourceMapper">
 
+    <delete id="deleteByMenuId" parameterType="java.lang.String">
+        delete from rrm_menu_resource where menu_id = #{menuId}
+    </delete>
 </mapper>

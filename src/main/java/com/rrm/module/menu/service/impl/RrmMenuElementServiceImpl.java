@@ -3,7 +3,9 @@ package com.rrm.module.menu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.rrm.module.menu.domain.model.RrmMenuElement;
 import com.rrm.module.menu.mapper.RrmMenuElementMapper;
+import com.rrm.module.menu.mapper.RrmMenuResourceMapper;
 import com.rrm.module.menu.service.RrmMenuElementService;
+import com.rrm.module.role.mapper.RrmRoleMenuMapper;
 import com.rrm.util.BindUserUtil;
 import com.rrm.util.JwtTokenUtil;
 import com.rrm.vo.ResultVO;
@@ -23,6 +25,12 @@ public class RrmMenuElementServiceImpl implements RrmMenuElementService {
 
     @Autowired
     private RrmMenuElementMapper rrmMenuElementMapper;
+
+    @Autowired
+    private RrmMenuResourceMapper rrmMenuResourceMapper;
+
+    @Autowired
+    private RrmRoleMenuMapper rrmRoleMenuMapper;
 
     @Autowired
     private BindUserUtil bindUserUtil;
@@ -60,11 +68,12 @@ public class RrmMenuElementServiceImpl implements RrmMenuElementService {
 
     @Override
     public ResultVO<Void> deleteMenuElementById(String id) {
-        RrmMenuElement menuElement = new RrmMenuElement();
-        bindUserUtil.bindUpdateUserInfo(menuElement);
-        menuElement.setStatus((byte)0);
-        menuElement.setId(id);
-        rrmMenuElementMapper.updateById(menuElement);
+        // 删除控件
+        rrmMenuElementMapper.deleteById(id);
+        // 根据id删除 控件 资源 关联信息（使用menu_id）
+        rrmMenuResourceMapper.deleteByMenuId(id);
+        // 根据id删除 控件 角色 关联信息（使用menu_id）
+        rrmRoleMenuMapper.deleteByMenuId(id);
         return ResultVO.success();
     }
 

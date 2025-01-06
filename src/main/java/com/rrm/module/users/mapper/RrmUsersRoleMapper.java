@@ -10,4 +10,10 @@ import java.util.List;
 public interface RrmUsersRoleMapper extends BaseMapper<RrmUsersRole> {
 
     void batchInsert(List<RrmUsersRole> usersRoleList);
+
+    void deleteByUsersId(String usersId);
+
+    void deleteByRoleId(String roleId);
+
+    void deleteByOrgId(String orgId);
 }

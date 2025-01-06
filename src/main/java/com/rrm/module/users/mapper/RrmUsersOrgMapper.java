@@ -13,7 +13,9 @@ public interface RrmUsersOrgMapper extends BaseMapper<RrmUsersOrg> {
 
     void batchInsert(List<RrmUsersOrg> list);
 
-    void batchDelete(String usersId);
+    void deleteByUsersId(String usersId);
+
+    void deleteByOrgId(String orgId);
 
     List<RrmOrgBO> selectByUsersId(String usersId);
 
@@ -21,5 +23,4 @@ public interface RrmUsersOrgMapper extends BaseMapper<RrmUsersOrg> {
 
     void cleanDefaultLogin(String usersId);
 
-    void cleanRelation(String usersId);
 }

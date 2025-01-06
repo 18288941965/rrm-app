@@ -14,15 +14,15 @@
             resultType="com.rrm.module.users.domain.vo.RrmUsersVO">
         <include refid="rrmUsersSelectBase" />
         <where>
-            a.item_code = #{dto.itemCode}
+            a.item_code = #{dto.itemCode} and is_deleted = 0
             <if test="dto.username != null and dto.username != ''">
-                and username != #{dto.username}
+                and a.username = #{dto.username}
             </if>
             <if test="dto.status != null and dto.status != ''">
-                and status != #{dto.status}
+                and a.status = #{dto.status}
             </if>
             <if test="dto.name != null and dto.name != ''">
-                and a.name like concat('%',#{name},'%')
+                and a.name like concat('%',#{dto.name},'%')
             </if>
         </where>
     </select>
