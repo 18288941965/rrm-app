@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rrm.module.users.domain.model.RrmUsersRole;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface RrmUsersRoleMapper extends BaseMapper<RrmUsersRole> {
 
+    void batchInsert(List<RrmUsersRole> usersRoleList);
 }

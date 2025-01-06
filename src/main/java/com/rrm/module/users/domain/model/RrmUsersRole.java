@@ -1,16 +1,12 @@
 package com.rrm.module.users.domain.model;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.rrm.base.ModelInfo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * 用户角色关联表
@@ -22,7 +18,6 @@ public class RrmUsersRole extends ModelInfo implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.ASSIGN_UUID)
     private String id;
 
     /**

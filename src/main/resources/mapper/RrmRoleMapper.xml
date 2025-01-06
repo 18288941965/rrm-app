@@ -18,12 +18,12 @@
         </where>
     </select>
 
-    <select id="getUsersBindRoleByUserId" resultType="com.rrm.module.role.domain.vo.RrmRoleVO">
+    <select id="getUsersBindRole" resultType="com.rrm.module.role.domain.vo.RrmRoleVO">
         select a.*, d.entry_name as typeName from rrm_role a
         join rrm_dict_entry d on a.type = d.entry_code and d.status = 1 and d.type_code = 'dic_role_type'
         join rrm_users_role b on a.id = b.role_id
         <where>
-            b.users_id = #{usersId}
+            b.users_id = #{usersId} and b.org_id = #{orgId}
         </where>
     </select>
 </mapper>

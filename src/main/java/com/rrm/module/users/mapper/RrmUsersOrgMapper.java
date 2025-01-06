@@ -20,4 +20,6 @@ public interface RrmUsersOrgMapper extends BaseMapper<RrmUsersOrg> {
     void updateDefaultLogin(@Param("dto") RrmUsersOrg rrmUsersOrg);
 
     void cleanDefaultLogin(String usersId);
+
+    void cleanRelation(String usersId);
 }

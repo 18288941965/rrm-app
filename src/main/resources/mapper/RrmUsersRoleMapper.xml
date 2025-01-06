@@ -2,4 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rrm.module.users.mapper.RrmUsersRoleMapper">
 
+    <insert id="batchInsert" parameterType="com.rrm.module.users.domain.model.RrmUsersRole">
+        INSERT INTO rrm_users_role (
+        id,users_id,org_id,role_id, created_by,created_at,item_code
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},#{item.usersId},#{item.orgId}, #{item.roleId}, #{item.createdBy}, #{item.createdAt}, #{item.itemCode}
+            )
+        </foreach>
+    </insert>
+
 </mapper>

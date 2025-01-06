@@ -100,11 +100,15 @@ public class RrmUsersServiceImpl implements RrmUsersService {
         bindUserUtil.bindUpdateUserInfo(rrmUsers);
         rrmUsersMapper.updateById(rrmUsers);
 
+        // 先删除用户和机构的关联信息
         rrmUsersOrgMapper.batchDelete(rrmUsers.getId());
         List<RrmUsersOrg> rrmUsersOrgs = buildObject(rrmUsers);
+        // 再插入新的关联信息
         if (!rrmUsersOrgs.isEmpty()) {
             rrmUsersOrgMapper.batchInsert(rrmUsersOrgs);
         }
+        // 清理掉历史机构关联的角色信息（机构已经取消关联了）
+        rrmUsersOrgMapper.cleanRelation(rrmUsers.getId());
 
         return ResultVO.success(rrmUsers.getId());
     }

@@ -1,7 +1,7 @@
 package com.rrm.module.users.service;
 
 import com.rrm.module.role.domain.model.RrmRole;
-import com.rrm.module.users.domain.model.RrmUsersRole;
+import com.rrm.module.users.dto.RrmUsersRoleDTO;
 import com.rrm.vo.ResultVO;
 
 import java.util.List;
@@ -14,10 +14,8 @@ import java.util.List;
  */
 public interface RrmUsersRoleService {
 
-    ResultVO<List<RrmRole>> getUsersBindRoleByUserId(String usersId);
+    ResultVO<List<RrmRole>> getUsersBindRole(String usersId, String roleId);
 
-    ResultVO<String> bindUsersRole(RrmUsersRole rrmUsersRole);
-
-    ResultVO<Void> unbindUsersRole(String usersId, String roleId);
+    ResultVO<Void> bindUsersRole(RrmUsersRoleDTO rrmUsersRoleDTO);
 
 }

@@ -37,4 +37,10 @@
     <update id="updateDefaultLogin" parameterType="com.rrm.module.users.domain.model.RrmUsersOrg">
         update rrm_users_org set default_login = 1 where users_id = #{dto.usersId} and org_id = #{dto.orgId}
     </update>
+
+    <delete id="cleanRelation" parameterType="java.lang.String">
+        delete from rrm_users_role where users_id = #{usersId} and org_id not in (
+            select org_id from rrm_users_org where users_id = #{usersId}
+        )
+    </delete>
 </mapper>

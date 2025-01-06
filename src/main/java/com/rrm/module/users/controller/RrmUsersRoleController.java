@@ -1,7 +1,7 @@
 package com.rrm.module.users.controller;
 
 import com.rrm.module.role.domain.model.RrmRole;
-import com.rrm.module.users.domain.model.RrmUsersRole;
+import com.rrm.module.users.dto.RrmUsersRoleDTO;
 import com.rrm.module.users.service.RrmUsersRoleService;
 import com.rrm.vo.ResultVO;
 import io.swagger.annotations.ApiOperation;
@@ -26,19 +26,13 @@ public class RrmUsersRoleController {
 
     @ApiOperation(value = "绑定")
     @PostMapping
-    public ResultVO<String> bindUsersRole(@RequestBody RrmUsersRole rrmUsersRole) {
-        return rrmUsersRoleService.bindUsersRole(rrmUsersRole);
+    public ResultVO<Void> bindUsersRole(@RequestBody RrmUsersRoleDTO rrmUsersRoleDTO) {
+        return rrmUsersRoleService.bindUsersRole(rrmUsersRoleDTO);
     }
 
     @ApiOperation(value = "查询绑定数据")
-    @GetMapping("/{usersId}")
-    public ResultVO<List<RrmRole>> getUsersBindRoleByUserId(@PathVariable String usersId) {
-        return rrmUsersRoleService.getUsersBindRoleByUserId(usersId);
-    }
-
-    @ApiOperation(value = "取消绑定")
-    @DeleteMapping("/{usersId}/{roleId}")
-    public ResultVO<Void> unbindUsersRole(@PathVariable String usersId, @PathVariable String roleId) {
-        return rrmUsersRoleService.unbindUsersRole(usersId, roleId);
+    @GetMapping("/{usersId}/{roleId}")
+    public ResultVO<List<RrmRole>> getUsersBindRole(@PathVariable String usersId, @PathVariable String roleId) {
+        return rrmUsersRoleService.getUsersBindRole(usersId, roleId);
     }
 }

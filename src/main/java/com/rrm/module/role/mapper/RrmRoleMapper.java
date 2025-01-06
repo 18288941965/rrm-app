@@ -12,5 +12,5 @@ public interface RrmRoleMapper extends BaseMapper<RrmRole> {
 
     List<RrmRoleVO> selectRoleByItemCodeOrId(String itemCode, String id);
 
-    List<RrmRole> getUsersBindRoleByUserId(String usersId);
+    List<RrmRole> getUsersBindRole(String usersId, String orgId);
 }
