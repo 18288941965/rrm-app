@@ -1,10 +1,8 @@
 package com.rrm.filter;
 
-import org.springframework.util.AntPathMatcher;
-import org.springframework.util.PathMatcher;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 类描述.
@@ -14,23 +12,21 @@ import java.util.List;
  */
 public class RequestMatcher {
 
-    private final PathMatcher pathMatcher = new AntPathMatcher();
-    private final List<String> requestPatterns;
+    public static String matchPath(Set<String> apiPaths, String httpMethodAndRequestPath) {
+        for (String pathPattern : apiPaths) {
+            String patternStr = "^" + escapeSpecialChars(pathPattern) + "$";
+            Pattern pattern = Pattern.compile(patternStr);
 
-    public RequestMatcher(List<String> requestPatterns) {
-        this.requestPatterns = requestPatterns;
-    }
+            Matcher matcher = pattern.matcher(httpMethodAndRequestPath);
 
-    public String matchRequestToPattern(HttpServletRequest request) {
-        String requestUri = request.getRequestURI();
-
-        for (String pattern : requestPatterns) {
-            if (pathMatcher.match(pattern, requestUri)) {
-                // 如果匹配，返回匹配的模式
-                return pattern;
+            if (matcher.matches()) {
+                return pathPattern;
             }
         }
-        // 如果没有找到匹配的模式，返回null或者处理异常
         return null;
+    }
+
+    private static String escapeSpecialChars(String pathPattern) {
+        return pathPattern.replaceAll("\\{([^}]+)\\}", "([^/]+)");
     }
 }

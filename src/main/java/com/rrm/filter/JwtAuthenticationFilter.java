@@ -1,7 +1,11 @@
 package com.rrm.filter;
 
+import cn.hutool.core.util.StrUtil;
 import com.rrm.cache.RrmUserCache;
+import com.rrm.module.resource.domain.model.RrmResource;
+import com.rrm.module.resource.mapper.RrmResourceMapper;
 import com.rrm.util.JwtTokenUtil;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -11,8 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 拦截类.
@@ -26,6 +29,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private RrmResourceMapper rrmResourceMapper;
+
     private static final List<String> PASS_URL = Arrays.asList(
             "/auth/login",
             "/auth/isLogin",
@@ -34,6 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     );
     private static final String LOGIN_URL = "/";
 
+    @SneakyThrows
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -41,8 +48,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String xRequestedWith = request.getHeader("X-Requested-With");
         String authorization = request.getHeader("Authorization");
         String flag = "XMLHttpRequest";
-
-        System.out.println(servletPath);
 
         // *******************处理前端请求
         if (!flag.equals(xRequestedWith) && !PASS_URL.contains(servletPath)) {
@@ -60,7 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // *******************处理后端请求
+        // *******************处理后端请求 | 校验token
         String token = null;
         String username = null;
 
@@ -87,6 +92,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             response.getWriter().write("无效token！");
             return;
         }
+
+        // *******************处理后端请求 | 判断接口是否存在以及获取接口详情
+        // 查询所有接口 | 这里要根据实际情况查询
+        String method = request.getMethod();
+        List<RrmResource> allResource = rrmResourceMapper.getAllResource();
+        Map<String, String> resourceMap = new HashMap<>();
+        allResource.forEach(resource -> {
+            resourceMap.put(resource.getRequestMethod()+resource.getRequestPath(), resource.getAuthCode());
+        });
+        Set<String> strings = resourceMap.keySet();
+
+        // 根据访问地址匹配请求路径
+        String mapKey = RequestMatcher.matchPath(strings, method + servletPath);
+        if (StrUtil.isBlank(mapKey)) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("接口不存在！");
+            return;
+        }
+
+        // *******************处理后端请求 | 校验是否有访问资源的权限
+
 
         filterChain.doFilter(request, response);
     }

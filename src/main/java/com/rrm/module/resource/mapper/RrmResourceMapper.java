@@ -26,4 +26,6 @@ public interface RrmResourceMapper extends BaseMapper<RrmResource> {
     List<String> getPackageNameList(String itemCode);
 
     void batchDeleteResource(ApiScannerDTO apiScannerDTO);
+
+    List<RrmResource> getAllResource();
 }
