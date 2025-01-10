@@ -36,7 +36,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             "/auth/login",
             "/auth/isLogin",
             "/auth/logout",
-            "/scanner/run"
+            "/scanner/run",
+            "/redis/demo/t1",
+            "/redis/demo/t2",
+            "/redis/demo/t3",
+            "/redis/demo/t4",
+            "/redis/demo/t5",
+            "/redis/demo/t6",
+            "/redis/demo/t7",
+            "/redis/demo/t8",
+            "/redis/demo/t9",
+            "/redis/demo/t10"
     );
     private static final String LOGIN_URL = "/";
 
@@ -106,9 +116,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // 根据访问地址匹配请求路径
         String mapKey = RequestMatcher.matchPath(strings, method + servletPath);
         if (StrUtil.isBlank(mapKey)) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("接口不存在！");
-            return;
+            // 在生产环境应该放开下列配置
+            // response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            // response.getWriter().write("接口不存在！");
+            // return;
+            System.out.println("================接口不存在");
         }
 
         // *******************处理后端请求 | 校验是否有访问资源的权限
