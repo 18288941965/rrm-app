@@ -1,8 +1,8 @@
 package com.rrm.demo;
 
+import com.rrm.demo.model.RedisDemo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,19 +19,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class RedisDemoController {
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisUtil redisUtil;
 
     @ApiOperation(value = "测试客户端连接情况")
     @GetMapping("/t1")
     public void t1() {
         // 存储数据
-        redisTemplate.opsForValue().set("testKey", "Hello, Redis!");
+        redisUtil.setObjectToRedis("testKey", "Hello, Redis!");
 
         // 获取数据
-        String value = (String) redisTemplate.opsForValue().get("testKey");
+        String value = redisUtil.getObjectFromRedis("testKey", String.class);
         System.out.println("Value: " + value);
+    }
 
-        // 删除数据
-        redisTemplate.delete("testKey");
+
+    @ApiOperation(value = "测试客户端连接情况")
+    @GetMapping("/t2")
+    public void t2() {
+        RedisDemo redisDemo = new RedisDemo();
+        redisDemo.setName("18");
+        redisDemo.setAge("小明");
+
+        redisUtil.setObjectToRedis("login-user", redisDemo);
+
+        RedisDemo redisDemo1 = redisUtil.getObjectFromRedis("login-user", RedisDemo.class);
+
+        // 获取数据
+        System.out.println("Value: " + redisDemo1.toString());
     }
 }
